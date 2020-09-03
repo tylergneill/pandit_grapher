@@ -1,0 +1,42 @@
+Entity ID
+Work
+Author ID (person)
+Author (person)
+Attributed author ID (person)
+Attributed author (person)
+Owner ID (person)
+Owner (person)
+Discipline
+Genre
+Structure
+Length
+Year
+Year note
+Language
+Sponsor ID (person)
+Sponsor (person)
+Sponsored by ID (institution)
+Sponsored by (institution)
+Composed in ID (site)
+Composed in (site)
+Availability
+Manuscript distribution
+Commentary on ID (work)
+Commentary on (work)
+Mentions ID (work)
+Mentions (work)
+Text reused ID (work)
+Text reused (work)
+Mentioned person ID
+Mentioned person
+Site mentioned ID
+Site mentioned
+Edition ID (print)
+Edition (print)
+Manuscript reference
+Refs to refbooks
+Scholarship ID (print)
+Scholarship (print and note)
+Aka
+More info
+External resources
