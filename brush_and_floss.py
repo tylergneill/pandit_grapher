@@ -1,7 +1,5 @@
 import re
 
-from skrutable.transliteration import Transliterator
-
 from pickling import save_content_to_file
 from config import load_config_dict_from_json_file
 from objects import *
@@ -21,12 +19,6 @@ for c_r in cleaning_replacements:
 
 table_rows = CSV_data.split('\n')
 while '' in table_rows: table_rows.remove('') # remove any empty rows
-
-# prepare to simplify Sanskrit name encoding for sake of networkx
-
-T = Transliterator()
-def simplify_name(name):
-	return T.transliterate(name, from_scheme='IAST', to_scheme='IASTreduced')
 
 # double-check that source data format hasn't changed
 row0 = table_rows[0]
@@ -54,8 +46,6 @@ Entities = {} # cumulative lookup table by entity id
 
 for row in table_rows[1:]: # skip column labels
 
-	print(row)
-
 	# split for simple list of row content, but adjust for extra quotes
 	row_cells = row.split('","')
 	for i, c in enumerate(row_cells):
@@ -72,8 +62,7 @@ for row in table_rows[1:]: # skip column labels
 	# but some exceptions (23) with commas, etc. are known =
 	# this will look gross in the visualization
 	# but it is a data problem, so I take no evasive action here
-	# but do simplify diacritics
-	W.name = simplify_name(row_cells[1])
+	W.name = row_cells[1]
 
 	# manage potentially multiple authors
 	# treat any available authorship equally (for now)
@@ -91,7 +80,7 @@ for row in table_rows[1:]: # skip column labels
 			A = Author(author_id) # initialize with id
 			Entities[A.id] = A
 
-		A.name = simplify_name(author_names[i])
+		A.name = author_names[i]
 
 		(W.author_ids).append(A.id)
 		(A.work_ids).append(W.id)
@@ -103,7 +92,7 @@ for row in table_rows[1:]: # skip column labels
 	base_text_names = row_cells[24].split(', ')
 	while '' in base_text_names: base_text_names.remove('')
 
-	for base_text_id in base_text_ids:
+	for i, base_text_id in enumerate(base_text_ids):
 
 		if base_text_id in Entities:
 			BT = Entities[base_text_id]
@@ -111,7 +100,7 @@ for row in table_rows[1:]: # skip column labels
 			BT = Work(base_text_id) # initialize with id
 			Entities[BT.id] = BT
 
-		BT.name = simplify_name(base_text_names[i])
+		BT.name = base_text_names[i]
 
 		W.base_text_ids.append(BT.id)
 		BT.commentary_ids.append(W.id)

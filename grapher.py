@@ -134,6 +134,6 @@ for node_id in node_ids:
 
 # draw graph
 
-plt.figure(1,figsize=(13,7))
+plt.figure(1,figsize=(14,7))
 nx.draw_spring(G, labels = label_map, node_color = color_map, node_size = 1000)
 plt.show()
