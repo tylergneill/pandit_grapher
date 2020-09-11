@@ -137,3 +137,6 @@ for node_id in node_ids:
 plt.figure(1,figsize=(14,7))
 nx.draw_spring(G, labels = label_map, node_color = color_map, node_size = 1000)
 plt.show()
+
+H = nx.relabel_nodes(G, label_map)
+nx.write_gexf(H, "H.gexf")

@@ -8,8 +8,6 @@ Python 3.
 
 Currently using `networkx` package both for creating graph structure and for drawing visuals. I hope to soon move onto something else for nicer visuals.
 
-Also using my own [skrutable](https://github.com/tylergneill/skrutable) package for Sanskrit transliteration, see which.
-
 # Preparing the Data
 
 1. Download the up-to-date Pandit info on "Works" as a CSV file (Aug 2020: 3.1mb); [see here](https://www.panditproject.org/node/99329) for instructions. Alternatively, simply use the snapshot included in the repository here (`work_search-2020-08-29-02-36-panditproject.org.csv`).
