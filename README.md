@@ -1,12 +1,14 @@
 # pandit_grapher
 
-Graphs prosophographical relationships in [Pandit](https://www.panditproject.org/) database.
+Graphs person-work and work-work relationships in the [Pandit Project](https://www.panditproject.org/) prosophographical database.
 
 # Requirements
 
 Python 3.
 
-Currently using `networkx` package both for creating graph structure and for drawing visuals. I hope to soon move onto something else for nicer visuals.
+Currently using `networkx` package both for creating the graph structure and for drawing basic visuals.
+
+If you like, you can also use [Gephi](https://gephi.org/), for which basic output is also supported.
 
 # Preparing the Data
 
@@ -28,11 +30,11 @@ Currently using `networkx` package both for creating graph structure and for dra
 python brush_and_floss.py
 ~~~
 
-The resulting pickle file (`work_person_relations.p`) in the `pandit_grapher` directory is what the `grapher` module will draw its work and person data from.
+The resulting pickle file (e.g., `work_person_relations.p`) in the `pandit_grapher` directory is what the `grapher` module will draw its work and person data from.
 
 # Running the `grapher` Module
 
-1. In `config.json`, identify the Pandit ID number of a Person or Work you are interested in. (This is also available on the individual Pandit entity page.) Enter it as the `subnetwork_center` variable (a string) in `config.json`. (The default value is `"40377"` for [Kālidāsa](https://www.panditproject.org/entity/40377/person).)
+1. In `config.json`, identify the Pandit ID number of a Person or Work you are interested in. (This is also available on the individual Pandit entity page.) Enter it as the `subnetwork_center` variable (a string). (The default value is `"40377"` for [Kālidāsa](https://www.panditproject.org/entity/40377/person).)
 
 2. Set the `bacon_distance` to an integer indicating the number of iterations outward from the seed entity to graph (cp. ["Six Degrees of Kevin Bacon"](https://en.wikipedia.org/wiki/Six_Degrees_of_Kevin_Bacon#:~:text=Six%20Degrees%20of%20Kevin%20Bacon%20or%20%22Bacon's%20Law%22%20is%20a,and%20prolific%20actor%20Kevin%20Bacon) and the ["Oracle of Bacon"](https://oracleofbacon.org/)). E.g., `0` means graph the center entity only, `1` means graph one more layer of connections after that, `2` means two more, etc. (The default is `2`.)
 
