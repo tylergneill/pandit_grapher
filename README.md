@@ -52,6 +52,10 @@ If the `draw_networkx_graph` variable is set to `true` in `config.json`, an OS-n
 
 ![screenshot](static/Kalidasa_degree_2_with_blacklist_networkx.png)
 
+You can also use multiple entities to seed the `subgraph_center`. Below is an example of doing so with both Kālidāsa and Vallabhadeva.
+
+![screenshot](static/Kalidasa_Vallabhadeva_degree_2_with_blacklist.png)
+
 # Using the Gephi Output File
 
 If the `output_gephi_file` variable is set to `true` in `config.json`, an additional file (`.gexf`) compatible with the free third-party visualization software [Gephi](https://gephi.org/) will be generated in the `pandit_grapher` directory. This can be simply be opened in Gephi (`File` > `Open`) for more flexible graph visualization and manipulation there.
