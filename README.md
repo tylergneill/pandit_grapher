@@ -28,6 +28,8 @@ The resulting pickle file (`work_person_relations.p`) is what the `grapher` modu
 
 1. Open `config.json` with a text editor. You'll be using it as a dashboard for managing run settings.
 
+![screenshot](static/config_dashboard.png)
+
 2. Identify the Pandit ID number of a Person or Work you are interested in. (This is also available on the individual Pandit entity page.) Enter it as the `subnetwork_center` variable (a string) in `config.json`. (The default value is `"40377"` for [Kālidāsa](https://www.panditproject.org/entity/40377/person).)
 
 3. Set the `bacon_distance` to an integer indicating the number of iterations outward from the seed entity to graph (cp. ["Six Degrees of Kevin Bacon"](https://en.wikipedia.org/wiki/Six_Degrees_of_Kevin_Bacon#:~:text=Six%20Degrees%20of%20Kevin%20Bacon%20or%20%22Bacon's%20Law%22%20is%20a,and%20prolific%20actor%20Kevin%20Bacon) and the ["Oracle of Bacon"](https://oracleofbacon.org/)). E.g., `0` means graph the center entity only, `1` means graph one more layer of connections after that, `2` means two more, etc. (The default is `2`.)
