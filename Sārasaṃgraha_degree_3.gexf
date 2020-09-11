@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gexf xmlns="http://www.gexf.net/1.2draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.2draft http://www.gexf.net/1.2draft/gexf.xsd" version="1.2">
+  <meta lastmodifieddate="2020-09-11">
+    <creator>NetworkX 2.5</creator>
+  </meta>
+  <graph defaultedgetype="directed" mode="static" name="">
+    <attributes mode="static" class="edge">
+      <attribute id="0" title="arrowstyle" type="string" />
+    </attributes>
+    <nodes>
+      <node id="Varadarāja" label="Varadarāja" />
+      <node id="Sārasaṃgraha" label="Sārasaṃgraha" />
+      <node id="Tārkikarakṣā" label="Tārkikarakṣā" />
+      <node id="Niṣkāntikā" label="Niṣkāntikā" />
+      <node id="Vivaraṇa" label="Vivaraṇa" />
+      <node id="Vivṛti" label="Vivṛti" />
+      <node id="Commentary on Varadarāja's Tārkikarakṣā" label="Commentary on Varadarāja's Tārkikarakṣā" />
+      <node id="Commentary on Varadarāja's Tārkikarakṣāsārasaṃgraha" label="Commentary on Varadarāja's Tārkikarakṣāsārasaṃgraha" />
+      <node id="Completion of Cennubhaṭṭa's Tārkikarakṣāsaṃgrahavivaraṇa" label="Completion of Cennubhaṭṭa's Tārkikarakṣāsaṃgrahavivaraṇa" />
+      <node id="Laghudīpikā" label="Laghudīpikā" />
+      <node id="Nyāyakaumudī" label="Nyāyakaumudī" />
+      <node id="Mallinātha Sūri" label="Mallinātha Sūri" />
+      <node id="Cinnam Bhaṭṭa" label="Cinnam Bhaṭṭa" />
+      <node id="Harihara Dīkṣita of Bhāradvājagotra" label="Harihara Dīkṣita of Bhāradvājagotra" />
+      <node id="Bodhanī" label="Bodhanī" />
+      <node id="Commentary on Udayana's Kiraṇāvalī" label="Commentary on Udayana's Kiraṇāvalī" />
+      <node id="Nyāyadīpikā" label="Nyāyadīpikā" />
+      <node id="Prakāśikā on Keśava Miśra's Tarkabhāṣā" label="Prakāśikā on Keśava Miśra's Tarkabhāṣā" />
+      <node id="Sarvadarśanasaṃgraha" label="Sarvadarśanasaṃgraha" />
+      <node id="Vināyaka Bhaṭṭa" label="Vināyaka Bhaṭṭa" />
+      <node id="Balabhadra Miśra" label="Balabhadra Miśra" />
+      <node id="Rāmeśvara" label="Rāmeśvara" />
+      <node id="Nidhinātha" label="Nidhinātha" />
+      <node id="Kiraṇāvalī" label="Kiraṇāvalī" />
+      <node id="Nyāyakusumāñjali" label="Nyāyakusumāñjali" />
+      <node id="Sundara Rāja" label="Sundara Rāja" />
+      <node id="Jñānapūrṇa" label="Jñānapūrṇa" />
+      <node id="Sarasvatī Tīrtha" label="Sarasvatī Tīrtha" />
+    </nodes>
+    <edges>
+      <edge source="Varadarāja" target="Sārasaṃgraha" id="0">
+        <attvalues>
+          <attvalue for="0" value="-[" />
+        </attvalues>
+      </edge>
+      <edge source="Varadarāja" target="Tārkikarakṣā" id="1">
+        <attvalues>
+          <attvalue for="0" value="-[" />
+        </attvalues>
+      </edge>
+      <edge source="Varadarāja" target="Bodhanī" id="2">
+        <attvalues>
+          <attvalue for="0" value="-[" />
+        </attvalues>
+      </edge>
+      <edge source="Varadarāja" target="Commentary on Udayana's Kiraṇāvalī" id="3">
+        <attvalues>
+          <attvalue for="0" value="-[" />
+        </attvalues>
+      </edge>
+      <edge source="Varadarāja" target="Nyāyadīpikā" id="4">
+        <attvalues>
+          <attvalue for="0" value="-[" />
+        </attvalues>
+      </edge>
+      <edge source="Sārasaṃgraha" target="Niṣkāntikā" id="5">
+        <attvalues>
+          <attvalue for="0" value="-&gt;" />
+        </attvalues>
+      </edge>
+      <edge source="Sārasaṃgraha" target="Vivaraṇa" id="6">
+        <attvalues>
+          <attvalue for="0" value="-&gt;" />
+        </attvalues>
+      </edge>
+      <edge source="Sārasaṃgraha" target="Vivṛti" id="7">
+        <attvalues>
+          <attvalue for="0" value="-&gt;" />
+        </attvalues>
+      </edge>
+      <edge source="Tārkikarakṣā" target="Sārasaṃgraha" id="8">
+        <attvalues>
+          <attvalue for="0" value="-&gt;" />
+        </attvalues>
+      </edge>
+      <edge source="Tārkikarakṣā" target="Commentary on Varadarāja's Tārkikarakṣā" id="9">
+        <attvalues>
+          <attvalue for="0" value="-&gt;" />
+        </attvalues>
+      </edge>
+      <edge source="Tārkikarakṣā" target="Commentary on Varadarāja's Tārkikarakṣāsārasaṃgraha" id="10">
+        <attvalues>
+          <attvalue for="0" value="-&gt;" />
+        </attvalues>
+      </edge>
+      <edge source="Tārkikarakṣā" target="Completion of Cennubhaṭṭa's Tārkikarakṣāsaṃgrahavivaraṇa" id="11">
+        <attvalues>
+          <attvalue for="0" value="-&gt;" />
+        </attvalues>
+      </edge>
+      <edge source="Tārkikarakṣā" target="Laghudīpikā" id="12">
+        <attvalues>
+          <attvalue for="0" value="-&gt;" />
+        </attvalues>
+      </edge>
+      <edge source="Tārkikarakṣā" target="Nyāyakaumudī" id="13">
+        <attvalues>
+          <attvalue for="0" value="-&gt;" />
+        </attvalues>
+      </edge>
+      <edge source="Mallinātha Sūri" target="Niṣkāntikā" id="14">
+        <attvalues>
+          <attvalue for="0" value="-[" />
+        </attvalues>
+      </edge>
+      <edge source="Cinnam Bhaṭṭa" target="Vivaraṇa" id="15">
+        <attvalues>
+          <attvalue for="0" value="-[" />
+        </attvalues>
+      </edge>
+      <edge source="Cinnam Bhaṭṭa" target="Prakāśikā on Keśava Miśra's Tarkabhāṣā" id="16">
+        <attvalues>
+          <attvalue for="0" value="-[" />
+        </attvalues>
+      </edge>
+      <edge source="Cinnam Bhaṭṭa" target="Sarvadarśanasaṃgraha" id="17">
+        <attvalues>
+          <attvalue for="0" value="-[" />
+        </attvalues>
+      </edge>
+      <edge source="Harihara Dīkṣita of Bhāradvājagotra" target="Vivṛti" id="18">
+        <attvalues>
+          <attvalue for="0" value="-[" />
+        </attvalues>
+      </edge>
+      <edge source="Vināyaka Bhaṭṭa" target="Nyāyakaumudī" id="19">
+        <attvalues>
+          <attvalue for="0" value="-[" />
+        </attvalues>
+      </edge>
+      <edge source="Balabhadra Miśra" target="Sārasaṃgraha" id="20">
+        <attvalues>
+          <attvalue for="0" value="-[" />
+        </attvalues>
+      </edge>
+      <edge source="Rāmeśvara" target="Completion of Cennubhaṭṭa's Tārkikarakṣāsaṃgrahavivaraṇa" id="21">
+        <attvalues>
+          <attvalue for="0" value="-[" />
+        </attvalues>
+      </edge>
+      <edge source="Nidhinātha" target="Commentary on Varadarāja's Tārkikarakṣā" id="22">
+        <attvalues>
+          <attvalue for="0" value="-[" />
+        </attvalues>
+      </edge>
+      <edge source="Kiraṇāvalī" target="Commentary on Udayana's Kiraṇāvalī" id="23">
+        <attvalues>
+          <attvalue for="0" value="-&gt;" />
+        </attvalues>
+      </edge>
+      <edge source="Nyāyakusumāñjali" target="Bodhanī" id="24">
+        <attvalues>
+          <attvalue for="0" value="-&gt;" />
+        </attvalues>
+      </edge>
+      <edge source="Sundara Rāja" target="Commentary on Varadarāja's Tārkikarakṣā" id="25">
+        <attvalues>
+          <attvalue for="0" value="-[" />
+        </attvalues>
+      </edge>
+      <edge source="Jñānapūrṇa" target="Laghudīpikā" id="26">
+        <attvalues>
+          <attvalue for="0" value="-[" />
+        </attvalues>
+      </edge>
+      <edge source="Sarasvatī Tīrtha" target="Commentary on Varadarāja's Tārkikarakṣāsārasaṃgraha" id="27">
+        <attvalues>
+          <attvalue for="0" value="-[" />
+        </attvalues>
+      </edge>
+    </edges>
+  </graph>
+</gexf>
