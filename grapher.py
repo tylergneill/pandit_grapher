@@ -11,6 +11,8 @@ config_dict = load_config_dict_from_json_file()
 subnetwork_center = config_dict["subgraph_center"]
 bacon_distance = config_dict["bacon_distance"]
 blacklist = config_dict["blacklist"]
+draw_networkx_graph = config_dict["draw_networkx_graph"]
+output_gephi_file = config_dict["output_gephi_file"]
 
 # construct subgraph
 
@@ -66,7 +68,7 @@ for i in range( int(bacon_distance) + 1 ):
 subgraph_node_ids = [ ] # Entity objects
 node_ids_to_append_this_time = [ subnetwork_center ] # 5-digit strings
 
-for i in range( int(bacon_distance) + 1 ):
+for i in range( bacon_distance + 1 ):
 
 	node_ids_to_append_next_time = []
 
@@ -132,11 +134,23 @@ for node_id in node_ids:
 	elif Entities_by_id[node_id].type == 'author':
 		color_map.append('green')
 
-# draw graph
+# draw networkx graph
 
-plt.figure(1,figsize=(14,7))
-nx.draw_spring(G, labels = label_map, node_color = color_map, node_size = 1000)
-plt.show()
+if draw_networkx_graph:
 
-H = nx.relabel_nodes(G, label_map)
-nx.write_gexf(H, "H.gexf")
+	plt.figure(1,figsize=(14,7))
+	nx.draw_spring(G, labels = label_map, node_color = color_map, node_size = 1000)
+	plt.show()
+
+# output for Gephi
+
+if output_gephi_file:
+
+	# change primary labels to words instead of ID numbers
+	G_relabled = nx.relabel_nodes(G, label_map)
+
+	output_fn = "%s_degree_%d" % (label_map[subnetwork_center], bacon_distance)
+	if blacklist != []: output_fn = output_fn + "_with_blacklist"
+	output_fn = output_fn + ".gexf"
+
+	nx.write_gexf(G_relabled, output_fn)

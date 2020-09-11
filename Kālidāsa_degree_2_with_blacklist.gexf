@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <gexf xmlns="http://www.gexf.net/1.2draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.2draft http://www.gexf.net/1.2draft/gexf.xsd" version="1.2">
-  <meta lastmodifieddate="2020-09-03">
+  <meta lastmodifieddate="2020-09-11">
     <creator>NetworkX 2.5</creator>
   </meta>
   <graph defaultedgetype="directed" mode="static" name="">
@@ -14,11 +14,6 @@
       <node id="Mālavikāgnimitra" label="Mālavikāgnimitra" />
       <node id="Raghuvaṃśa" label="Raghuvaṃśa" />
       <node id="Vikramorvaśīya" label="Vikramorvaśīya" />
-      <node id="Abhijñānaśakuntalacarcā" label="Abhijñānaśakuntalacarcā" />
-      <node id="Abhijñānaśākuntalasañjīvanaṭippaṇa" label="Abhijñānaśākuntalasañjīvanaṭippaṇa" />
-      <node id="Abhijñānaśakuntalaṭīkā" label="Abhijñānaśakuntalaṭīkā" />
-      <node id="Kumārasambhava - commentary" label="Kumārasambhava - commentary" />
-      <node id="Kumārasaṃbhava- commentary" label="Kumārasaṃbhava- commentary" />
       <node id="Raghuvaṃśa - commentary" label="Raghuvaṃśa - commentary" />
       <node id="Ādvaitasudhā" label="Ādvaitasudhā" />
       <node id="Raghupañcikā" label="Raghupañcikā" />
@@ -49,42 +44,17 @@
           <attvalue for="0" value="-[" />
         </attvalues>
       </edge>
-      <edge source="Abhijñānaśakuntala" target="Abhijñānaśakuntalacarcā" id="5">
+      <edge source="Raghuvaṃśa" target="Ādvaitasudhā" id="5">
         <attvalues>
           <attvalue for="0" value="-&gt;" />
         </attvalues>
       </edge>
-      <edge source="Abhijñānaśakuntala" target="Abhijñānaśākuntalasañjīvanaṭippaṇa" id="6">
+      <edge source="Raghuvaṃśa" target="Raghupañcikā" id="6">
         <attvalues>
           <attvalue for="0" value="-&gt;" />
         </attvalues>
       </edge>
-      <edge source="Abhijñānaśakuntala" target="Abhijñānaśakuntalaṭīkā" id="7">
-        <attvalues>
-          <attvalue for="0" value="-&gt;" />
-        </attvalues>
-      </edge>
-      <edge source="Kumārasaṃbhava" target="Kumārasambhava - commentary" id="8">
-        <attvalues>
-          <attvalue for="0" value="-&gt;" />
-        </attvalues>
-      </edge>
-      <edge source="Kumārasaṃbhava" target="Kumārasaṃbhava- commentary" id="9">
-        <attvalues>
-          <attvalue for="0" value="-&gt;" />
-        </attvalues>
-      </edge>
-      <edge source="Raghuvaṃśa" target="Ādvaitasudhā" id="10">
-        <attvalues>
-          <attvalue for="0" value="-&gt;" />
-        </attvalues>
-      </edge>
-      <edge source="Raghuvaṃśa" target="Raghupañcikā" id="11">
-        <attvalues>
-          <attvalue for="0" value="-&gt;" />
-        </attvalues>
-      </edge>
-      <edge source="Raghuvaṃśa - commentary" target="Raghuvaṃśa" id="12">
+      <edge source="Raghuvaṃśa - commentary" target="Raghuvaṃśa" id="7">
         <attvalues>
           <attvalue for="0" value="-&gt;" />
         </attvalues>
