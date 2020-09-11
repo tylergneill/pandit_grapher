@@ -20,7 +20,7 @@ If you like, you can also use [Gephi](https://gephi.org/), for which basic outpu
 
 2. Open `config.json` with a text editor. You'll be using it as a dashboard for managing all settings.
 
-![screenshot](static/kitten.png)
+![screenshot](static/config_dashboard_with_lists.png)
 
 3. Make sure that the `work_CSV_fn` variable in `config.json` is set to the correct filename.
 
