@@ -1,7 +1,7 @@
 {
 "work_CSV_fn" : "work_search-2020-08-29-02-36-panditproject.org.csv",
 "pickle_jar_fn" : "work_author_relations.p",
-"subgraph_center" : ["40377"],
+"subgraph_center" : ["40377", "96590"],
 "bacon_distance" : 2,
 "blacklist" : ["41324","96246"],
 "draw_networkx_graph": true,

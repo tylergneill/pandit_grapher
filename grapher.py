@@ -89,14 +89,6 @@ for node_id in node_ids:
 	elif Entities_by_id[node_id].type == 'author':
 		color_map.append('green')
 
-# draw networkx graph
-
-if draw_networkx_graph:
-
-	plt.figure(1,figsize=(14,7))
-	nx.draw_spring(G, labels = label_map, node_color = color_map, node_size = 1000)
-	plt.show()
-
 # output for Gephi
 
 if output_gephi_file:
@@ -104,8 +96,20 @@ if output_gephi_file:
 	# change primary labels to words instead of ID numbers
 	G_relabled = nx.relabel_nodes(G, label_map)
 
-	output_fn = "%s_degree_%d" % (label_map[subnetwork_center], bacon_distance)
-	if blacklist != []: output_fn = output_fn + "_with_blacklist"
+	output_fn = "%s" % label_map[subnetwork_center[0]]
+	if len(subnetwork_center) > 1:
+		output_fn = output_fn + "_etc"
+	output_fn = output_fn + "_degree_%d" % bacon_distance
+	if blacklist != []:
+		output_fn = output_fn + "_with_blacklist"
 	output_fn = output_fn + ".gexf"
 
 	nx.write_gexf(G_relabled, output_fn)
+
+# draw networkx graph
+
+if draw_networkx_graph:
+
+	plt.figure(1,figsize=(14,7))
+	nx.draw_spring(G, labels = label_map, node_color = color_map, node_size = 1000)
+	plt.show()

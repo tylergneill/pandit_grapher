@@ -14,9 +14,10 @@
       <node id="Mālavikāgnimitra" label="Mālavikāgnimitra" />
       <node id="Raghuvaṃśa" label="Raghuvaṃśa" />
       <node id="Vikramorvaśīya" label="Vikramorvaśīya" />
+      <node id="Vallabhadeva" label="Vallabhadeva" />
+      <node id="Raghupañcikā" label="Raghupañcikā" />
       <node id="Raghuvaṃśa - commentary" label="Raghuvaṃśa - commentary" />
       <node id="Ādvaitasudhā" label="Ādvaitasudhā" />
-      <node id="Raghupañcikā" label="Raghupañcikā" />
     </nodes>
     <edges>
       <edge source="Kālidāsa" target="Abhijñānaśakuntala" id="0">
@@ -54,7 +55,12 @@
           <attvalue for="0" value="-&gt;" />
         </attvalues>
       </edge>
-      <edge source="Raghuvaṃśa - commentary" target="Raghuvaṃśa" id="7">
+      <edge source="Vallabhadeva" target="Raghupañcikā" id="7">
+        <attvalues>
+          <attvalue for="0" value="-[" />
+        </attvalues>
+      </edge>
+      <edge source="Raghuvaṃśa - commentary" target="Raghuvaṃśa" id="8">
         <attvalues>
           <attvalue for="0" value="-&gt;" />
         </attvalues>
