@@ -34,11 +34,11 @@ The resulting pickle file (e.g., `work_person_relations.p`) in the `pandit_graph
 
 # Running the `grapher` Module
 
-1. In `config.json`, identify the Pandit ID number of a Person or Work you are interested in. (This is also available on the individual Pandit entity page.) Add this number, as a string, to the list variable `subnetwork_center`. (The default value is a single entity, `"40377"`, for [Kālidāsa](https://www.panditproject.org/entity/40377/person). You can also use multiple entities, as demonstrated in the screenshots below.)
+1. Using the Pandit website (or the downloaded data), identify the entity ID number of a Person or Work you are interested in. Then, in `config.json`, use this number, as a string, to populate the list variable `subnetwork_center`. (The default value is a single entity, `"40377"`, for [Kālidāsa](https://www.panditproject.org/entity/40377/person). You can also use multiple entities in this list, with a separate string for each, as demonstrated in the screenshots below.)
 
 2. Set the `bacon_distance` to an integer indicating the number of iterations outward from the seed entity to graph (cp. ["Six Degrees of Kevin Bacon"](https://en.wikipedia.org/wiki/Six_Degrees_of_Kevin_Bacon#:~:text=Six%20Degrees%20of%20Kevin%20Bacon%20or%20%22Bacon's%20Law%22%20is%20a,and%20prolific%20actor%20Kevin%20Bacon) and the ["Oracle of Bacon"](https://oracleofbacon.org/)). E.g., `0` means graph the center entity only, `1` means graph one more layer of connections after that, `2` means two more, etc. (The default is `2`.)
 
-> Note: Excluding isolate nodes that don't connect to anything else, the number of iterations required to start from any one node and span the entire graph is approximately .... However, if you're interested in visually inspecting individual entities, depending on the individual, anything more than 3–5 iterations can quickly get too complicated to look at without significant filtering (see "blacklisting" below).
+> Note: Excluding isolate nodes and subgraphs, the lion's share of the entire graph Pandit Works and Persons (8168 out of 14677) is spanned in about 25–30 crawl iterations, depending on where you start. However, if you're interested in visually inspecting individual entities, depending on the individual, anything more than 3–5 iterations can quickly get too complicated to look at without significant filtering (see "blacklisting" below).
 
 3. Set the `blacklist` variable in `config.json` to a list of strings representing entity IDs (Person and/or Work) whose further connections should be suppressed in building the subgraph. Use this when, for example, a given author is too prolific or a given work is too commented-upon and would therefore visually overwhelm other information in the graph. (The default list is `["41324","96246"]` in order to suppress further connections on [Kumārasaṃbhava](https://www.panditproject.org/entity/41324/work) and [Abhijñānaśakuntala](https://www.panditproject.org/entity/96246/work), respectively.)
 
@@ -69,16 +69,16 @@ If the `output_gephi_file` variable is set to `true` in `config.json`, an additi
 The above calculation of the number of iterations required to span the entire graph is an example of doing other things with that graph than outputting for direct visualization. To do more such things, optionally set the `draw_networkx_graph` and `output_gephi_file` variables to `false` in `config.json` and then just proceed to use the internal graph object returned by `grapher.construct_graph()`. For example, in Python interactive mode:
 
 ~~~
-\>\>\> import grapher
-\>\>\> PG = grapher.construct_subgraph()
-\>\>\> print(PG.edges())
+>>> import grapher
+>>> PG = grapher.construct_subgraph()
+>>> print(PG.edges())
 [('40377', '96246'), ('40377', '41324'), ('40377', '97244'), ('40377', '41500'), ('40377', '97243'), ('41500', '41499'), ('41500', '96592'), ('41510', '41500')]
-\>\>\> def graph_to(i):
-\>\>\> 		grapher.bacon_distance = i
-\>\>\> 		PG = grapher.construct_subgraph()
-\>\>\> 		print(i, len(PG.nodes()) )
-\>\>\> for i in range(30):
-...     	graph_to(i)
+>>> def graph_to(i):
+>>> 	grapher.bacon_distance = i
+>>> 	PG = grapher.construct_subgraph()
+>>> 	print(i, len(PG.nodes()) )
+>>> for i in range(30):
+...     graph_to(i)
 0 1
 1 6
 2 14

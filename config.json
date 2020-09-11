@@ -3,7 +3,7 @@
 "pickle_jar_fn" : "work_author_relations.p",
 "subgraph_center" : ["40377"],
 "bacon_distance" : 2,
-"blacklist" : ["41324", "96246"],
+"blacklist" : [],
 "draw_networkx_graph": true,
 "output_gephi_file": true
 }
