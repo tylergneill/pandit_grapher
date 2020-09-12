@@ -14,14 +14,14 @@ blacklist = config_dict["blacklist"]
 draw_networkx_graph = config_dict["draw_networkx_graph"]
 output_gephi_file = config_dict["output_gephi_file"]
 
-def construct_subgraph():
+def construct_subgraph(subn_ctr):
 
 	Pandit_Graph = nx.DiGraph() # nx graph object; used are:
 	# .nodes attribute
 	# .add_edge and .remove_node methods (not .add_node)
 
 	subgraph_node_ids = [ ] # Entity objects
-	node_ids_to_append_this_time = subnetwork_center # list of 5-digit strings
+	node_ids_to_append_this_time = subn_ctr # list of 5-digit strings
 
 	for i in range( bacon_distance + 1 ):
 
@@ -95,7 +95,7 @@ def construct_subgraph():
 
 if __name__ == "__main__":
 
-	Pandit_Graph = construct_subgraph()
+	Pandit_Graph = construct_subgraph(subnetwork_center)
 
 	# output for Gephi
 

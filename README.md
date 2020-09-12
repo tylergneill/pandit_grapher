@@ -38,9 +38,9 @@ The resulting pickle file (e.g., `work_person_relations.p`) in the `pandit_graph
 
 2. Set the `bacon_distance` to an integer indicating the number of iterations outward from the seed entity to graph (cp. ["Six Degrees of Kevin Bacon"](https://en.wikipedia.org/wiki/Six_Degrees_of_Kevin_Bacon#:~:text=Six%20Degrees%20of%20Kevin%20Bacon%20or%20%22Bacon's%20Law%22%20is%20a,and%20prolific%20actor%20Kevin%20Bacon) and the ["Oracle of Bacon"](https://oracleofbacon.org/)). E.g., `0` means graph the center entity only, `1` means graph one more layer of connections after that, `2` means two more, etc. (The default is `2`.)
 
-> Note: Excluding isolate nodes and subgraphs, the lion's share of the entire graph Pandit Works and Persons (8168 out of 14677) is spanned in about 25–30 crawl iterations, depending on where you start. However, if you're interested in visually inspecting individual entities, depending on the individual, anything more than 3–5 iterations can quickly get too complicated to look at without significant filtering (see "blacklisting" below).
+> Note: Excluding isolate nodes and subgraphs, the lion's share of the entire graph of Pandit Works and Persons (8168 out of 14677) is generally spanned with somewhere between 20–30 hops, depending on the starting point. However, if one is interested in visually inspecting individual entities, depending on the individuals, graphing anything more than 3–5 hops can quickly become impratically complicated without significant filtering (see "blacklisting" below).
 
-3. Set the `blacklist` variable in `config.json` to a list of strings representing entity IDs (Person and/or Work) whose further connections should be suppressed in building the subgraph. Use this when, for example, a given author is too prolific or a given work is too commented-upon and would therefore visually overwhelm other information in the graph. (The default list is `["41324","96246"]` in order to suppress further connections on [Kumārasaṃbhava](https://www.panditproject.org/entity/41324/work) and [Abhijñānaśakuntala](https://www.panditproject.org/entity/96246/work), respectively.)
+3. Set the `blacklist` variable in `config.json` to a list of strings representing entity IDs (Person and/or Work) whose further connections should be suppressed in building the subgraph. Use this when, for example, a given author is too prolific or a given work is too commented-upon and would therefore visually overwhelm other information in the graph. (The default list is `["41324","96246"]`, suppressing further connections on [Kumārasaṃbhava](https://www.panditproject.org/entity/41324/work) and [Abhijñānaśakuntala](https://www.panditproject.org/entity/96246/work), respectively.)
 
 4. Run the `grapher` module on the command-line with no arguments.
 
@@ -48,25 +48,27 @@ The resulting pickle file (e.g., `work_person_relations.p`) in the `pandit_graph
 python grapher.py
 ~~~
 
+The resulting graph is created in memory, (optionally) drawn to the screen, and also (optionally) output for Gephi.
+
 # How to Read the networkx Results
 
 If the `draw_networkx_graph` variable is set to `true` in `config.json`, an OS-native `networkx` pop-up window will appear. Green circles are for persons, red circles are for works. Grey circles are for either persons or works whose further connections have been suppressed by the `blacklist`. Lines indicate authorship or commentarial relationships, and arrows indicate causality, i.e., that a person "wrote" a work, or that one work "inspired" a further commentarial work.
 
 ![screenshot](static/Kalidasa_degree_2_with_blacklist_networkx.png)
 
-You can also use multiple entities to seed the `subgraph_center`. Below is an example of doing so with both Kālidāsa and Vallabhadeva. As long as there aren't errors in the database itself, the graph should connect itself up just fine.
+It's also fine to use multiple entities to seed the `subgraph_center`. Below is an example of doing so with both Kālidāsa and Vallabhadeva. As long as there aren't errors in the database itself, the graph should connect itself up just fine.
 
 ![screenshot](static/Kalidasa_Vallabhadeva_degree_2_with_blacklist.png)
 
 # Using the Gephi Output File
 
-If the `output_gephi_file` variable is set to `true` in `config.json`, an additional file (`.gexf`) compatible with the free third-party visualization software [Gephi](https://gephi.org/) will be generated in the `pandit_grapher` directory. This can be simply be opened in Gephi (`File` > `Open`) for more flexible graph visualization and manipulation there.
+If the `output_gephi_file` variable is set to `true` in `config.json`, an additional `.gexf` file compatible with the free third-party visualization software [Gephi](https://gephi.org/) will be generated in the `pandit_grapher` directory. This can be simply be opened in Gephi (`File` > `Open`) for more flexible graph visualization and manipulation there.
 
 ![screenshot](static/Kalidasa_degree_2_with_blacklist_gephi.png)
 
 # Doing Other Things with the Graph Data
 
-The above calculation of the number of iterations required to span the entire graph is an example of doing other things with that graph than outputting for direct visualization. To do more such things, optionally set the `draw_networkx_graph` and `output_gephi_file` variables to `false` in `config.json` and then just proceed to use the internal graph object returned by `grapher.construct_graph()`. For example, in Python interactive mode:
+The above calculation of the number of hops required to span the overall Pandit network is an example of doing things with the graph data other than just outputting for manual inspection. For more such analysis, optionally set the `draw_networkx_graph` and `output_gephi_file` variables to `false` in `config.json` and then just proceed to use the internal `networkx` graph object returned by `grapher.construct_graph()`, and perhaps also the `grapher.Entities_by_id` dictionary which maps Pandit entity ID numbers to objects of the type defined in the `objects` module. For example, in Python interactive mode:
 
 ~~~
 >>> import grapher
@@ -75,21 +77,24 @@ The above calculation of the number of iterations required to span the entire gr
 [('40377', '96246'), ('40377', '41324'), ('40377', '97244'), ('40377', '41500'), ('40377', '97243'), ('41500', '41499'), ('41500', '96592'), ('41510', '41500')]
 >>> def graph_to(i):
 >>> 	grapher.bacon_distance = i
->>> 	PG = grapher.construct_subgraph()
->>> 	print(i, len(PG.nodes()) )
+>>> 	PG = grapher.construct_subgraph(grapher.graph_subcenter)
+>>>		last_node_id = list(PG.nodes)[-1]
+>>> 	entity_map = grapher.Entities_by_id
+>>>		last_node_str = "(last node: %s %s)" % (last_node_id, entity_map[last_node_id])
+>>> 	print(i, len(PG.nodes()), last_node_str)
 >>> for i in range(30):
 ...     graph_to(i)
-0 1
-1 6
-2 14
-3 19
-4 53
-5 59
-6 68
-7 184
-8 422
-9 980
-10 1932
+0 1 (last node: 40377 Kālidāsa)
+1 6 (last node: 97243 Vikramorvaśīya)
+2 14 (last node: 96247 Abhijñānaśakuntalaṭīkā)
+3 19 (last node: 96590 Vallabhadeva)
+4 53 (last node: 96388 Yuddhakāṇḍa)
+5 59 (last node: 41513 Naiṣadhacarita)
+6 68 (last node: 40378 Subandhu)
+7 184 (last node: 88699 Yogatārāvalī)
+8 422 (last node: 90297 Dīpikā on Śaṃkara's Nṛsiṃhottaratāpanīyopaniṣadbhāṣya)
+9 980 (last node: 95417 Vyākhyāna)
+10 1932 (last node: 87721 Śaṃkara Bhagavatpāda Śiṣya)
 ...
 ~~~
 
