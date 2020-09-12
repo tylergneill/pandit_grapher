@@ -18,7 +18,7 @@ If you like, you can also use [Gephi](https://gephi.org/), for which basic outpu
 
 ![screenshot](static/works_2020_08_29_spreadsheet.png)
 
-2. Open `config.json` with a text editor. You'll be using it as a dashboard for managing all settings.
+2. In the downloaded/cloned `pandit_grapher` repository, open `config.json` with a text editor. You'll be using it as a dashboard for managing all settings.
 
 ![screenshot](static/config_dashboard_with_lists.png)
 
@@ -36,7 +36,7 @@ The resulting pickle file (e.g., `work_person_relations.p`) in the `pandit_graph
 
 1. Using the Pandit website (or the downloaded data), identify the entity ID number of a Person or Work you are interested in. Then, in `config.json`, use this number, as a string, to populate the list variable `subnetwork_center`. (The default value is a single entity, `"40377"`, for [Kālidāsa](https://www.panditproject.org/entity/40377/person). You can also use multiple entities in this list, with a separate string for each, as demonstrated in the screenshots below.)
 
-2. Set the `bacon_distance` to an integer indicating the number of iterations outward from the seed entity to graph (cp. ["Six Degrees of Kevin Bacon"](https://en.wikipedia.org/wiki/Six_Degrees_of_Kevin_Bacon#:~:text=Six%20Degrees%20of%20Kevin%20Bacon%20or%20%22Bacon's%20Law%22%20is%20a,and%20prolific%20actor%20Kevin%20Bacon) and the ["Oracle of Bacon"](https://oracleofbacon.org/)). E.g., `0` means graph the center entity only, `1` means graph one more layer of connections after that, `2` means two more, etc. (The default is `2`.)
+2. Set the `bacon_hops` to an integer indicating the number of hops outward from the `subgraph_center` entity to graph (cp. ["Six Degrees of Kevin Bacon"](https://en.wikipedia.org/wiki/Six_Degrees_of_Kevin_Bacon#:~:text=Six%20Degrees%20of%20Kevin%20Bacon%20or%20%22Bacon's%20Law%22%20is%20a,and%20prolific%20actor%20Kevin%20Bacon) and the ["Oracle of Bacon"](https://oracleofbacon.org/)). E.g., `0` means graph the center entity only, `1` means graph one more layer of connections after that, `2` means two more, etc. (The default is `2`.)
 
 > Note: Excluding isolate nodes and subgraphs, the lion's share of the entire graph of Pandit Works and Persons (8168 out of 14677) is generally spanned with somewhere between 20–30 hops, depending on the starting point. However, if one is interested in visually inspecting individual entities, depending on the individuals, graphing anything more than 3–5 hops can quickly become impratically complicated without significant filtering (see "blacklisting" below).
 
@@ -52,7 +52,7 @@ The resulting graph is created in memory, (optionally) drawn to the screen, and 
 
 # How to Read the networkx Results
 
-If the `draw_networkx_graph` variable is set to `true` in `config.json`, an OS-native `networkx` pop-up window will appear. Green circles are for persons, red circles are for works. Grey circles are for either persons or works whose further connections have been suppressed by the `blacklist`. Lines indicate authorship or commentarial relationships, and arrows indicate causality, i.e., that a person "wrote" a work, or that one work "inspired" a further commentarial work.
+If the `draw_networkx_graph` variable is set to `true` in `config.json`, an OS-native `networkx` pop-up window will appear with a “spring”-type, force-directed graph. Green circles are for persons, red circles are for works. Grey circles are for either persons or works whose further connections have been suppressed by the `blacklist`. Lines indicate authorship or commentarial relationships, and arrows indicate causality, i.e., that a person "wrote" a work, or that one work "inspired" a further commentarial work.
 
 ![screenshot](static/Kalidasa_degree_2_with_blacklist_networkx.png)
 
@@ -62,7 +62,7 @@ It's also fine to use multiple entities to seed the `subgraph_center`. Below is 
 
 # Using the Gephi Output File
 
-If the `output_gephi_file` variable is set to `true` in `config.json`, an additional `.gexf` file compatible with the free third-party visualization software [Gephi](https://gephi.org/) will be generated in the `pandit_grapher` directory. This can be simply be opened in Gephi (`File` > `Open`) for more flexible graph visualization and manipulation there.
+If the `output_gephi_file` variable is set to `true` in `config.json`, an additional `.gexf` file compatible with the free third-party visualization software [Gephi](https://gephi.org/) will be generated in the `pandit_grapher` directory. This can be simply be opened in Gephi (`File` > `Open`) for more flexible graph visualization and manipulation there. For example, the “Yifan Hu” layout will produce a similar force-directed graph.
 
 ![screenshot](static/Kalidasa_degree_2_with_blacklist_gephi.png)
 
@@ -76,7 +76,7 @@ The above calculation of the number of hops required to span the overall Pandit 
 >>> print(PG.edges())
 [('40377', '96246'), ('40377', '41324'), ('40377', '97244'), ('40377', '41500'), ('40377', '97243'), ('41500', '41499'), ('41500', '96592'), ('41510', '41500')]
 >>> def graph_to(i):
->>> 	grapher.bacon_distance = i
+>>> 	grapher.bacon_hops = i
 >>> 	PG = grapher.construct_subgraph(grapher.graph_subcenter)
 >>>		last_node_id = list(PG.nodes)[-1]
 >>> 	entity_map = grapher.Entities_by_id

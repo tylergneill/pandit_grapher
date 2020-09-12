@@ -1,5 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+from copy import copy
 
 from pickling import load_content_from_file
 from config import load_config_dict_from_json_file
@@ -9,10 +10,12 @@ Entities_by_id = load_content_from_file()
 
 config_dict = load_config_dict_from_json_file()
 subnetwork_center = config_dict["subgraph_center"]
-bacon_distance = config_dict["bacon_distance"]
+bacon_hops = config_dict["bacon_hops"]
 blacklist = config_dict["blacklist"]
 draw_networkx_graph = config_dict["draw_networkx_graph"]
+networkx_figure_size = config_dict["networkx_figure_size"]
 output_gephi_file = config_dict["output_gephi_file"]
+
 
 def construct_subgraph(subn_ctr):
 
@@ -23,7 +26,7 @@ def construct_subgraph(subn_ctr):
 	subgraph_node_ids = [ ] # Entity objects
 	node_ids_to_append_this_time = subn_ctr # list of 5-digit strings
 
-	for i in range( bacon_distance + 1 ):
+	for i in range( bacon_hops + 1 ):
 
 		node_ids_to_append_next_time = []
 
@@ -71,7 +74,9 @@ def construct_subgraph(subn_ctr):
 		if n not in subgraph_node_ids:
 			Pandit_Graph.remove_node(n)
 
-	# assign node labels and colors
+	return Pandit_Graph
+
+def assign_node_labels_and_colors(Pandit_Graph):
 
 	node_ids = list(Pandit_Graph.nodes)
 	label_map = {} # dict
@@ -81,7 +86,7 @@ def construct_subgraph(subn_ctr):
 		label_map[node_id] = Entities_by_id[node_id].name
 
 		if Entities_by_id[node_id].id in blacklist:
-			color_map.append('grey')
+			color_map.append('gray')
 
 		elif Entities_by_id[node_id].type == 'work':
 			color_map.append('red')
@@ -89,35 +94,51 @@ def construct_subgraph(subn_ctr):
 		elif Entities_by_id[node_id].type == 'author':
 			color_map.append('green')
 
-	return Pandit_Graph
+	return label_map, color_map
 
+def export_to_gephi(Pandit_Graph, label_map, color_map):
+	"""By default, in networkx gephi export, node labels are the same as
+	the id, and nx.relabel_nodes changes both at the same time, which is
+	not helpful. Therefore, manually intervene for both labels and colors.
+	"""
+	# nope
+	# Pandit_Graph_relabled = nx.relabel_nodes(Pandit_Graph, label_map)
+
+	rgb_map = {
+		"red": {'r': 255, 'g': 0, 'b': 0, 'a': 0},
+		"green": {'r': 6, 'g': 200, 'b': 50, 'a': 0},
+		"gray": {'r':128, 'g': 128, 'b': 128, 'a': 0},
+	}
+
+	PG2 = copy(Pandit_Graph)
+	for i, node_id in enumerate(PG2.nodes):
+		PG2.nodes[node_id]["label"] = label_map[node_id]
+		PG2.nodes[node_id]['viz'] = {'color': rgb_map[ color_map[i] ]}
+
+	output_fn = "%s" % label_map[subnetwork_center[0]]
+	if len(subnetwork_center) > 1:
+		output_fn = output_fn + "_etc"
+	output_fn = output_fn + "_degree_%d" % bacon_hops
+	if blacklist != []:
+		output_fn = output_fn + "_with_blacklist"
+	output_fn = output_fn + ".gexf"
+
+	nx.write_gexf(PG2, output_fn)
+
+def draw_networkx_graph(Pandit_Graph, label_map, color_map):
+	plt.figure(1,figsize=tuple(networkx_figure_size))
+	nx.draw_spring(Pandit_Graph, labels = label_map, node_color = color_map, node_size = 1000)
+	plt.show()
 
 
 if __name__ == "__main__":
 
 	Pandit_Graph = construct_subgraph(subnetwork_center)
 
-	# output for Gephi
+	label_map, color_map = assign_node_labels_and_colors(Pandit_Graph)
 
 	if output_gephi_file:
-
-		# change primary labels to words instead of ID numbers
-		Pandit_Graph_relabled = nx.relabel_nodes(Pandit_Graph, label_map)
-
-		output_fn = "%s" % label_map[subnetwork_center[0]]
-		if len(subnetwork_center) > 1:
-			output_fn = output_fn + "_etc"
-		output_fn = output_fn + "_degree_%d" % bacon_distance
-		if blacklist != []:
-			output_fn = output_fn + "_with_blacklist"
-		output_fn = output_fn + ".gexf"
-
-		nx.write_gexf(Pandit_Graph_relabled, output_fn)
-
-	# draw networkx graph
+		export_to_gephi(Pandit_Graph, label_map, color_map)
 
 	if draw_networkx_graph:
-
-		plt.figure(1,figsize=(14,7))
-		nx.draw_spring(Pandit_Graph, labels = label_map, node_color = color_map, node_size = 1000)
-		plt.show()
+		draw_networkx_graph(Pandit_Graph, label_map, color_map)
