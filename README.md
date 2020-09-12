@@ -18,9 +18,9 @@ If you like, you can also use [Gephi](https://gephi.org/), for which basic outpu
 
 ![screenshot](static/works_2020_08_29_spreadsheet.png)
 
-2. In the downloaded/cloned `pandit_grapher` repository, open `config.json` with a text editor. You'll be using it as a dashboard for managing all settings.
+2. In the downloaded/cloned `pandit_grapher` repository, open `config.json` with a text editor (e.g. Atom shows JSON nicely). You'll be using it as a dashboard for managing all settings.
 
-![screenshot](static/config_dashboard_with_lists.png)
+![screenshot](static/config_dashboard.png)
 
 3. Make sure that the `work_CSV_fn` variable in `config.json` is set to the correct filename.
 
