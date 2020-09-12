@@ -71,31 +71,35 @@ If the `output_gephi_file` variable is set to `true` in `config.json`, an additi
 The above calculation of the number of hops required to span the overall Pandit network is an example of doing things with the graph data other than just outputting for manual inspection. For more such analysis, optionally set the `draw_networkx_graph` and `output_gephi_file` variables to `false` in `config.json` and then just proceed to use the internal `networkx` graph object returned by `grapher.construct_graph()`, and perhaps also the `grapher.Entities_by_id` dictionary which maps Pandit entity ID numbers to objects of the type defined in the `objects` module. For example, in Python interactive mode:
 
 ~~~
->>> import grapher
->>> PG = grapher.construct_subgraph()
->>> print(PG.edges())
+>>> import grapher as gr
+>>> PG = gr.construct_subgraph(gr.subgraph_center, gr.bacon_hops, gr.blacklist)
+>>> print(PG.edges()) # PG = Pandit_Graph
 [('40377', '96246'), ('40377', '41324'), ('40377', '97244'), ('40377', '41500'), ('40377', '97243'), ('41500', '41499'), ('41500', '96592'), ('41510', '41500')]
->>> def graph_to(i):
->>> 	grapher.bacon_hops = i
->>> 	PG = grapher.construct_subgraph(grapher.graph_subcenter)
->>>		last_node_id = list(PG.nodes)[-1]
->>> 	entity_map = grapher.Entities_by_id
->>>		last_node_str = "(last node: %s %s)" % (last_node_id, entity_map[last_node_id])
->>> 	print(i, len(PG.nodes()), last_node_str)
->>> for i in range(30):
-...     graph_to(i)
+>>>
+>>> def summarize_building_of_n_hop_graph(sbgrph_ctr, hops, blcklst):
+...     PG = gr.construct_subgraph(sbgrph_ctr, hops, blcklst)
+...     last_node_id = list(PG.nodes)[-1]
+...     last_node_str = "(last node: %s %s)" % (last_node_id, gr.Entities_by_id[last_node_id].name)
+...     print(hops, len(PG.nodes()), last_node_str)
+... 
+>>> for num_hops in range(15):
+...     summarize_building_of_n_hop_graph(gr.subgraph_center, num_hops, blcklst=[])
+... 
 0 1 (last node: 40377 Kālidāsa)
 1 6 (last node: 97243 Vikramorvaśīya)
 2 14 (last node: 96247 Abhijñānaśakuntalaṭīkā)
-3 19 (last node: 96590 Vallabhadeva)
+3 19 (last node: 96241 Pūrṇasarasvatī)
 4 53 (last node: 96388 Yuddhakāṇḍa)
-5 59 (last node: 41513 Naiṣadhacarita)
-6 68 (last node: 40378 Subandhu)
+5 59 (last node: 96381 Ḍamarukavyākhyānam)
+6 68 (last node: 96677 Vibudharatnāvalī)
 7 184 (last node: 88699 Yogatārāvalī)
-8 422 (last node: 90297 Dīpikā on Śaṃkara's Nṛsiṃhottaratāpanīyopaniṣadbhāṣya)
-9 980 (last node: 95417 Vyākhyāna)
-10 1932 (last node: 87721 Śaṃkara Bhagavatpāda Śiṣya)
-...
+8 422 (last node: 90982 Subodhinī on Śaṃkara's Hastāmalakakīyabhāṣya)
+9 980 (last node: 85963 Govinda Śeṣa)
+10 1932 (last node: 97941 Āryāpañcāśīti)
+11 3061 (last node: 100791 Brahmādarśa)
+12 4109 (last node: 41242 Kāvyaprakāśa)
+13 5307 (last node: 91179 Ṭīkā on the Gacchācaraprakīrṇaka)
+14 6019 (last node: 88071 Amitābhavyūhasūtra)
 ~~~
 
 # Feedback, License

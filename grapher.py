@@ -9,7 +9,7 @@ from objects import *
 Entities_by_id = load_content_from_file()
 
 config_dict = load_config_dict_from_json_file()
-subnetwork_center = config_dict["subgraph_center"]
+subgraph_center = config_dict["subgraph_center"]
 bacon_hops = config_dict["bacon_hops"]
 blacklist = config_dict["blacklist"]
 draw_networkx_graph = config_dict["draw_networkx_graph"]
@@ -17,16 +17,16 @@ networkx_figure_size = config_dict["networkx_figure_size"]
 output_gephi_file = config_dict["output_gephi_file"]
 
 
-def construct_subgraph(subn_ctr):
+def construct_subgraph(sbgrph_ctr, hops, blacklist):
 
 	Pandit_Graph = nx.DiGraph() # nx graph object; used are:
 	# .nodes attribute
 	# .add_edge and .remove_node methods (not .add_node)
 
 	subgraph_node_ids = [ ] # Entity objects
-	node_ids_to_append_this_time = subn_ctr # list of 5-digit strings
+	node_ids_to_append_this_time = sbgrph_ctr # list of 5-digit strings
 
-	for i in range( bacon_hops + 1 ):
+	for i in range( hops + 1 ):
 
 		node_ids_to_append_next_time = []
 
@@ -115,8 +115,8 @@ def export_to_gephi(Pandit_Graph, label_map, color_map):
 		PG2.nodes[node_id]["label"] = label_map[node_id]
 		PG2.nodes[node_id]['viz'] = {'color': rgb_map[ color_map[i] ]}
 
-	output_fn = "%s" % label_map[subnetwork_center[0]]
-	if len(subnetwork_center) > 1:
+	output_fn = "%s" % label_map[subgraph_center[0]]
+	if len(subgraph_center) > 1:
 		output_fn = output_fn + "_etc"
 	output_fn = output_fn + "_degree_%d" % bacon_hops
 	if blacklist != []:
@@ -133,7 +133,7 @@ def draw_networkx_graph(Pandit_Graph, label_map, color_map):
 
 if __name__ == "__main__":
 
-	Pandit_Graph = construct_subgraph(subnetwork_center)
+	Pandit_Graph = construct_subgraph(subgraph_center, bacon_hops, blacklist)
 
 	label_map, color_map = assign_node_labels_and_colors(Pandit_Graph)
 
