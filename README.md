@@ -60,13 +60,13 @@ If the `draw_networkx_graph` variable is set to `true` in `config.json`, an OS-n
 
 It's also fine to use multiple entities to seed the `subgraph_center`. As long as there aren't errors or gaps in the database itself, the graph should connect itself up just fine. (Below is an example of doing so with Kālidāsa (ID: 40377), Vallabhadeva (ID: 96590), and Mallinātha Sūri (ID: 85731). In this case, we see that Potter's database, on which Pandit Project is based, excluded most non-śāstric works, including Mallinātha's commentaries on Kālidāsa's *kāvya* works. This would therefore be a good opportunity for growing the Pandit database in that direction.) 
 
-![screenshot](static/Kalidasa_Vallabhadeva_Mallinātha_degree_2_with_blacklist_networkx.png)
+![screenshot](static/Kalidasa_Vallabhadeva_Mallinatha_degree_2_with_blacklist_networkx.png)
 
 # Using the Gephi Output File
 
 If the `output_gephi_file` variable is set to `true` in `config.json`, an additional `.gexf` file compatible with the free third-party visualization software [Gephi](https://gephi.org/) will be generated in the `pandit_grapher` directory. This can be simply be opened in Gephi (`File` > `Open`) for more flexible graph visualization and manipulation there. For example, the “Yifan Hu” layout will produce a similar force-directed graph, and fiddling with the node, edge, and label appearances can quickly exceed what `networkx` can produce. The parts of the graph can also be moved around manually. The software has an active user community, making it easy to find answers to questions online.
 
-![screenshot](static/Kalidasa_Vallabhadeva_Mallinātha_degree_2_with_blacklist_gephi.png)
+![screenshot](static/Kalidasa_Vallabhadeva_Mallinatha_degree_2_with_blacklist_gephi.png)
 
 # Doing Other Things with the Graph Data
 
