@@ -60,7 +60,7 @@ If the `draw_networkx_graph` variable is set to `true` in `config.json`, an OS-n
 
 It's also fine to use multiple entities to seed the `subgraph_center`. As long as there aren't errors or gaps in the database itself, the graph should connect itself up just fine. (Below is an example of doing so with Kālidāsa (ID: 40377), Vallabhadeva (ID: 96590), and Mallinātha Sūri (ID: 85731). In this case, we see that Potter's database, on which Pandit Project is based, excluded most non-śāstric works, including Mallinātha's commentaries on Kālidāsa's *kāvya* works. This would therefore be a good opportunity for growing the Pandit database in that direction.) 
 
-![screenshot](static/Kalidasa_Vallabhadeva_degree_2_with_blacklist.png)
+![screenshot](static/Kalidasa_Vallabhadeva_Mallinātha_degree_2_with_blacklist_networkx.png)
 
 # Using the Gephi Output File
 
