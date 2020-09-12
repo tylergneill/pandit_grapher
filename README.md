@@ -70,7 +70,7 @@ If the `output_gephi_file` variable is set to `true` in `config.json`, an additi
 
 # Doing Other Things with the Graph Data
 
-The above calculation of the number of hops required to span the overall Pandit network is an example of doing things with the graph data other than just outputting parts of it for manual inspection. For more such analysis, optionally set the `draw_networkx_graph` and `output_gephi_file` variables to `false` in `config.json` and then just proceed to use the internal `networkx` graph object returned by `grapher.construct_graph()`, and perhaps also the `grapher.Entities_by_id` dictionary which maps Pandit entity ID numbers to objects of the type defined in the `objects` module. For example, in Python interactive mode:
+The above calculation of the number of hops required to span the overall Pandit network is an example of doing things with the graph data other than just outputting parts of it for manual inspection. For more such analysis, optionally set the `draw_networkx_graph` and `output_gephi_file` variables in `config.json` to `false` and then just proceed to make use of the internal `networkx` graph object returned by `grapher.construct_subgraph()` and perhaps also the `grapher.Entities_by_id` dictionary which maps Pandit entity ID numbers to objects of the type defined in the `objects` module. For example, in Python interactive mode:
 
 ~~~
 >>> import grapher as gr
