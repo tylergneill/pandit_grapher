@@ -20,7 +20,7 @@ If you like, you can also use [Gephi](https://gephi.org/), for which basic outpu
 
 2. In the downloaded/cloned `pandit_grapher` repository, open `config.json` with a text editor (e.g. Atom shows JSON nicely). You'll be using it as a dashboard for managing all settings.
 
-![screenshot](static/config_dashboard.png)
+![screenshot](static/config_dashboard_updated.png)
 
 3. Make sure that the `work_CSV_fn` variable in `config.json` is set to the correct filename.
 
@@ -56,7 +56,7 @@ If the `draw_networkx_graph` variable is set to `true` in `config.json`, an OS-n
 
 ![screenshot](static/Kalidasa_degree_2_with_blacklist_networkx.png)
 
-It's also fine to use multiple entities to seed the `subgraph_center`. Below is an example of doing so with both Kālidāsa and Vallabhadeva. As long as there aren't errors in the database itself, the graph should connect itself up just fine.
+It's also fine to use multiple entities to seed the `subgraph_center`. Below is an example of doing so with Kālidāsa, Vallabhadeva (ID: 96590), and Mallinātha Sūri (ID: 85731). As long as there aren't errors or gaps in the database itself, the graph should connect itself up just fine. In this case, we see that Potter's database, on which Pandit Project is based, excluded most non-śāstric works. 
 
 ![screenshot](static/Kalidasa_Vallabhadeva_degree_2_with_blacklist.png)
 
