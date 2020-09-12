@@ -12,13 +12,13 @@ If you like, you can also use [Gephi](https://gephi.org/), for which basic outpu
 
 # Preparing the Data
 
-1. Download the up-to-date Pandit info on "Works" as a CSV file (Aug 2020: 3.1mb); [see here](https://www.panditproject.org/node/99329) for instructions. Alternatively, simply use the snapshot included in the repository here (`work_search-2020-08-29-02-36-panditproject.org.csv`).
+1. Download the up-to-date Pandit info on "Works" as a CSV file (Sept 2020: 3.1mb); [see here](https://www.panditproject.org/node/99329) for instructions. Alternatively, simply use the snapshot included in the repository here (`work_search-2020-09-12-11-42-panditproject.org.csv`).
 
-> Note: `pandit_grapher` currently doesn't do anything with information from other Pandit entity categories ("Persons", "Sites", "Institutions", "States", "Manuscripts", "Extracts", and "Print Sources"), and it also ignores much of the information for "Works" because I was not yet personally interested in doing anything with these things, but the code can easily be extended to treat any number of these as needed (e.g., with new color dots, etc.)
+> Note: `pandit_grapher` currently recreates its own "Person" data from the "Works" download, and it doesn't do anything directly with Pandit's other entity types, including "Persons", "Sites", "Institutions", "States", "Manuscripts", "Extracts", and "Print Sources". Furthermore, it ignores much additional "Works" information (e.g., family relations). The reason for this is simply that I was not yet personally interested in doing anything with this extra information. However, the code can easily be extended if needed (e.g., to distinguish between “Authors” and “Attributed Authors”, graph known geospatial information, etc., etc.)
 
 ![screenshot](static/works_2020_08_29_spreadsheet.png)
 
-2. In the downloaded/cloned `pandit_grapher` repository, open `config.json` with a text editor (e.g. Atom shows JSON nicely). You'll be using it as a dashboard for managing all settings.
+2. In the downloaded/cloned `pandit_grapher` repository, open `config.json` with a text editor (preferably one that shows JSON nicely, like Atom, Sublime, or BBEdit). You'll be using it as a dashboard for managing all settings.
 
 ![screenshot](static/config_dashboard_updated.png)
 
@@ -34,13 +34,15 @@ The resulting pickle file (e.g., `work_person_relations.p`) in the `pandit_graph
 
 # Running the `grapher` Module
 
-1. Using the Pandit website (or the downloaded data), identify the entity ID number of a Person or Work you are interested in. Then, in `config.json`, use this number, as a string, to populate the list variable `subnetwork_center`. (The default value is a single entity, `"40377"`, for [Kālidāsa](https://www.panditproject.org/entity/40377/person). You can also use multiple entities in this list, with a separate string for each, as demonstrated in the screenshots below.)
+The `grapher` module builds a subgraph (or multiple subgraphs) of the Pandit network centered on a desired entity or entities.
+
+1. Using the Pandit website (or the downloaded data), identify the entity ID number of a Person or Work you are interested in. Then, in `config.json`, use this number, as a string, to populate the list variable `subgraph_center`. (The default value is a single entity, `"40377"`, for [Kālidāsa](https://www.panditproject.org/entity/40377/person). You can also use multiple entities in this list, with a separate string for each, as demonstrated in the screenshots below.)
 
 2. Set the `bacon_hops` to an integer indicating the number of hops outward from the `subgraph_center` entity to graph (cp. ["Six Degrees of Kevin Bacon"](https://en.wikipedia.org/wiki/Six_Degrees_of_Kevin_Bacon#:~:text=Six%20Degrees%20of%20Kevin%20Bacon%20or%20%22Bacon's%20Law%22%20is%20a,and%20prolific%20actor%20Kevin%20Bacon) and the ["Oracle of Bacon"](https://oracleofbacon.org/)). E.g., `0` means graph the center entity only, `1` means graph one more layer of connections after that, `2` means two more, etc. (The default is `2`.)
 
-> Note: Excluding isolate nodes and subgraphs, the lion's share of the entire graph of Pandit Works and Persons (8168 out of 14677) is generally spanned with somewhere between 20–30 hops, depending on the starting point. However, if one is interested in visually inspecting individual entities, depending on the individuals, graphing anything more than 3–5 hops can quickly become impratically complicated without significant filtering (see "blacklisting" below).
+> Note: Excluding isolate nodes and subgraphs, the lion's share of the entire graph of Pandit Works and Persons (specifically, 8,168 out of 14,677) is spanned usually within 20–30 hops outward, depending on the starting point. By contrast, for the purpose of simple visual inspection, 3–5 hops will be the most common choice, as anything more than that can quickly become uncomfortably complicated to look at in the absence of careful filtering (for which, see "blacklisting" directly below).
 
-3. Set the `blacklist` variable in `config.json` to a list of strings representing entity IDs (Person and/or Work) whose further connections should be suppressed in building the subgraph. Use this when, for example, a given author is too prolific or a given work is too commented-upon and would therefore visually overwhelm other information in the graph. (The default list is `["41324","96246"]`, suppressing further connections on [Kumārasaṃbhava](https://www.panditproject.org/entity/41324/work) and [Abhijñānaśakuntala](https://www.panditproject.org/entity/96246/work), respectively.)
+3. Set the `blacklist` variable in `config.json` to a list of strings representing entity IDs (Person and/or Work) whose further connections should be suppressed in building the subgraph(s). Use this when, for example, a given author is too prolific or a given work is too commented-upon and would therefore overwhelm other information in the visualization. (The default list is `["41324","96246"]`, suppressing further connections on [Kumārasaṃbhava](https://www.panditproject.org/entity/41324/work) and [Abhijñānaśakuntala](https://www.panditproject.org/entity/96246/work), respectively.)
 
 4. Run the `grapher` module on the command-line with no arguments.
 
@@ -48,27 +50,27 @@ The resulting pickle file (e.g., `work_person_relations.p`) in the `pandit_graph
 python grapher.py
 ~~~
 
-The resulting graph is created in memory, (optionally) drawn to the screen, and also (optionally) output for Gephi.
+The resulting graph is created in memory, (optionally) drawn to the screen with `networkx`, and also (optionally) output for Gephi.
 
-# How to Read the networkx Results
+# How to Read the `networkx` Results
 
 If the `draw_networkx_graph` variable is set to `true` in `config.json`, an OS-native `networkx` pop-up window will appear with a “spring”-type, force-directed graph. Green circles are for persons, red circles are for works. Grey circles are for either persons or works whose further connections have been suppressed by the `blacklist`. Lines indicate authorship or commentarial relationships, and arrows indicate causality, i.e., that a person "wrote" a work, or that one work "inspired" a further commentarial work.
 
 ![screenshot](static/Kalidasa_degree_2_with_blacklist_networkx.png)
 
-It's also fine to use multiple entities to seed the `subgraph_center`. Below is an example of doing so with Kālidāsa, Vallabhadeva (ID: 96590), and Mallinātha Sūri (ID: 85731). As long as there aren't errors or gaps in the database itself, the graph should connect itself up just fine. In this case, we see that Potter's database, on which Pandit Project is based, excluded most non-śāstric works. 
+It's also fine to use multiple entities to seed the `subgraph_center`. As long as there aren't errors or gaps in the database itself, the graph should connect itself up just fine. (Below is an example of doing so with Kālidāsa (ID: 40377), Vallabhadeva (ID: 96590), and Mallinātha Sūri (ID: 85731). In this case, we see that Potter's database, on which Pandit Project is based, excluded most non-śāstric works, including Mallinātha's commentaries on Kālidāsa's *kāvya* works. This would therefore be a good opportunity for growing the Pandit database in that direction.) 
 
 ![screenshot](static/Kalidasa_Vallabhadeva_degree_2_with_blacklist.png)
 
 # Using the Gephi Output File
 
-If the `output_gephi_file` variable is set to `true` in `config.json`, an additional `.gexf` file compatible with the free third-party visualization software [Gephi](https://gephi.org/) will be generated in the `pandit_grapher` directory. This can be simply be opened in Gephi (`File` > `Open`) for more flexible graph visualization and manipulation there. For example, the “Yifan Hu” layout will produce a similar force-directed graph.
+If the `output_gephi_file` variable is set to `true` in `config.json`, an additional `.gexf` file compatible with the free third-party visualization software [Gephi](https://gephi.org/) will be generated in the `pandit_grapher` directory. This can be simply be opened in Gephi (`File` > `Open`) for more flexible graph visualization and manipulation there. For example, the “Yifan Hu” layout will produce a similar force-directed graph, and fiddling with the node, edge, and label appearances can quickly exceed what `networkx` can produce. The parts of the graph can also be moved around manually. The software has an active user community, making it easy to find answers to questions online.
 
-![screenshot](static/Kalidasa_degree_2_with_blacklist_gephi.png)
+![screenshot](static/Kalidasa_Vallabhadeva_Mallinātha_degree_2_with_blacklist_gephi.png)
 
 # Doing Other Things with the Graph Data
 
-The above calculation of the number of hops required to span the overall Pandit network is an example of doing things with the graph data other than just outputting for manual inspection. For more such analysis, optionally set the `draw_networkx_graph` and `output_gephi_file` variables to `false` in `config.json` and then just proceed to use the internal `networkx` graph object returned by `grapher.construct_graph()`, and perhaps also the `grapher.Entities_by_id` dictionary which maps Pandit entity ID numbers to objects of the type defined in the `objects` module. For example, in Python interactive mode:
+The above calculation of the number of hops required to span the overall Pandit network is an example of doing things with the graph data other than just outputting parts of it for manual inspection. For more such analysis, optionally set the `draw_networkx_graph` and `output_gephi_file` variables to `false` in `config.json` and then just proceed to use the internal `networkx` graph object returned by `grapher.construct_graph()`, and perhaps also the `grapher.Entities_by_id` dictionary which maps Pandit entity ID numbers to objects of the type defined in the `objects` module. For example, in Python interactive mode:
 
 ~~~
 >>> import grapher as gr
