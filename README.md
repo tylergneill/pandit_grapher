@@ -2,23 +2,27 @@
 
 Graphs person-work and work-work relationships in the [Pandit Project](https://www.panditproject.org/) prosophographical database.
 
+This can be useful both for exploring certain persons or works of interest and for more quickly finding Pandit Project items in need of improvement.
+
 # Requirements
 
 Python 3.
 
-Currently using `networkx` package both for creating the graph structure and for drawing basic visuals.
+Currently using `networkx` package both for creating the graph structure and for drawing basic visuals. This relies on `matplotlib` and (for more complex cases) `scipy`.
 
-If you like, you can also use [Gephi](https://gephi.org/), for which basic output is also supported.
+If you like, you can also download and use [Gephi](https://gephi.org/), for which basic output is also supported here.
 
 # Preparing the Data
 
-1. Download the up-to-date Pandit info on "Works" as a CSV file (Sept 2020: 3.1mb); [see here](https://www.panditproject.org/node/99329) for instructions. Alternatively, simply use the snapshot included in the repository here (`work_search-2020-09-12-11-42-panditproject.org.csv`).
+1. Download or clone the repository.
 
-> Note: `pandit_grapher` currently recreates its own "Person" data from the "Works" download, and it doesn't do anything directly with Pandit's other entity types, including "Persons", "Sites", "Institutions", "States", "Manuscripts", "Extracts", and "Print Sources". Furthermore, it ignores much additional "Works" information (e.g., family relations). The reason for this is simply that I was not yet personally interested in doing anything with this extra information. However, the code can easily be extended if needed (e.g., to distinguish between “Authors” and “Attributed Authors”, graph known geospatial information, etc., etc.)
+2. Download an up-to-date Pandit "Works" CSV file (Sept 2020: 3.1mb; [see here](https://www.panditproject.org/node/99329) for instructions) and place it in the repository directory. Alternatively, simply use the included snapshot (`work_search-2020-09-12-11-42-panditproject.org.csv`).
+
+> Note: `pandit_grapher` currently recreates its own "Person" data from the "Works" download. Other entity types (incl. "Persons", "Sites", "Institutions", "States", "Manuscripts", "Extracts", and "Print Sources") and other "Works" information (e.g., family relations) are currently ignored, since I wasn't yet personally interested, but the code can easily be extended as needed (e.g., to distinguish between “Authors” and “Attributed Authors”, graph known geospatial information, etc., etc.)
 
 ![screenshot](static/works_2020_08_29_spreadsheet.png)
 
-2. In the downloaded/cloned `pandit_grapher` repository, open `config.json` with a text editor (preferably one that shows JSON nicely, like Atom, Sublime, or BBEdit). You'll be using it as a dashboard for managing all settings.
+3. In the downloaded or cloned `pandit_grapher` repository, open `config.json` with a text editor (preferably one that shows JSON nicely, like Atom, Sublime, or BBEdit). You'll be using it as a dashboard for managing all settings.
 
 ![screenshot](static/config_dashboard_updated.png)
 

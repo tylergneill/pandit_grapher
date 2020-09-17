@@ -125,7 +125,7 @@ def export_to_gephi(Pandit_Graph, label_map, color_map):
 
 	nx.write_gexf(PG2, output_fn)
 
-def draw_networkx_graph(Pandit_Graph, label_map, color_map):
+def draw_nx_graph(Pandit_Graph, label_map, color_map):
 	plt.figure(1,figsize=tuple(networkx_figure_size))
 	nx.draw_spring(Pandit_Graph, labels = label_map, node_color = color_map, node_size = 1000)
 	plt.show()
@@ -141,4 +141,4 @@ if __name__ == "__main__":
 		export_to_gephi(Pandit_Graph, label_map, color_map)
 
 	if draw_networkx_graph:
-		draw_networkx_graph(Pandit_Graph, label_map, color_map)
+		draw_nx_graph(Pandit_Graph, label_map, color_map)
