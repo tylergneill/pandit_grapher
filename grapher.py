@@ -17,7 +17,7 @@ networkx_figure_size = config_dict["networkx_figure_size"]
 output_gephi_file = config_dict["output_gephi_file"]
 
 
-def construct_subgraph(sbgrph_ctr, hops, blacklist):
+def construct_subgraph(sbgrph_ctr = subgraph_center, hops = bacon_hops, blcklst = blacklist):
 
 	Pandit_Graph = nx.DiGraph() # nx graph object; used are:
 	# .nodes attribute
@@ -36,7 +36,7 @@ def construct_subgraph(sbgrph_ctr, hops, blacklist):
 			subgraph_node_ids.append(id)
 
 			# don't do anything else for things on blacklist
-			if id in blacklist: continue
+			if id in blcklst: continue
 
 			# create edges and queue up connected nodes for next time
 			E = Entities_by_id[id]
@@ -54,11 +54,17 @@ def construct_subgraph(sbgrph_ctr, hops, blacklist):
 					node_ids_to_append_next_time.append( commentary_id )
 					Pandit_Graph.add_edge(E.id, commentary_id, arrowstyle = '->')
 
+				if E.author_ids == E.base_text_ids == E.commentary_ids == []:
+					Pandit_Graph.add_node(E.id)
+
 			elif E.type == 'author':
 
 				for work_id in E.work_ids:
 					node_ids_to_append_next_time.append( work_id )
 					Pandit_Graph.add_edge(E.id, work_id, arrowstyle = '-[')
+
+				if E.work_ids == []:
+					Pandit_Graph.add_node(E.id)
 
 		# de-dupe, first list-internally, then against previous
 		node_ids_to_append_next_time = list(set(node_ids_to_append_next_time))
