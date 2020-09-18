@@ -108,6 +108,26 @@ The above calculation of the number of hops required to span the overall Pandit 
 14 6019 (last node: 88071 Amitābhavyūhasūtra)
 ~~~
 
+# Visualizing the Full Graph in Gephi
+
+To contruct the entire graph for visualization in Gephi, simply run the module `construct_full_graph`. 
+
+~~~
+python construct_full_graph.py
+~~~
+
+This script mainly consists of a long list of individual node ID numbers, one for each subgraph, including all isolate nodes. 
+
+> (Note: the main subgraph contains 8281 nodes. 432 nodes occur in subgraphs of double-digit numbers of nodes. 1320 and 2344 occur in 3-node and 2-node subgraphs, respectively. 2370 nodes are isolates. This totals 14747 nodes.)
+
+When this list is used to seed the graph construction process, and enough hops are ensured for the Kālidāsa seed node of the main subgraph, the result is the entire graph. It should take less than a minute to build on a fast machine.
+
+Once constructed, the graph can be fruitfully visualized with the Yifan Hu and Force Atlas 2 layout algorithms in Gephi. (Other algorithms tend not to be as effective.)
+
+![screenshot](full_graph_yifan_hu.png)
+
+![screenshot](full_graph_force_atlas_2.png)
+
 # Feedback, License
 
 Hit me up! Let me know if this is useful, whether you'd like changes, etc. And share and share alike: licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
