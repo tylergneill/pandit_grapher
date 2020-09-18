@@ -124,9 +124,9 @@ When this list is used to seed the graph construction process, and enough hops a
 
 Once constructed, the graph can be fruitfully visualized with the Yifan Hu and Force Atlas 2 layout algorithms in Gephi. (Other algorithms tend not to be as effective.)
 
-![screenshot](full_graph_yifan_hu.png)
+![screenshot](static/full_graph_yifan_hu.png)
 
-![screenshot](full_graph_force_atlas_2.png)
+![screenshot](static/full_graph_force_atlas_2.png)
 
 # Feedback, License
 
