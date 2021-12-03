@@ -1,1 +1,4 @@
 *.gexf
+.DS_Store
+__pycache__/
+_notes_etc/
