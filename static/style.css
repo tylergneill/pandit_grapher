@@ -1,0 +1,128 @@
+/* Global body styles */
+body {
+  font-family: "Georgia", serif;
+  margin: 0;
+  padding: 0;
+  background-color: #2f1746; /* Deep purple background */
+  color: #ffffff;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align everything */
+}
+
+/* Centered Top Panel (e.g., Form/Controls) */
+#top-panel {
+  background-color: #5a0b73; /* Lighter purple for the top panel */
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  width: 80%; /* Take up 80% of the available width */
+  max-width: 1000px; /* Ensure it doesn’t get too large on wider screens */
+}
+
+#top-panel h1 {
+  font-size: 24px;
+  margin: 0 0 10px;
+  color: #ffffff;
+}
+
+#top-panel input,
+#top-panel button {
+  margin: 5px;
+}
+
+/* SVG canvas styling (for graph area) */
+svg {
+  display: block;
+  margin: 20px auto;
+  background-color: #f9f9f9; /* Light off-white background for contrast */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border: 3px solid #5a0b73; /* Accent border in a complementary purple */
+  max-width: 100%; /* Responsive behavior */
+}
+
+/* Node styles */
+.node {
+  stroke: #ffffff;
+  stroke-width: 1.5px;
+  transition: fill 0.3s ease, stroke-width 0.3s ease;
+}
+
+.node.work {
+  fill: #c0392b; /* Bold red for works */
+}
+
+.node.author {
+  fill: #8e44ad; /* Rich purple for authors */
+}
+
+.node.commentary {
+  fill: #e67e22; /* Warm orange for commentaries */
+}
+
+/* Node hover effect */
+.node:hover {
+  stroke-width: 2px;
+  stroke: #2c3e50;
+}
+
+/* Node drag/click effect */
+.node:active {
+  fill: #f39c12; /* Golden-orange when clicked or dragged */
+  stroke-width: 2px;
+  stroke: #d35400; /* Deeper orange for active state */
+}
+
+/* Link styles */
+.link {
+  stroke: #a0a0a0; /* Neutral light gray for links */
+  stroke-opacity: 0.8;
+  stroke-width: 1.5px;
+  transition: stroke 0.3s ease;
+}
+
+.link:hover {
+  stroke: #d63031; /* Bright red on hover for focus */
+}
+
+/* Label styles */
+.label {
+  font-size: 12px;
+  fill: #5a0b73; /* Dark purple text for labels */
+  font-weight: bold;
+  pointer-events: none; /* Ensure labels don't interfere with interaction */
+}
+
+/* Tooltip styles */
+.tooltip {
+  position: absolute;
+  background: #2f1746; /* Matches the overall theme */
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Buttons for UI */
+button {
+  font-family: inherit;
+  padding: 10px 20px;
+  border: none;
+  background: #c0392b; /* Bold red for buttons */
+  color: #ffffff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #a93226; /* Slightly darker red on hover */
+}

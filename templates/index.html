@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PANDiT Grapher</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <h1>PANDiT Grapher</h1>
+  <div>
+    <form id="parameter-form">
+      <label for="subgraph_center">Subgraph Center (comma-separated IDs):</label>
+      <input type="text" id="subgraph_center" name="subgraph_center" placeholder="e.g., 2, 3">
+      <br>
+      <label for="hops">Hops:</label>
+      <input type="number" id="hops" name="hops" value="1" min="0">
+      <br>
+      <label for="blacklist">Blacklist (comma-separated IDs):</label>
+      <input type="text" id="blacklist" name="blacklist" placeholder="e.g., 5, 7">
+      <br>
+      <button type="button" id="fetch-button">Generate Graph</button>
+    </form>
+  </div>
+  <div id="graph-container">
+    <svg width="800" height="600"></svg>
+  </div>
+  <script src="{{ url_for('static', filename='graph.js') }}"></script>
+</body>
+</html>
