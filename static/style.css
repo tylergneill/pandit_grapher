@@ -34,6 +34,38 @@ body {
   margin: 5px;
 }
 
+/* Dropdown styles */
+select {
+  width: 100%; /* Ensure full width in its container */
+  padding: 10px; /* Add padding for better usability */
+  margin: 10px 0; /* Space between elements */
+  border: 1px solid #ccc; /* Neutral border for separation */
+  border-radius: 5px; /* Rounded corners to match other UI elements */
+  font-size: 14px; /* Maintain readable font size */
+  background-color: #5a0b73; /* Match the lighter purple panel background */
+  color: #ffffff; /* White text for contrast */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add a slight shadow for depth */
+}
+
+/* Dropdown options */
+option {
+  padding: 5px; /* Padding within dropdown items */
+  background-color: #5a0b73; /* Same as dropdown background */
+  color: #ffffff; /* Text matches dropdown text color */
+}
+
+/* Dropdown hover effect */
+select:hover {
+  border-color: #c0392b; /* Accent border to match buttons */
+  background-color: #4a075f; /* Slightly darker purple on hover */
+}
+
+/* Selected option effect */
+option:checked {
+  background-color: #8e44ad; /* Highlight selected option */
+  color: #ffffff;
+}
+
 /* SVG canvas styling (for graph area) */
 svg {
   display: block;
@@ -53,11 +85,11 @@ svg {
 }
 
 .node.work {
-  fill: #c0392b; /* Bold red for works */
+  fill: #8e44ad; /* Purple for works */
 }
 
 .node.author {
-  fill: #8e44ad; /* Rich purple for authors */
+  fill: #c0392b; /* Bold red for people/authors */
 }
 
 .node.commentary {

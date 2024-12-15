@@ -52,14 +52,13 @@ function renderGraph(graph) {
     .attr('stroke', '#999')
     .attr('stroke-opacity', 0.6);
 
-  // Draw nodes
+  // Draw nodes and assign classes dynamically based on type
   const node = svg.append('g')
     .selectAll('circle')
     .data(graph.nodes)
     .join('circle')
-    .attr('class', 'node')
+    .attr('class', d => `node ${d.type}`) // Apply specific class based on node type
     .attr('r', 10)
-    .attr('fill', '#0074D9')
     .call(d3.drag()
       .on('start', event => {
         if (!event.active) simulation.alphaTarget(0.3).restart();
