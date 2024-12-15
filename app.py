@@ -1,6 +1,12 @@
 from flask import Flask, render_template, Blueprint, jsonify, request
 from flask_restx import Api, Resource, fields
 
+from convert import convert_to_mock_graph
+from grapher import construct_subgraph
+from pickling import load_content_from_file
+
+Entities_by_id = load_content_from_file()
+
 app = Flask(__name__)
 
 # --- Blueprint Setup ---
@@ -45,6 +51,7 @@ mock_graph = {
     ]
 }
 
+mock_graph = convert_to_mock_graph()
 
 @ns.route('/dropdown-options')
 class DropdownOptions(Resource):
@@ -60,48 +67,52 @@ class Subgraph(Resource):
         """
         Generate a subgraph based on input parameters.
         """
-        data = request.json
-        subgraph_center = set(data.get('subgraph_center', []))
-        hops = data.get('hops', 0)
-        blacklist = set(data.get('blacklist', []))
+        try:
+            # Parse request data
+            data = request.json
+            subgraph_center = set(data.get('subgraph_center', []))
+            hops = data.get('hops', 0)
+            blacklist = set(data.get('blacklist', []))
 
-        # Initialize BFS data structures
-        included_nodes = set(subgraph_center)
-        included_edges = set()  # Use a set to avoid duplicates
-        frontier = subgraph_center  # Nodes to explore in the current hop
+            # Validate inputs
+            if not subgraph_center:
+                return {"error": "subgraph_center must be a non-empty list"}, 400
+            if not isinstance(hops, int) or hops < 0:
+                return {"error": "hops must be a non-negative integer"}, 400
+            if not isinstance(blacklist, set):
+                return {"error": "blacklist must be a list"}, 400
 
-        for _ in range(hops):  # Perform BFS up to the specified hops
-            next_frontier = set()
-            for edge in mock_graph["edges"]:
-                if edge["source"] in frontier and edge["target"] not in blacklist:
-                    included_edges.add((edge["source"], edge["target"], edge["relationship"]))
-                    next_frontier.add(edge["target"])
-                elif edge["target"] in frontier and edge["source"] not in blacklist:
-                    included_edges.add((edge["source"], edge["target"], edge["relationship"]))
-                    next_frontier.add(edge["source"])
-            frontier = next_frontier - included_nodes  # Prevent revisiting nodes
-            included_nodes.update(next_frontier)
+            # Call the actual construct_subgraph function
+            Pandit_Graph = construct_subgraph(list(subgraph_center), hops, list(blacklist))
 
-        # Filter nodes based on inclusion
-        filtered_nodes = [node for node in mock_graph["nodes"] if node["id"] in included_nodes]
+            # Extract nodes and edges
+            filtered_nodes = [
+                {"id": node, "label": Entities_by_id[node].name, "type": Entities_by_id[node].type}
+                for node in Pandit_Graph.nodes
+            ]
+            filtered_edges = [
+                {"source": edge[0], "target": edge[1], "relationship": "related"}
+                for edge in Pandit_Graph.edges
+            ]
 
-        # Convert edges back to list of dicts
-        filtered_edges = [{"source": src, "target": tgt, "relationship": rel} for src, tgt, rel in included_edges]
-
-        # Construct the response
-        response = {
-            "parameters": {
-                "subgraph_center": list(subgraph_center),
-                "hops": hops,
-                "blacklist": list(blacklist)
-            },
-            "graph": {
-                "nodes": filtered_nodes,
-                "edges": filtered_edges
+            # Construct the response
+            response = {
+                "parameters": {
+                    "subgraph_center": list(subgraph_center),
+                    "hops": hops,
+                    "blacklist": list(blacklist)
+                },
+                "graph": {
+                    "nodes": filtered_nodes,
+                    "edges": filtered_edges
+                }
             }
-        }
-        return jsonify(response)
+            return jsonify(response)
 
+        except KeyError as e:
+            return {"error": f"Invalid ID: {str(e)}"}, 400
+        except Exception as e:
+            return {"error": str(e)}, 500
 
 # Add namespace to the API
 api.add_namespace(ns)

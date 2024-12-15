@@ -1,5 +1,5 @@
 import networkx as nx
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 from copy import copy
 
 from pickling import load_content_from_file
@@ -131,20 +131,20 @@ def export_to_gephi(Pandit_Graph, label_map, color_map):
 
 	nx.write_gexf(PG2, output_fn)
 
-def draw_nx_graph(Pandit_Graph, label_map, color_map):
-	plt.figure(1,figsize=tuple(networkx_figure_size))
-	nx.draw_spring(Pandit_Graph, labels = label_map, node_color = color_map, node_size = 1000)
-	plt.show()
+# def draw_nx_graph(Pandit_Graph, label_map, color_map):
+# 	plt.figure(1,figsize=tuple(networkx_figure_size))
+# 	nx.draw_spring(Pandit_Graph, labels = label_map, node_color = color_map, node_size = 1000)
+# 	plt.show()
 
 
-if __name__ == "__main__":
-
-	Pandit_Graph = construct_subgraph(subgraph_center, bacon_hops, blacklist)
-
-	label_map, color_map = assign_node_labels_and_colors(Pandit_Graph)
-
-	if output_gephi_file:
-		export_to_gephi(Pandit_Graph, label_map, color_map)
-
-	if draw_networkx_graph:
-		draw_nx_graph(Pandit_Graph, label_map, color_map)
+# if __name__ == "__main__":
+#
+# 	Pandit_Graph = construct_subgraph(subgraph_center, bacon_hops, blacklist)
+#
+# 	label_map, color_map = assign_node_labels_and_colors(Pandit_Graph)
+#
+# 	if output_gephi_file:
+# 		export_to_gephi(Pandit_Graph, label_map, color_map)
+#
+# 	if draw_networkx_graph:
+# 		draw_nx_graph(Pandit_Graph, label_map, color_map)
