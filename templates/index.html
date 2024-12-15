@@ -4,33 +4,53 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PANDiT Grapher</title>
+  <!-- Select2 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+
+  <!-- Your Custom CSS -->
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <!-- jQuery Library -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Select2 Library -->
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+</head>
 </head>
 <body>
   <h1>PANDiT Grapher</h1>
-  <div>
+  <div id="form-container">
     <form id="parameter-form">
-      <label for="subgraph_center">Subgraph Center:</label>
-      <select id="subgraph_center" name="subgraph_center" multiple>
-        <!-- Options will be populated dynamically -->
-      </select>
-      <br>
-      <label for="hops">Hops:</label>
-      <input type="number" id="hops" name="hops" value="1" min="0">
-      <br>
-      <label for="blacklist">Blacklist:</label>
-      <select id="blacklist" name="blacklist" multiple>
-        <!-- Options will be populated dynamically -->
-      </select>
-      <br>
+      <div class="form-row">
+        <label for="subgraph_center">Subgraph Center:</label>
+        <select id="subgraph_center" class="select2" multiple></select>
+      </div>
+
+      <div class="form-row">
+        <label for="hops">Hops:</label>
+        <input type="number" id="hops" name="hops" value="1" min="0" />
+      </div>
+
+      <div class="form-row">
+        <label for="blacklist">Blacklist:</label>
+        <select id="blacklist" class="select2" multiple></select>
+      </div>
+
       <button type="button" id="fetch-button">Generate Graph</button>
     </form>
   </div>
   <div id="graph-container">
     <svg width="800" height="600"></svg>
   </div>
+
+  <!-- Dropdown Logic -->
   <script src="{{ url_for('static', filename='dropdown.js') }}"></script>
+
+  <!-- D3 Library -->
   <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <!-- Graph Logic -->
   <script src="{{ url_for('static', filename='graph.js') }}"></script>
+
 </body>
 </html>

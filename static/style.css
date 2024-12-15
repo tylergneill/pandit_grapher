@@ -1,32 +1,35 @@
-/* Global body styles */
+/* =============================
+   Global Styles
+============================= */
 body {
   font-family: "Georgia", serif;
   margin: 0;
   padding: 0;
-  background-color: #2f1746; /* Deep purple background */
+  background-color: #2f1746;
   color: #ffffff;
   line-height: 1.6;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center align everything */
+  align-items: center;
 }
 
-/* Centered Top Panel (e.g., Form/Controls) */
+/* =============================
+   Top Panel Styles
+============================= */
 #top-panel {
-  background-color: #5a0b73; /* Lighter purple for the top panel */
+  background-color: #5a0b73;
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   text-align: center;
-  width: 80%; /* Take up 80% of the available width */
-  max-width: 1000px; /* Ensure it doesn’t get too large on wider screens */
+  width: 80%;
+  max-width: 1000px;
 }
 
 #top-panel h1 {
   font-size: 24px;
   margin: 0 0 10px;
-  color: #ffffff;
 }
 
 #top-panel input,
@@ -34,127 +37,198 @@ body {
   margin: 5px;
 }
 
-/* Dropdown styles */
-select {
-  width: 100%; /* Ensure full width in its container */
-  padding: 10px; /* Add padding for better usability */
-  margin: 10px 0; /* Space between elements */
-  border: 1px solid #ccc; /* Neutral border for separation */
-  border-radius: 5px; /* Rounded corners to match other UI elements */
-  font-size: 14px; /* Maintain readable font size */
-  background-color: #5a0b73; /* Match the lighter purple panel background */
-  color: #ffffff; /* White text for contrast */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add a slight shadow for depth */
+/* =============================
+   Form Layout: Labels to the Left
+============================= */
+#form-container {
+  max-width: 1000px; /* Match the graph-container width */
+  width: 66%;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
-/* Dropdown options */
-option {
-  padding: 5px; /* Padding within dropdown items */
-  background-color: #5a0b73; /* Same as dropdown background */
-  color: #ffffff; /* Text matches dropdown text color */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 1000px;
+  width: 100%;
 }
 
-/* Dropdown hover effect */
-select:hover {
-  border-color: #c0392b; /* Accent border to match buttons */
-  background-color: #4a075f; /* Slightly darker purple on hover */
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
 }
 
-/* Selected option effect */
-option:checked {
-  background-color: #8e44ad; /* Highlight selected option */
+form label {
+  font-size: 14px;
+  font-weight: bold;
   color: #ffffff;
+  flex: 0 0 150px;
+  text-align: right;
 }
 
-/* SVG canvas styling (for graph area) */
+form input,
+form select {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #5a0b73;
+  border-radius: 5px;
+  background-color: #ffffff;
+  color: #333333;
+  width: 100%;
+  max-width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* =============================
+   SVG Canvas (Graph Container)
+============================= */
 svg {
   display: block;
   margin: 20px auto;
-  background-color: #f9f9f9; /* Light off-white background for contrast */
+  background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  border: 3px solid #5a0b73; /* Accent border in a complementary purple */
-  max-width: 100%; /* Responsive behavior */
+  border: 3px solid #5a0b73;
+  max-width: 100%;
 }
 
-/* Node styles */
+/* =============================
+   Graph Node Styles
+============================= */
 .node {
   stroke: #ffffff;
   stroke-width: 1.5px;
   transition: fill 0.3s ease, stroke-width 0.3s ease;
 }
 
-.node.work {
-  fill: #8e44ad; /* Purple for works */
-}
+.node.work { fill: #c0392b; }
+.node.author { fill: #8e44ad; }
+.node.commentary { fill: #e67e22; }
 
-.node.author {
-  fill: #c0392b; /* Bold red for people/authors */
-}
-
-.node.commentary {
-  fill: #e67e22; /* Warm orange for commentaries */
-}
-
-/* Node hover effect */
 .node:hover {
   stroke-width: 2px;
   stroke: #2c3e50;
 }
 
-/* Node drag/click effect */
 .node:active {
-  fill: #f39c12; /* Golden-orange when clicked or dragged */
+  fill: #f39c12;
   stroke-width: 2px;
-  stroke: #d35400; /* Deeper orange for active state */
+  stroke: #d35400;
 }
 
-/* Link styles */
+/* =============================
+   Graph Links
+============================= */
 .link {
-  stroke: #a0a0a0; /* Neutral light gray for links */
+  stroke: #a0a0a0;
   stroke-opacity: 0.8;
   stroke-width: 1.5px;
   transition: stroke 0.3s ease;
 }
 
-.link:hover {
-  stroke: #d63031; /* Bright red on hover for focus */
-}
+.link:hover { stroke: #d63031; }
 
-/* Label styles */
+/* =============================
+   Node Labels
+============================= */
 .label {
   font-size: 12px;
-  fill: #5a0b73; /* Dark purple text for labels */
+  fill: #5a0b73;
   font-weight: bold;
-  pointer-events: none; /* Ensure labels don't interfere with interaction */
+  pointer-events: none;
 }
 
-/* Tooltip styles */
+/* =============================
+   Tooltip Styles
+============================= */
 .tooltip {
   position: absolute;
-  background: #2f1746; /* Matches the overall theme */
+  background: #2f1746;
   color: #ffffff;
   padding: 5px 10px;
   border-radius: 5px;
   font-size: 12px;
-  pointer-events: none;
   opacity: 0;
+  pointer-events: none;
   transition: opacity 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Buttons for UI */
+/* =============================
+   Buttons
+============================= */
 button {
   font-family: inherit;
   padding: 10px 20px;
   border: none;
-  background: #c0392b; /* Bold red for buttons */
+  background: #c0392b;
   color: #ffffff;
   border-radius: 4px;
   cursor: pointer;
   transition: background 0.3s ease;
 }
 
-button:hover {
-  background: #a93226; /* Slightly darker red on hover */
+button:hover { background: #a93226; }
+
+/* =============================
+   Select2 Dropdown Styles
+============================= */
+.select2-container {
+  width: 100% !important;
+  margin: 10px 0;
+  font-family: "Georgia", serif;
+}
+
+.select2-selection--multiple {
+  background-color: #ffffff;
+  color: #333333;
+  border: 1px solid #5a0b73;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 14px;
+}
+
+/* Selected Items (Chips) in Dropdown Input */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  background-color: #8e44ad !important; /* Purple background */
+  color: #ffffff !important; /* White text */
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 14px;
+  margin: 5px 3px 0 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Remove 'X' Icon Styling */
+.select2-container--default .select2-selection__choice__remove {
+  color: #ffffff !important; /* White 'X' */
+  margin-right: 5px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.select2-results__option {
+  background-color: #ffffff;
+  color: #333333;
+  padding: 8px 12px;
+}
+
+.select2-results__option--highlighted {
+  background-color: #e67e22 !important; /* Orange highlight */
+  color: #ffffff !important;
+}
+
+.select2-search--dropdown .select2-search__field {
+  background-color: #ffffff;
+  color: #333333;
+  border: 1px solid #5a0b73;
+  border-radius: 5px;
+  padding: 5px;
 }
