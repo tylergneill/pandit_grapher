@@ -28,6 +28,38 @@ document.addEventListener('DOMContentLoaded', async () => {
       placeholder: 'Select Blacklist',
       allowClear: true
     });
+
+    // Handle form submission
+    document.getElementById('fetch-button').addEventListener('click', async () => {
+      const subgraphCenter = $('#subgraph_center').val(); // Get selected values
+      const hops = document.getElementById('hops').value;
+      const blacklist = $('#blacklist').val(); // Get selected values
+
+      const payload = {
+        subgraph_center: subgraphCenter,
+        hops: parseInt(hops, 10),
+        blacklist: blacklist
+      };
+
+      try {
+        const response = await fetch('/api/graph/subgraph', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) throw new Error('Failed to generate graph');
+
+        const data = await response.json();
+        console.log('Graph data:', data);
+
+        // Call your graph rendering logic here
+      } catch (error) {
+        console.error('Error generating graph:', error);
+      }
+    });
   } catch (error) {
     console.error('Error loading dropdown options:', error);
   }
