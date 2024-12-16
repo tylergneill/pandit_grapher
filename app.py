@@ -6,6 +6,8 @@ from grapher import construct_subgraph
 from pickling import load_content_from_file
 
 Entities_by_id = load_content_from_file()
+Works_by_id = {k:v for k,v in Entities_by_id.items() if v.type == 'work'}
+Authors_by_id = {k:v for k,v in Entities_by_id.items() if v.type == 'author'}
 
 app = Flask(__name__)
 
@@ -16,13 +18,18 @@ api = Api(api_bp, version='1.0', title='PANDiT Grapher API',
           doc='/docs')  # Swagger UI available at /api/docs
 
 # --- Define Namespace ---
-ns = api.namespace('graph', description='Graph operations')
+graph_ns = api.namespace('graph', description='Graph operations')
+
+
+entities_ns = api.namespace('entities', description='Entity operations')
 
 # --- Request Model ---
 subgraph_model = api.model('SubgraphRequest', {
-    'subgraph_center': fields.List(fields.String, required=True, description='List of center node IDs'),
+    'authors': fields.List(fields.String, required=False, description='List of author node IDs'),
+    'works': fields.List(fields.String, required=False, description='List of work node IDs'),
+    # TODO: manually enforce that at least one is required
     'hops': fields.Integer(required=True, description='Number of hops outward from center'),
-    'blacklist': fields.List(fields.String, required=False, description='List of node IDs to exclude')
+    'exclude_list': fields.List(fields.String, required=False, description='List of node IDs to exclude')
 })
 
 # --- Mock Data ---
@@ -53,16 +60,26 @@ mock_graph = {
 
 mock_graph = convert_to_mock_graph()
 
-@ns.route('/all-entities')
-class DropdownOptions(Resource):
-    def get(self):
-        """Fetch dropdown options for nodes."""
-        dropdown_options = [{"id": node["id"], "label": f"{node['label']} ({node['id']})"} for node in mock_graph["nodes"]]
+@entities_ns.route('/<string:entity_type>')
+class EntityOptions(Resource):
+    def get(self, entity_type):
+        """Fetch dropdown options for a specific type of node (authors, works, or all)."""
+        if entity_type not in ['authors', 'works', 'all']:
+            return jsonify({"error": "Invalid entity type. Choose from 'authors', 'works', or 'all'."}), 400
+
+        if entity_type == 'authors':
+            filtered_nodes = [node for node in mock_graph["nodes"] if node["type"] == "author"]
+        elif entity_type == 'works':
+            filtered_nodes = [node for node in mock_graph["nodes"] if node["type"] == "work"]
+        else:  # entity_type == 'all'
+            filtered_nodes = mock_graph["nodes"]
+
+        dropdown_options = [{"id": node["id"], "label": f"{node['label']} ({node['id']})"} for node in filtered_nodes]
         return jsonify(dropdown_options)
 
-@ns.route('/subgraph')
+@graph_ns.route('/subgraph')
 class Subgraph(Resource):
-    @ns.expect(subgraph_model)
+    @graph_ns.expect(subgraph_model)
     def post(self):
         """
         Generate a subgraph based on input parameters.
@@ -70,20 +87,22 @@ class Subgraph(Resource):
         try:
             # Parse request data
             data = request.json
-            subgraph_center = set(data.get('subgraph_center', []))
+            authors = set(data.get('authors', []))
+            works = set(data.get('works', []))
+            subgraph_center = authors | works
             hops = data.get('hops', 0)
-            blacklist = set(data.get('blacklist', []))
+            exclude_list = set(data.get('exclude_list', []))
 
             # Validate inputs
             if not subgraph_center:
                 return {"error": "subgraph_center must be a non-empty list"}, 400
             if not isinstance(hops, int) or hops < 0:
                 return {"error": "hops must be a non-negative integer"}, 400
-            if not isinstance(blacklist, set):
-                return {"error": "blacklist must be a list"}, 400
+            if not isinstance(exclude_list, set):
+                return {"error": "exclude_list must be a list"}, 400
 
             # Call the actual construct_subgraph function
-            Pandit_Graph = construct_subgraph(list(subgraph_center), hops, list(blacklist))
+            Pandit_Graph = construct_subgraph(list(subgraph_center), hops, list(exclude_list))
 
             # Extract nodes and edges
             filtered_nodes = [
@@ -98,9 +117,10 @@ class Subgraph(Resource):
             # Construct the response
             response = {
                 "parameters": {
-                    "subgraph_center": list(subgraph_center),
+                    "authors": list(authors),
+                    "works": list(works),
                     "hops": hops,
-                    "blacklist": list(blacklist)
+                    "exclude_list": list(exclude_list),
                 },
                 "graph": {
                     "nodes": filtered_nodes,
@@ -115,7 +135,8 @@ class Subgraph(Resource):
             return {"error": str(e)}, 500
 
 # Add namespace to the API
-api.add_namespace(ns)
+api.add_namespace(graph_ns)
+api.add_namespace(entities_ns)
 
 # Register the Blueprint
 app.register_blueprint(api_bp)

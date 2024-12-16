@@ -1,14 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Handle form submission
   document.getElementById('fetch-button').addEventListener('click', async () => {
-    const subgraphCenter = $('#subgraph_center').val(); // Get selected values
+    const authors = $('#authors-dropdown').val(); // Get selected values
+    const works = $('#works-dropdown').val(); // Get selected values
     const hops = document.getElementById('hops').value;
-    const blacklist = $('#blacklist').val(); // Get selected values
+    const exclude_list = $('#exclude-list-dropdown').val(); // Get selected values
 
     const payload = {
-      subgraph_center: subgraphCenter,
+      authors: authors,
+      works: works,
       hops: parseInt(hops, 10),
-      blacklist: blacklist
+      exclude_list: exclude_list
     };
 
     try {
@@ -65,8 +67,9 @@ function renderGraph(graph) {
 
   const simulation = d3.forceSimulation(graph.nodes)
     .force('link', d3.forceLink(graph.edges).id(d => d.id).distance(100))
-    .force('charge', d3.forceManyBody().strength(-300))
-    .force('center', d3.forceCenter(width / 2, height / 2));
+    .force('charge', d3.forceManyBody().strength(-50))
+    .force('center', d3.forceCenter(width / 2, height / 2))
+    .force('collide', d3.forceCollide(20));
 
   const link = graphGroup.append('g')
     .selectAll('line')

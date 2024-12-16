@@ -9,22 +9,23 @@ from objects import *
 Entities_by_id = load_content_from_file()
 
 config_dict = load_config_dict_from_json_file()
-subgraph_center = config_dict["subgraph_center"]
-bacon_hops = config_dict["bacon_hops"]
-blacklist = config_dict["blacklist"]
+DEFAULT_AUTHORS = config_dict["authors"]
+DEFAULT_WORKS = config_dict["works"]
+DEFAULT_HOPS = config_dict["hops"]
+DEFAULT_EXCLUDE_LIST = config_dict["exclude_list"]
 draw_networkx_graph = config_dict["draw_networkx_graph"]
 networkx_figure_size = config_dict["networkx_figure_size"]
 output_gephi_file = config_dict["output_gephi_file"]
 
 
-def construct_subgraph(sbgrph_ctr = subgraph_center, hops = bacon_hops, blcklst = blacklist):
+def construct_subgraph(subgraph_center=DEFAULT_AUTHORS+DEFAULT_WORKS, hops=DEFAULT_HOPS, exclude_list=DEFAULT_EXCLUDE_LIST):
 
 	Pandit_Graph = nx.DiGraph() # nx graph object; used are:
 	# .nodes attribute
 	# .add_edge and .remove_node methods (not .add_node)
 
 	subgraph_node_ids = [ ] # Entity objects
-	node_ids_to_append_this_time = sbgrph_ctr # list of 5-digit strings
+	node_ids_to_append_this_time = subgraph_center # list of 5-digit strings
 
 	for i in range( hops + 1 ):
 
@@ -35,8 +36,8 @@ def construct_subgraph(sbgrph_ctr = subgraph_center, hops = bacon_hops, blcklst 
 			# append
 			subgraph_node_ids.append(id)
 
-			# don't do anything else for things on blacklist
-			if id in blcklst: continue
+			# don't do anything else for things on exclude_list
+			if id in exclude_list: continue
 
 			# create edges and queue up connected nodes for next time
 			E = Entities_by_id[id]
@@ -91,7 +92,7 @@ def assign_node_labels_and_colors(Pandit_Graph):
 
 		label_map[node_id] = Entities_by_id[node_id].name
 
-		if Entities_by_id[node_id].id in blacklist:
+		if Entities_by_id[node_id].id in DEFAULT_EXCLUDE_LIST:
 			color_map.append('gray')
 
 		elif Entities_by_id[node_id].type == 'work':
@@ -113,7 +114,7 @@ def export_to_gephi(Pandit_Graph, label_map, color_map):
 	rgb_map = {
 		"red": {'r': 255, 'g': 0, 'b': 0, 'a': 0},
 		"green": {'r': 6, 'g': 200, 'b': 50, 'a': 0},
-		"gray": {'r':128, 'g': 128, 'b': 128, 'a': 0},
+		"gray": {'r': 128, 'g': 128, 'b': 128, 'a': 0},
 	}
 
 	PG2 = copy(Pandit_Graph)
@@ -121,12 +122,14 @@ def export_to_gephi(Pandit_Graph, label_map, color_map):
 		PG2.nodes[node_id]["label"] = label_map[node_id]
 		PG2.nodes[node_id]['viz'] = {'color': rgb_map[ color_map[i] ]}
 
+	subgraph_center = DEFAULT_AUTHORS + DEFAULT_WORKS
+
 	output_fn = "%s" % label_map[subgraph_center[0]]
 	if len(subgraph_center) > 1:
 		output_fn = output_fn + "_etc"
-	output_fn = output_fn + "_degree_%d" % bacon_hops
-	if blacklist != []:
-		output_fn = output_fn + "_with_blacklist"
+	output_fn = output_fn + "_degree_%d" % DEFAULT_HOPS
+	if DEFAULT_EXCLUDE_LIST != []:
+		output_fn = output_fn + "_with_exclude_list"
 	output_fn = output_fn + ".gexf"
 
 	nx.write_gexf(PG2, output_fn)
@@ -139,7 +142,7 @@ def export_to_gephi(Pandit_Graph, label_map, color_map):
 
 # if __name__ == "__main__":
 #
-# 	Pandit_Graph = construct_subgraph(subgraph_center, bacon_hops, blacklist)
+# 	Pandit_Graph = construct_subgraph(subgraph_center, hops, exclude_list)
 #
 # 	label_map, color_map = assign_node_labels_and_colors(Pandit_Graph)
 #

@@ -42,11 +42,11 @@ The `grapher` module builds a subgraph (or multiple subgraphs) of the Pandit net
 
 1. Using the Pandit website (or the downloaded data), identify the entity ID number of a Person or Work you are interested in. Then, in `config.json`, use this number, as a string, to populate the list variable `subgraph_center`. (The default value is a single entity, `"40377"`, for [Kālidāsa](https://www.panditproject.org/entity/40377/person). You can also use multiple entities in this list, with a separate string for each, as demonstrated in the screenshots below.)
 
-2. Set the `bacon_hops` to an integer indicating the number of hops outward from the `subgraph_center` entity to graph (cp. ["Six Degrees of Kevin Bacon"](https://en.wikipedia.org/wiki/Six_Degrees_of_Kevin_Bacon#:~:text=Six%20Degrees%20of%20Kevin%20Bacon%20or%20%22Bacon's%20Law%22%20is%20a,and%20prolific%20actor%20Kevin%20Bacon) and the ["Oracle of Bacon"](https://oracleofbacon.org/)). E.g., `0` means graph the center entity only, `1` means graph one more layer of connections after that, `2` means two more, etc. (The default is `2`.)
+2. Set the `hops` to an integer indicating the number of hops outward from the `subgraph_center` entity to graph (cp. ["Six Degrees of Kevin Bacon"](https://en.wikipedia.org/wiki/Six_Degrees_of_Kevin_Bacon#:~:text=Six%20Degrees%20of%20Kevin%20Bacon%20or%20%22Bacon's%20Law%22%20is%20a,and%20prolific%20actor%20Kevin%20Bacon) and the ["Oracle of Bacon"](https://oracleofbacon.org/)). E.g., `0` means graph the center entity only, `1` means graph one more layer of connections after that, `2` means two more, etc. (The default is `2`.)
 
-> Note: Excluding isolate nodes and subgraphs, the lion's share of the entire graph of Pandit Works and Persons (specifically, 8,168 out of 14,677) is spanned usually within 20–30 hops outward, depending on the starting point. By contrast, for the purpose of simple visual inspection, 3–5 hops will be the most common choice, as anything more than that can quickly become uncomfortably complicated to look at in the absence of careful filtering (for which, see "blacklisting" directly below).
+> Note: Excluding isolate nodes and subgraphs, the lion's share of the entire graph of Pandit Works and Persons (specifically, 8,168 out of 14,677) is spanned usually within 20–30 hops outward, depending on the starting point. By contrast, for the purpose of simple visual inspection, 3–5 hops will be the most common choice, as anything more than that can quickly become uncomfortably complicated to look at in the absence of careful filtering (for which, see "exclude_listing" directly below).
 
-3. Set the `blacklist` variable in `config.json` to a list of strings representing entity IDs (Person and/or Work) whose further connections should be suppressed in building the subgraph(s). Use this when, for example, a given author is too prolific or a given work is too commented-upon and would therefore overwhelm other information in the visualization. (The default list is `["41324","96246"]`, suppressing further connections on [Kumārasaṃbhava](https://www.panditproject.org/entity/41324/work) and [Abhijñānaśakuntala](https://www.panditproject.org/entity/96246/work), respectively.)
+3. Set the `exclude_list` variable in `config.json` to a list of strings representing entity IDs (Person and/or Work) whose further connections should be suppressed in building the subgraph(s). Use this when, for example, a given author is too prolific or a given work is too commented-upon and would therefore overwhelm other information in the visualization. (The default list is `["41324","96246"]`, suppressing further connections on [Kumārasaṃbhava](https://www.panditproject.org/entity/41324/work) and [Abhijñānaśakuntala](https://www.panditproject.org/entity/96246/work), respectively.)
 
 4. Run the `grapher` module on the command-line with no arguments.
 
@@ -58,19 +58,19 @@ The resulting graph is created in memory, (optionally) drawn to the screen with 
 
 # How to Read the `networkx` Results
 
-If the `draw_networkx_graph` variable is set to `true` in `config.json`, an OS-native `networkx` pop-up window will appear with a “spring”-type, force-directed graph. Green circles are for persons, red circles are for works. Grey circles are for either persons or works whose further connections have been suppressed by the `blacklist`. Lines indicate authorship or commentarial relationships, and arrows indicate causality, i.e., that a person "wrote" a work, or that one work "inspired" a further commentarial work.
+If the `draw_networkx_graph` variable is set to `true` in `config.json`, an OS-native `networkx` pop-up window will appear with a “spring”-type, force-directed graph. Green circles are for persons, red circles are for works. Grey circles are for either persons or works whose further connections have been suppressed by the `exclude_list`. Lines indicate authorship or commentarial relationships, and arrows indicate causality, i.e., that a person "wrote" a work, or that one work "inspired" a further commentarial work.
 
-![screenshot](static/Kalidasa_degree_2_with_blacklist_networkx.png)
+![screenshot](static/Kalidasa_degree_2_with_exclude_list_networkx.png)
 
 It's also fine to use multiple entities to seed the `subgraph_center`. As long as there aren't errors or gaps in the database itself, the graph should connect itself up just fine. (Below is an example of doing so with Kālidāsa (ID: 40377), Vallabhadeva (ID: 96590), and Mallinātha Sūri (ID: 85731). In this case, we see that Potter's database, on which Pandit Project is based, excluded most non-śāstric works, including Mallinātha's commentaries on Kālidāsa's *kāvya* works. This would therefore be a good opportunity for growing the Pandit database in that direction.) 
 
-![screenshot](static/Kalidasa_Vallabhadeva_Mallinatha_degree_2_with_blacklist_networkx.png)
+![screenshot](static/Kalidasa_Vallabhadeva_Mallinatha_degree_2_with_exclude_list_networkx.png)
 
 # Using the Gephi Output File
 
 If the `output_gephi_file` variable is set to `true` in `config.json`, an additional `.gexf` file compatible with the free third-party visualization software [Gephi](https://gephi.org/) will be generated in the `pandit_grapher` directory. This can be simply be opened in Gephi (`File` > `Open`) for more flexible graph visualization and manipulation there. For example, the “Yifan Hu” layout will produce a similar force-directed graph, and fiddling with the node, edge, and label appearances can quickly exceed what `networkx` can produce. 
 
-![screenshot](static/Kalidasa_Vallabhadeva_Mallinatha_degree_2_with_blacklist_gephi.png)
+![screenshot](static/Kalidasa_Vallabhadeva_Mallinatha_degree_2_with_exclude_list_gephi.png)
 
 The parts of the graph can also be moved around manually as needed, like in the below graph centering on Bhāsarvajña's Nyāyabhūṣaṇa and illustrating his intertextual influences.
 
@@ -84,18 +84,18 @@ The above calculation of the number of hops required to span the overall Pandit 
 
 ~~~
 >>> import grapher as gr
->>> PG = gr.construct_subgraph(gr.subgraph_center, gr.bacon_hops, gr.blacklist)
+>>> PG = gr.construct_subgraph(gr.subgraph_center, gr.hops, gr.exclude_list)
 >>> print(PG.edges()) # PG = Pandit_Graph
 [('40377', '96246'), ('40377', '41324'), ('40377', '97244'), ('40377', '41500'), ('40377', '97243'), ('41500', '41499'), ('41500', '96592'), ('41510', '41500')]
 >>>
->>> def summarize_building_of_n_hop_graph(sbgrph_ctr, hops, blcklst):
-...     PG = gr.construct_subgraph(sbgrph_ctr, hops, blcklst)
+>>> def summarize_building_of_n_hop_graph(sbgrph_ctr, hops, exclude_list):
+...     PG = gr.construct_subgraph(sbgrph_ctr, hops, exclude_list)
 ...     last_node_id = list(PG.nodes)[-1]
 ...     last_node_str = "(last node: %s %s)" % (last_node_id, gr.Entities_by_id[last_node_id].name)
 ...     print(hops, len(PG.nodes()), last_node_str)
 ... 
 >>> for num_hops in range(15):
-...     summarize_building_of_n_hop_graph(gr.subgraph_center, num_hops, blcklst=[])
+...     summarize_building_of_n_hop_graph(gr.subgraph_center, num_hops, exclude_list=[])
 ... 
 0 1 (last node: 40377 Kālidāsa)
 1 6 (last node: 97243 Vikramorvaśīya)

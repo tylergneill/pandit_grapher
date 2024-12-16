@@ -176,22 +176,45 @@ button {
 
 button:hover { background: #a93226; }
 
+#fetch-button {
+  width: 50%; /* Adjust this percentage as needed */
+  margin: 0 auto; /* Center the button horizontally */
+}
+
 /* =============================
    Select2 Dropdown Styles
 ============================= */
-.select2-container {
-  width: 100% !important;
-  margin: 10px 0;
-  font-family: "Georgia", serif;
+.dropdown-wrapper {
+  width: 100%; /* Ensures the wrapper is full-width */
+  height: 40px; /* Matches Select2's height */
+  position: relative; /* Allows for clean alignment */
 }
 
-.select2-selection--multiple {
-  background-color: #ffffff;
-  color: #333333;
+/* Pre-initialization styling */
+.select2-initial {
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px; /* Fixed height */
+  padding: 5px 12px; /* Match Select2 padding exactly */
+  font-size: 14px;
+  line-height: 1.2; /* Add consistent line-height */
   border: 1px solid #5a0b73;
   border-radius: 5px;
-  padding: 5px;
+  background-color: #ffffff;
+  color: #333333;
+}
+
+/* Post-initialization styling */
+.select2-container .select2-selection--multiple {
+  box-sizing: border-box;
+  height: 40px; /* Fixed height */
+  padding: 5px 12px; /* Consistent padding */
   font-size: 14px;
+  line-height: 1.2; /* Ensures text alignment matches */
+  border: 1px solid #5a0b73;
+  border-radius: 5px;
+  background-color: #ffffff;
+  color: #333333;
 }
 
 /* Selected Items (Chips) in Dropdown Input */
@@ -202,7 +225,7 @@ button:hover { background: #a93226; }
   border-radius: 4px;
   padding: 5px 10px;
   font-size: 14px;
-  margin: 5px 3px 0 0;
+  margin: 2px 3px 0 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 

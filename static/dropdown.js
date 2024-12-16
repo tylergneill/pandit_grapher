@@ -1,34 +1,39 @@
 document.addEventListener('DOMContentLoaded', async () => {
   try {
-    // Fetch dropdown options from the backend
-    const response = await fetch('/api/graph/all-entities');
-    if (!response.ok) throw new Error('Failed to fetch dropdown options');
+    const [authorsRes, worksRes] = await Promise.all([
+      fetch('/api/entities/authors'),
+      fetch('/api/entities/works')
+    ]);
 
-    const options = await response.json();
+    const [optionsAuthors, optionsWorks] = await Promise.all([
+      authorsRes.json(),
+      worksRes.json()
+    ]);
 
-    // Populate dropdowns with options
-    const centerDropdown = document.getElementById('subgraph_center');
-    const blacklistDropdown = document.getElementById('blacklist');
+    const authorsDropdown = document.getElementById('authors-dropdown');
+    const worksDropdown = document.getElementById('works-dropdown');
+    const excludeDropdown = document.getElementById('exclude-list-dropdown');
 
-    options.forEach(option => {
-      const opt = document.createElement('option');
-      opt.value = option.id;
-      opt.textContent = option.label;
-      centerDropdown.appendChild(opt.cloneNode(true)); // Clone for reuse
-      blacklistDropdown.appendChild(opt);
-    });
+    populateDropdown(authorsDropdown, optionsAuthors);
+    populateDropdown(worksDropdown, optionsWorks);
+    populateDropdown(excludeDropdown, [...optionsAuthors, ...optionsWorks]);
 
-    // Initialize Select2 AFTER populating options
-    $('#subgraph_center').select2({
-      placeholder: 'Select Subgraph Center',
+    // Initialize Select2 after options are ready
+    $('#authors-dropdown, #works-dropdown, #exclude-list-dropdown').select2({
+      placeholder: 'Select an option',
       allowClear: true
     });
 
-    $('#blacklist').select2({
-      placeholder: 'Select Blacklist',
-      allowClear: true
-    });
+    // Clean up .select2-initial class
+    document.querySelectorAll('.select2-initial').forEach(el => el.classList.remove('select2-initial'));
   } catch (error) {
-    console.error('Error loading dropdown options:', error);
+    console.error('Error initializing dropdowns:', error);
   }
 });
+
+function populateDropdown(dropdown, options) {
+  options.forEach(({ id, label }) => {
+    const option = new Option(label, id);
+    dropdown.add(option);
+  });
+}

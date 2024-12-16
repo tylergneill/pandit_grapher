@@ -1,8 +1,8 @@
 import grapher
 
-grapher.bacon_hops = 27 # Kālidāsa needs 26
+grapher.hops = 27 # Kālidāsa needs 26
 
-grapher.blacklist = []
+grapher.exclude_list = []
 
 main_subgraph_seed = ['41324']
 

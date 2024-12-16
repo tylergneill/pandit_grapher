@@ -22,8 +22,17 @@
   <div id="form-container">
     <form id="parameter-form">
       <div class="form-row">
-        <label for="subgraph_center">Subgraph Center:</label>
-        <select id="subgraph_center" class="select2" multiple></select>
+        <label for="authors-dropdown">Authors:</label>
+        <div class="dropdown-wrapper">
+          <select id="authors-dropdown" class="select2-initial" multiple></select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="works-dropdown">Works:</label>
+        <div class="dropdown-wrapper">
+          <select id="works-dropdown" class="select2-initial" multiple></select>
+        </div>
       </div>
 
       <div class="form-row">
@@ -32,11 +41,14 @@
       </div>
 
       <div class="form-row">
-        <label for="blacklist">Blacklist:</label>
-        <select id="blacklist" class="select2" multiple></select>
+        <label for="exclude-list-dropdown">Exclude:</label>
+        <div class="dropdown-wrapper">
+          <select id="exclude-list-dropdown" class="select2-initial" multiple></select>
+        </div>
       </div>
 
       <button type="button" id="fetch-button">Generate Graph</button>
+
     </form>
   </div>
   <div id="graph-container">
