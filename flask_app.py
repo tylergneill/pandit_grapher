@@ -25,7 +25,6 @@ entities_ns = api.namespace('entities', description='Entity operations')
 subgraph_model = api.model('SubgraphRequest', {
     'authors': fields.List(fields.String, required=False, description='List of author node IDs'),
     'works': fields.List(fields.String, required=False, description='List of work node IDs'),
-    # TODO: manually enforce that at least one is required
     'hops': fields.Integer(required=True, description='Number of hops outward from center'),
     'exclude_list': fields.List(fields.String, required=False, description='List of node IDs to exclude')
 })
@@ -156,8 +155,8 @@ class Subgraph(Resource):
             exclude_list = set(data.get('exclude_list', []))
 
             # Validate inputs
-            if not subgraph_center:
-                return {"error": "subgraph_center must be a non-empty list"}, 400
+            if not authors and not works:
+                return {"error": "require either one or both of authors or works"}, 400
             if not isinstance(hops, int) or hops < 0:
                 return {"error": "hops must be a non-negative integer"}, 400
             if not isinstance(exclude_list, set):
