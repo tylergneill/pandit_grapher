@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Handle form submission
+  // Handle form submission for generating graphs
   document.getElementById('fetch-button').addEventListener('click', async () => {
-    const authors = $('#authors-dropdown').val(); // Get selected values
-    const works = $('#works-dropdown').val(); // Get selected values
-    const hops = document.getElementById('hops').value;
-    const exclude_list = $('#exclude-list-dropdown').val(); // Get selected values
+    const authors = $('#authors-dropdown').val(); // Get selected authors
+    const works = $('#works-dropdown').val(); // Get selected works
+    const hops = document.getElementById('hops').value; // Get hop count
+    const exclude_list = $('#exclude-list-dropdown').val(); // Get exclusions
 
     const payload = {
       authors: authors,
@@ -27,27 +27,39 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await response.json();
       console.log('Graph data:', data);
 
-      // Wire up renderGraph here
-      renderGraph(data.graph);
-
+      renderGraph(data.graph); // Render the graph from POST response
     } catch (error) {
       console.error('Error generating graph:', error);
-
-      // Optionally render mock data for testing
-      const mockData = {
-        nodes: [
-          { id: 'A', label: 'Node A', type: 'author' },
-          { id: 'B', label: 'Node B', type: 'work' }
-        ],
-        edges: [
-          { source: 'A', target: 'B' }
-        ]
-      };
-      renderGraph(mockData);
     }
   });
+
+  // Handle direct rendering via GET parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  const works = urlParams.getAll('works'); // Fetch works list from URL
+  const hops = urlParams.get('hops');
+
+  if (works.length > 0 && hops) {
+    const apiUrl = `/api/graph/render?${urlParams.toString()}`;
+    fetchGraphData(apiUrl); // Fetch and render graph directly
+  }
 });
 
+// Utility to fetch graph data from API for GET requests
+async function fetchGraphData(apiUrl) {
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) throw new Error('Failed to fetch graph data');
+
+    const data = await response.json();
+    console.log('Fetched graph data:', data);
+
+    renderGraph(data); // Render the graph from GET response
+  } catch (error) {
+    console.error('Error fetching graph:', error);
+  }
+}
+
+// Core function to render a graph using D3.js
 function renderGraph(graph) {
   const svg = d3.select('svg');
   svg.selectAll('*').remove(); // Clear previous graph
@@ -55,19 +67,17 @@ function renderGraph(graph) {
   const width = +svg.attr('width');
   const height = +svg.attr('height');
 
-  const graphGroup = svg.append('g'); // Attach all elements to this group
+  const graphGroup = svg.append('g'); // Group for all elements
 
   const zoom = d3.zoom()
     .scaleExtent([0.5, 3])
-    .on('zoom', (event) => {
-      graphGroup.attr('transform', event.transform);
-    });
+    .on('zoom', (event) => graphGroup.attr('transform', event.transform));
 
   svg.call(zoom);
 
   const simulation = d3.forceSimulation(graph.nodes)
     .force('link', d3.forceLink(graph.edges).id(d => d.id).distance(100))
-    .force('charge', d3.forceManyBody().strength(-50))
+    .force('charge', d3.forceManyBody().strength(-100))
     .force('center', d3.forceCenter(width / 2, height / 2))
     .force('collide', d3.forceCollide(20));
 
@@ -83,7 +93,7 @@ function renderGraph(graph) {
     .selectAll('circle')
     .data(graph.nodes)
     .join('circle')
-    .attr('class', d => `node ${d.type}`) // Apply specific class based on node type
+    .attr('class', d => `node ${d.type}`) // Apply class based on type
     .attr('r', 10)
     .call(d3.drag()
       .on('start', event => {
@@ -101,13 +111,12 @@ function renderGraph(graph) {
         event.subject.fy = null;
       }));
 
-  // Add labels to graphGroup
   const labels = graphGroup.append('g')
     .selectAll('text')
     .data(graph.nodes)
     .join('text')
     .attr('class', 'label')
-    .attr('dy', -15) // Position labels slightly above nodes
+    .attr('dy', -15)
     .attr('text-anchor', 'middle')
     .text(d => d.label);
 
@@ -122,14 +131,12 @@ function renderGraph(graph) {
       .attr('cx', d => d.x)
       .attr('cy', d => d.y);
 
-    // Update label positions to match nodes
     labels
       .attr('x', d => d.x)
       .attr('y', d => d.y);
-
   });
 
-  // Add optional zoom controls for debugging
+  // Add optional zoom controls
   d3.select('body').append('div')
     .style('position', 'fixed')
     .style('bottom', '10px')
@@ -141,5 +148,4 @@ function renderGraph(graph) {
 
   d3.select('#zoomIn').on('click', () => svg.transition().call(zoom.scaleBy, 1.2));
   d3.select('#zoomOut').on('click', () => svg.transition().call(zoom.scaleBy, 0.8));
-
 }

@@ -64,5 +64,73 @@
   <!-- Graph Logic -->
   <script src="{{ url_for('static', filename='graph.js') }}"></script>
 
+  <script>
+    // Utility function to fetch labels and populate dropdowns
+    async function fetchLabelsAndPopulateDropdown(ids, dropdown) {
+      if (ids.length === 0) return;
+
+      try {
+          const query = ids.map(id => `ids=${id}`).join("&");
+          const response = await fetch(`/api/entities/metadata?${query}`); // Adjusted endpoint
+          const data = await response.json();
+
+          data.forEach(item => {
+              const displayText = `${item.label} (${item.id})`; // Include ID in parentheses
+              dropdown.append(new Option(displayText, item.id, true, true));
+          });
+
+          dropdown.trigger('change'); // Refresh Select2
+      } catch (error) {
+          console.error("Error fetching labels:", error);
+      }
+  }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Extract parameters from the URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const authors = urlParams.getAll('authors'); // List of author IDs
+      const works = urlParams.getAll('works');     // List of work IDs
+      const excludeList = urlParams.getAll('exclude'); // Exclude list IDs
+      const hops = urlParams.get('hops');          // Hops value
+
+      // Get dropdown elements
+      const authorsDropdown = $('#authors-dropdown');
+      const worksDropdown = $('#works-dropdown');
+      const excludeDropdown = $('#exclude-list-dropdown');
+
+      // Fetch and populate dropdowns BEFORE initializing Select2
+      await fetchLabelsAndPopulateDropdown(authors, authorsDropdown);
+      await fetchLabelsAndPopulateDropdown(works, worksDropdown);
+      await fetchLabelsAndPopulateDropdown(excludeList, excludeDropdown);
+
+      // Set the hops input value
+      if (hops) {
+        document.getElementById('hops').value = hops;
+      }
+
+      // Initialize Select2 dropdowns AFTER population
+      $('.select2-initial').select2();
+
+      // Fetch and render the graph
+      if (works.length > 0 && hops) {
+        const apiUrl = `/api/graph/render?${urlParams.toString()}`;
+        console.log("Fetching graph data from:", apiUrl);
+
+        fetch(apiUrl)
+          .then(response => {
+            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+            return response.json();
+          })
+          .then(data => {
+            console.log("Fetched graph data:", data);
+            renderGraph(data); // Call renderGraph with fetched data
+          })
+          .catch(err => {
+            console.error("Error fetching graph data:", err);
+          });
+      }
+    });
+  </script>
+
 </body>
 </html>

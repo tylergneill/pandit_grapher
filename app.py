@@ -19,8 +19,6 @@ api = Api(api_bp, version='1.0', title='PANDiT Grapher API',
 
 # --- Define Namespace ---
 graph_ns = api.namespace('graph', description='Graph operations')
-
-
 entities_ns = api.namespace('entities', description='Entity operations')
 
 # --- Request Model ---
@@ -76,6 +74,70 @@ class EntityOptions(Resource):
 
         dropdown_options = [{"id": node["id"], "label": f"{node['label']} ({node['id']})"} for node in filtered_nodes]
         return jsonify(dropdown_options)
+
+@entities_ns.route('/metadata')
+class Metadata(Resource):
+    def get(self):
+        """
+        Fetch metadata for a list of node IDs.
+        Example: /api/entities/metadata?ids=89000&ids=12345
+        """
+        try:
+            ids = request.args.getlist('ids')  # Get all IDs as a list
+            if not ids:
+                return {"error": "No IDs provided"}, 400
+
+            metadata = [
+                {"id": node_id, "label": Entities_by_id[node_id].name}
+                for node_id in ids if node_id in Entities_by_id
+            ]
+
+            return jsonify(metadata)
+        except Exception as e:
+            return {"error": str(e)}, 500
+
+# --- Frontend Route ---
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@graph_ns.route('/render')
+class RenderGraph(Resource):
+    def get(self):
+        """
+        Test returning graph data as JSON.
+        """
+        try:
+            # Parse parameters
+            works = request.args.getlist('works')  # Accept multiple works
+            hops = request.args.get('hops', default=2, type=int)
+
+            # Validate inputs
+            if not works:
+                return {"error": "At least one work must be specified"}, 400
+            if hops < 0:
+                return {"error": "Hops must be a non-negative integer"}, 400
+
+            # Construct graph with a single work as the center
+            subgraph_center = works
+            Pandit_Graph = construct_subgraph(subgraph_center, hops, [])
+
+            # Extract nodes and edges for JSON response
+            filtered_nodes = [
+                {"id": node, "label": Entities_by_id[node].name, "type": Entities_by_id[node].type}
+                for node in Pandit_Graph.nodes
+            ]
+            filtered_edges = [
+                {"source": edge[0], "target": edge[1]}
+                for edge in Pandit_Graph.edges
+            ]
+
+            return jsonify({"nodes": filtered_nodes, "edges": filtered_edges})
+        except KeyError as e:
+            return {"error": f"Invalid ID: {str(e)}"}, 400
+        except Exception as e:
+            return {"error": str(e)}, 500
+
 
 @graph_ns.route('/subgraph')
 class Subgraph(Resource):
@@ -140,11 +202,6 @@ api.add_namespace(entities_ns)
 
 # Register the Blueprint
 app.register_blueprint(api_bp)
-
-# --- Frontend Route ---
-@app.route('/')
-def index():
-    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=5090)

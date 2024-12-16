@@ -18,9 +18,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     populateDropdown(worksDropdown, optionsWorks);
     populateDropdown(excludeDropdown, [...optionsAuthors, ...optionsWorks]);
 
-    // Initialize Select2 after options are ready
-    $('#authors-dropdown, #works-dropdown, #exclude-list-dropdown').select2({
-      placeholder: 'Select an option',
+    // Initialize Select2 with different placeholder texts for each dropdown
+    $('#authors-dropdown').select2({
+      placeholder: 'Authors to include',
+      allowClear: true
+    });
+
+    $('#works-dropdown').select2({
+      placeholder: 'Works to include',
+      allowClear: true
+    });
+
+    $('#exclude-list-dropdown').select2({
+      placeholder: 'Entities to exclude',
       allowClear: true
     });
 
