@@ -69,12 +69,15 @@ function renderGraph(graph) {
 
   const graphGroup = svg.append('g'); // Group for all elements
 
+  // Define zoom behavior
   const zoom = d3.zoom()
     .scaleExtent([0.5, 3])
     .on('zoom', (event) => graphGroup.attr('transform', event.transform));
 
+  // Apply zoom behavior to the SVG element
   svg.call(zoom);
 
+  // Simulation for force-directed graph
   const simulation = d3.forceSimulation(graph.nodes)
     .force('link', d3.forceLink(graph.edges).id(d => d.id).distance(100))
     .force('charge', d3.forceManyBody().strength(-100))
@@ -136,8 +139,8 @@ function renderGraph(graph) {
       .attr('y', d => d.y);
   });
 
-  // Add optional zoom controls
-  d3.select('body').append('div')
+  // Add zoom controls
+  const zoomControls = d3.select('body').append('div')
     .style('position', 'fixed')
     .style('bottom', '10px')
     .style('right', '10px')
@@ -146,6 +149,7 @@ function renderGraph(graph) {
       <button id="zoomOut">Zoom Out</button>
     `);
 
+  // Attach zoom functions to buttons
   d3.select('#zoomIn').on('click', () => svg.transition().call(zoom.scaleBy, 1.2));
   d3.select('#zoomOut').on('click', () => svg.transition().call(zoom.scaleBy, 0.8));
 }
