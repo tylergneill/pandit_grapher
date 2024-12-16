@@ -53,7 +53,7 @@ mock_graph = {
 
 mock_graph = convert_to_mock_graph()
 
-@ns.route('/dropdown-options')
+@ns.route('/all-entities')
 class DropdownOptions(Resource):
     def get(self):
         """Fetch dropdown options for nodes."""

@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', async () => {
   try {
     // Fetch dropdown options from the backend
-    const response = await fetch('/api/graph/dropdown-options');
+    const response = await fetch('/api/graph/all-entities');
     if (!response.ok) throw new Error('Failed to fetch dropdown options');
 
     const options = await response.json();
