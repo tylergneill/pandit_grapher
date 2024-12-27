@@ -1,12 +1,12 @@
 import networkx as nx
 # import matplotlib.pyplot as plt
 from copy import copy
+from typing import Dict
 
-from pickling import load_content_from_file
+from data_models import Entity
 from config import load_config_dict_from_json_file
 from objects import *
-
-Entities_by_id = load_content_from_file()
+from util import time_execution
 
 config_dict = load_config_dict_from_json_file()
 DEFAULT_AUTHORS = config_dict["authors"]
@@ -18,9 +18,15 @@ networkx_figure_size = config_dict["networkx_figure_size"]
 output_gephi_file = config_dict["output_gephi_file"]
 
 
-def construct_subgraph(subgraph_center=DEFAULT_AUTHORS+DEFAULT_WORKS, hops=DEFAULT_HOPS, exclude_list=DEFAULT_EXCLUDE_LIST):
+@time_execution
+def construct_subgraph(
+		entities_by_id: Dict[str, Entity],
+		subgraph_center: set = DEFAULT_AUTHORS+DEFAULT_WORKS,
+		hops: int = DEFAULT_HOPS,
+		exclude_list: set = DEFAULT_EXCLUDE_LIST,
+	):
 
-	Pandit_Graph = nx.DiGraph() # nx graph object; used are:
+	subgraph = nx.DiGraph() # nx graph object; used are:
 	# .nodes attribute
 	# .add_edge and .remove_node methods (not .add_node)
 
@@ -40,32 +46,32 @@ def construct_subgraph(subgraph_center=DEFAULT_AUTHORS+DEFAULT_WORKS, hops=DEFAU
 			if id in exclude_list: continue
 
 			# create edges and queue up connected nodes for next time
-			E = Entities_by_id[id]
+			E = entities_by_id[id]
 			if E.type == 'work':
 
 				for author_id in E.author_ids:
 					node_ids_to_append_next_time.append( author_id )
-					Pandit_Graph.add_edge(author_id, E.id, arrowstyle = '-[')
+					subgraph.add_edge(author_id, E.id, arrowstyle = '-[')
 
 				for base_text_id in E.base_text_ids:
 					node_ids_to_append_next_time.append( base_text_id )
-					Pandit_Graph.add_edge(base_text_id, E.id, arrowstyle = '->')
+					subgraph.add_edge(base_text_id, E.id, arrowstyle = '->')
 
 				for commentary_id in E.commentary_ids:
 					node_ids_to_append_next_time.append( commentary_id )
-					Pandit_Graph.add_edge(E.id, commentary_id, arrowstyle = '->')
+					subgraph.add_edge(E.id, commentary_id, arrowstyle = '->')
 
 				if E.author_ids == E.base_text_ids == E.commentary_ids == []:
-					Pandit_Graph.add_node(E.id)
+					subgraph.add_node(E.id)
 
 			elif E.type == 'author':
 
 				for work_id in E.work_ids:
 					node_ids_to_append_next_time.append( work_id )
-					Pandit_Graph.add_edge(E.id, work_id, arrowstyle = '-[')
+					subgraph.add_edge(E.id, work_id, arrowstyle = '-[')
 
 				if E.work_ids == []:
-					Pandit_Graph.add_node(E.id)
+					subgraph.add_node(E.id)
 
 		# de-dupe, first list-internally, then against previous
 		node_ids_to_append_next_time = list(set(node_ids_to_append_next_time))
@@ -77,15 +83,15 @@ def construct_subgraph(subgraph_center=DEFAULT_AUTHORS+DEFAULT_WORKS, hops=DEFAU
 
 	# trim queued-up but unestablished periphery nodes
 
-	for n in list(Pandit_Graph.nodes):
+	for n in list(subgraph.nodes):
 		if n not in subgraph_node_ids:
-			Pandit_Graph.remove_node(n)
+			subgraph.remove_node(n)
 
-	return Pandit_Graph
+	return subgraph
 
-def assign_node_labels_and_colors(Pandit_Graph):
+def assign_node_labels_and_colors(subgraph):
 
-	node_ids = list(Pandit_Graph.nodes)
+	node_ids = list(subgraph.nodes)
 	label_map = {} # dict
 	color_map = [] # list
 	for node_id in node_ids:
@@ -103,13 +109,13 @@ def assign_node_labels_and_colors(Pandit_Graph):
 
 	return label_map, color_map
 
-def export_to_gephi(Pandit_Graph, label_map, color_map):
+def export_to_gephi(subgraph, label_map, color_map):
 	"""By default, in networkx gephi export, node labels are the same as
 	the id, and nx.relabel_nodes changes both at the same time, which is
 	not helpful. Therefore, manually intervene for both labels and colors.
 	"""
 	# nope
-	# Pandit_Graph_relabled = nx.relabel_nodes(Pandit_Graph, label_map)
+	# subgraph_relabled = nx.relabel_nodes(subgraph, label_map)
 
 	rgb_map = {
 		"red": {'r': 255, 'g': 0, 'b': 0, 'a': 0},
@@ -117,7 +123,7 @@ def export_to_gephi(Pandit_Graph, label_map, color_map):
 		"gray": {'r': 128, 'g': 128, 'b': 128, 'a': 0},
 	}
 
-	PG2 = copy(Pandit_Graph)
+	PG2 = copy(subgraph)
 	for i, node_id in enumerate(PG2.nodes):
 		PG2.nodes[node_id]["label"] = label_map[node_id]
 		PG2.nodes[node_id]['viz'] = {'color': rgb_map[ color_map[i] ]}
@@ -134,20 +140,20 @@ def export_to_gephi(Pandit_Graph, label_map, color_map):
 
 	nx.write_gexf(PG2, output_fn)
 
-# def draw_nx_graph(Pandit_Graph, label_map, color_map):
+# def draw_nx_graph(subgraph, label_map, color_map):
 # 	plt.figure(1,figsize=tuple(networkx_figure_size))
-# 	nx.draw_spring(Pandit_Graph, labels = label_map, node_color = color_map, node_size = 1000)
+# 	nx.draw_spring(subgraph, labels = label_map, node_color = color_map, node_size = 1000)
 # 	plt.show()
 
 
 # if __name__ == "__main__":
 #
-# 	Pandit_Graph = construct_subgraph(subgraph_center, hops, exclude_list)
+# 	subgraph = construct_subgraph(subgraph_center, hops, exclude_list)
 #
-# 	label_map, color_map = assign_node_labels_and_colors(Pandit_Graph)
+# 	label_map, color_map = assign_node_labels_and_colors(subgraph)
 #
 # 	if output_gephi_file:
-# 		export_to_gephi(Pandit_Graph, label_map, color_map)
+# 		export_to_gephi(subgraph, label_map, color_map)
 #
 # 	if draw_networkx_graph:
-# 		draw_nx_graph(Pandit_Graph, label_map, color_map)
+# 		draw_nx_graph(subgraph, label_map, color_map)
