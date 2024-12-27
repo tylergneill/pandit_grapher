@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Pandit Grapher</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div id="about-container">
+    <h1>About Pandit Grapher</h1>
+    <p>
+      Pandit Grapher provides a visual way to explore relationships between works and authors in the
+      <a href="https://www.panditproject.org" target="_blank">Pandit Project</a> prosopography database.
+      Pandit Grapher is in conversation with but not officially affiliated with Pandit Project.
+    </p>
+    <p>
+      My name is Tyler. You can read about my main projects at
+      <a href="https://www.tylerneill.info/projects">tylerneill.info/projects</a>
+    </p>
+    <p>
+      The data used is a static snapshot of the database from 2024-12-13.
+      Entity types other than works and persons have been disregarded.
+      Below are some summary statistics about the data used:
+    </p>
+    <ul>
+      <li><strong>16,498 total entities:</strong> 12,701 works, 3,797 authors</li>
+      <li><strong>27,370 relationships:</strong> graph edges between those entities</li>
+    </ul>
+    <div class="footer">
+      <p>Back to <a href="/">Home</a></p>
+    </div>
+  </div>
+</body>
+</html>

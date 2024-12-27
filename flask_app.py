@@ -74,6 +74,19 @@ class Metadata(Resource):
 def index():
     return render_template('index.html')
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+def validate_inputs(authors, works, hops, exclude_list):
+    if not authors and not works:
+        return {"error": "require either one or both of authors or works"}, 400
+    if not isinstance(hops, int) or hops < 0:
+        return {"error": "hops must be a non-negative integer"}, 400
+    if not isinstance(exclude_list, set):
+        return {"error": "exclude_list must be a list"}, 400
+    return "", 200
+
 @graph_ns.route('/render')
 class RenderGraph(Resource):
     def get(self):
