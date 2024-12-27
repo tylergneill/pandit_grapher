@@ -322,3 +322,39 @@ button:hover { background: #a93226; }
   margin-top: 30px;
   font-size: 1rem;
 }
+
+#community-table {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background-color: #3a1249; /* Slightly lighter purple */
+  border: 1px solid #5a0b73;
+}
+
+#community-table th,
+#community-table td {
+  padding: 10px 15px;
+  text-align: left;
+  border: 1px solid #5a0b73;
+  color: #ffffff; /* White text for consistency */
+}
+
+#community-table th {
+  background-color: #5a0b73;
+  font-weight: bold;
+  text-align: center;
+}
+
+#community-table tbody tr:nth-child(even) {
+  background-color: #4a175c; /* Alternating row color for readability */
+}
+
+#community-table tbody tr:last-child {
+  font-weight: bold;
+  background-color: #6c2a7b; /* Highlight the total row */
+}
+
+#community-table td:last-child {
+  text-align: right;
+}

@@ -12,21 +12,68 @@
     <p>
       Pandit Grapher provides a visual way to explore relationships between works and authors in the
       <a href="https://www.panditproject.org" target="_blank">Pandit Project</a> prosopography database.
-      Pandit Grapher is in conversation with but not officially affiliated with Pandit Project.
+      While Pandit Grapher is in conversation with the Pandit Project, it is not officially affiliated with it.
     </p>
     <p>
-      My name is Tyler. You can read about my main projects at
-      <a href="https://www.tylerneill.info/projects">tylerneill.info/projects</a>
+      My name is Tyler. You can learn more about my main projects at
+      <a href="https://www.tylerneill.info/projects" target="_blank">tylerneill.info/projects</a>.
+      Code for this project is <a href="https://github.com/tylergneill/pandit_grapher/tree/v2">on GitHub</a>.
     </p>
     <p>
-      The data used is a static snapshot of the database from 2024-12-13.
-      Entity types other than works and persons have been disregarded.
-      Below are some summary statistics about the data used:
+      The data used is a static snapshot of the Pandit database from 2024-12-13.
+      Only works and persons have been considered, and other entity types have been disregarded.
+      Below are some summary statistics about the data:
     </p>
     <ul>
-      <li><strong>16,498 total entities:</strong> 12,701 works, 3,797 authors</li>
-      <li><strong>27,370 relationships:</strong> graph edges between those entities</li>
+      <li><strong>Total entities:</strong> 16,498 (12,701 works, 3,797 authors)</li>
+      <li><strong>Total relationships:</strong> 13,685 (9,287 author → work, 4,398 work → work)</li>
     </ul>
+    <table id="community-table">
+      <thead>
+        <tr>
+          <th>Community Type</th>
+          <th>Count</th>
+          <th>Total Entities</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Isolated nodes (no connections)</td>
+          <td>3,005</td>
+          <td>3,005</td>
+        </tr>
+        <tr>
+          <td>Small communities (2–4 entities)</td>
+          <td>1,608</td>
+          <td>3,605</td>
+        </tr>
+        <tr>
+          <td>Medium-small communities (5–9 entities)</td>
+          <td>90</td>
+          <td>565</td>
+        </tr>
+        <tr>
+          <td>Medium communities (10–25 entities)</td>
+          <td>24</td>
+          <td>344</td>
+        </tr>
+        <tr>
+          <td>Second-largest community</td>
+          <td>1</td>
+          <td>73</td>
+        </tr>
+        <tr>
+          <td>Central community</td>
+          <td>1</td>
+          <td>8,906</td>
+        </tr>
+        <tr>
+          <th>Total</th>
+          <th>4,729</th>
+          <th>16,498</th>
+        </tr>
+      </tbody>
+    </table>
     <div class="footer">
       <p>Back to <a href="/">Home</a></p>
     </div>
