@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
   try {
+    // Fetch data for dropdowns
     const [authorsRes, worksRes] = await Promise.all([
       fetch('/api/entities/authors'),
       fetch('/api/entities/works')
@@ -10,40 +11,73 @@ document.addEventListener('DOMContentLoaded', async () => {
       worksRes.json()
     ]);
 
+    // Get elements
     const authorsDropdown = document.getElementById('authors-dropdown');
     const worksDropdown = document.getElementById('works-dropdown');
     const excludeDropdown = document.getElementById('exclude-list-dropdown');
+    const hopsInput = document.getElementById('hops');
 
+    // Populate dropdowns
     populateDropdown(authorsDropdown, optionsAuthors);
     populateDropdown(worksDropdown, optionsWorks);
     populateDropdown(excludeDropdown, [...optionsAuthors, ...optionsWorks]);
 
-    // Initialize Select2 with different placeholder texts for each dropdown
-    $('#authors-dropdown').select2({
-      placeholder: 'Authors to include',
-      allowClear: true
-    });
+    // Initialize Select2
+    initializeSelect2('#authors-dropdown', 'Authors to include');
+    initializeSelect2('#works-dropdown', 'Works to include');
+    initializeSelect2('#exclude-list-dropdown', 'Entities to exclude');
 
-    $('#works-dropdown').select2({
-      placeholder: 'Works to include',
-      allowClear: true
-    });
-
-    $('#exclude-list-dropdown').select2({
-      placeholder: 'Entities to exclude',
-      allowClear: true
-    });
-
-    // Clean up .select2-initial class
+    // Remove pre-initialization class
     document.querySelectorAll('.select2-initial').forEach(el => el.classList.remove('select2-initial'));
+
+    // Initial width adjustment
+    adjustWidths();
+
+    // Handle window resizing
+    window.addEventListener('resize', adjustWidths);
+
   } catch (error) {
-    console.error('Error initializing dropdowns:', error);
+    console.error('Error during initialization:', error);
   }
 });
 
+// Populate dropdown options
 function populateDropdown(dropdown, options) {
   options.forEach(({ id, label }) => {
     const option = new Option(label, id);
     dropdown.add(option);
   });
+}
+
+// Initialize Select2 with placeholder
+function initializeSelect2(selector, placeholder) {
+  $(selector).select2({
+    placeholder: placeholder,
+    allowClear: true,
+    width: 'resolve' // Ensure the dropdown width is dynamic
+  });
+}
+
+// Adjust both Select2 and Hops widths
+function adjustWidths() {
+  try {
+    // Update Select2 widths
+    $('#authors-dropdown').select2('destroy').select2({ placeholder: 'Authors to include', allowClear: true, width: 'resolve' });
+    $('#works-dropdown').select2('destroy').select2({ placeholder: 'Works to include', allowClear: true, width: 'resolve' });
+    $('#exclude-list-dropdown').select2('destroy').select2({ placeholder: 'Entities to exclude', allowClear: true, width: 'resolve' });
+
+    // Match Hops width to Works dropdown
+    const worksContainer = document.querySelector('#works-dropdown + .select2-container');
+    const hopsInput = document.getElementById('hops');
+
+    if (worksContainer) {
+      const worksWidth = worksContainer.offsetWidth;
+      hopsInput.style.width = `${worksWidth}px`;
+      console.log(`Hops width set to: ${worksWidth}px`);
+    } else {
+      console.warn('Works container not found.');
+    }
+  } catch (error) {
+    console.error('Error adjusting widths:', error);
+  }
 }
