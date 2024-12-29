@@ -1,5 +1,4 @@
 import networkx as nx
-# import matplotlib.pyplot as plt
 from copy import copy
 from typing import Dict
 
