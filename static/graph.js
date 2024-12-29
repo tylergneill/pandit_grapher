@@ -139,17 +139,17 @@ function renderGraph(graph) {
       .attr('y', d => d.y);
   });
 
-  // Add zoom controls
-  const zoomControls = d3.select('body').append('div')
-    .style('position', 'fixed')
-    .style('bottom', '10px')
-    .style('right', '10px')
-    .html(`
-      <button id="zoomIn">Zoom In</button>
-      <button id="zoomOut">Zoom Out</button>
-    `);
-
-  // Attach zoom functions to buttons
-  d3.select('#zoomIn').on('click', () => svg.transition().call(zoom.scaleBy, 1.2));
-  d3.select('#zoomOut').on('click', () => svg.transition().call(zoom.scaleBy, 0.8));
+//  // Add zoom controls
+//  const zoomControls = d3.select('body').append('div')
+//    .style('position', 'fixed')
+//    .style('bottom', '10px')
+//    .style('right', '10px')
+//    .html(`
+//      <button id="zoomIn">Zoom In</button>
+//      <button id="zoomOut">Zoom Out</button>
+//    `);
+//
+//  // Attach zoom functions to buttons
+//  d3.select('#zoomIn').on('click', () => svg.transition().call(zoom.scaleBy, 1.2));
+//  d3.select('#zoomOut').on('click', () => svg.transition().call(zoom.scaleBy, 0.8));
 }
