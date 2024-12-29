@@ -1,8 +1,8 @@
-from flask import Flask, render_template, Blueprint, jsonify, request
+from flask import Flask, render_template, Blueprint, jsonify, request, send_from_directory
 from flask_restx import Api, Resource, fields
 
 from grapher import construct_subgraph
-from ETL.load import load_entities, load_graph
+from scripts.load import load_entities, load_graph
 
 entities_by_id = load_entities()
 
@@ -14,7 +14,7 @@ app = Flask(__name__)
 # --- Blueprint Setup ---
 api_bp = Blueprint('api', __name__, url_prefix='/api')  # API Blueprint
 api = Api(api_bp, version='1.0', title='Pandit Grapher API',
-          description='API for exploring Pandit Project work and author relationships',
+          description='API for exploring Pandit work and author relationships',
           doc='/docs')  # Swagger UI available at /api/docs
 
 # --- Define Namespace ---
@@ -77,6 +77,27 @@ def index():
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+@app.route('/notes/author')
+def author_notes():
+    return render_template('notes/author.html')
+
+@app.route('/notes/data')
+def data_notes():
+    return render_template('notes/data.html')
+
+@app.route('/notes/license')
+def license_notes():
+    return render_template('notes/license.html')
+
+@app.route('/notes/technical')
+def tech_notes():
+    return render_template('notes/technical.html')
+
+# Serve files from the "data" folder
+@app.route('/data/<path:filepath>')
+def data(filepath):
+    return send_from_directory('data', filepath)
 
 def validate_inputs(authors, works, hops, exclude_list):
     if not authors and not works:
@@ -169,7 +190,7 @@ class Subgraph(Resource):
                 },
                 "graph": {
                     "nodes": filtered_nodes,
-                    "edges": filtered_edges
+                    "edges": filtered_edges,
                 }
             }
             return jsonify(response)
