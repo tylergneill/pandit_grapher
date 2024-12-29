@@ -1,13 +1,13 @@
-PYTHONPATH=$(shell pwd) python -m ETL.transform
+PYTHONPATH=$(shell pwd) python -m scripts.transform
 
 extract:
-	python ETL/extract.py
+	python -m scripts.extract
 
 transform:
-	python -m ETL.transform
+	python -m scripts.transform
 
 analyze:
-	python analyze.py
+	python -m scripts.analyze
 
 run:
 	python flask_app.py
