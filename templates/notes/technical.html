@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technical Notes - Pandit Grapher</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div id="author-notes-container" class="shared-container">
+
+    <h1>Technical Notes</h1>
+
+    <p><a href="https://github.com/tylergneill/pandit_grapher/tree/v2">Pandit Grapher code on GitHub</a></p>
+    <p>Key Aspects:
+      <ul>
+        <li>Pandit Grapher is coded in Python using the libraries NetworkX and Flask</li>
+        <li>The backend is structured as an ETL pipeline (see <a href="https://github.com/tylergneill/pandit_grapher/tree/v2/scripts">scripts</a>) and a REST API (<a href="/api/docs">Swagger doc</a>)</li>
+        <li>GET requests to the base route are also supported,
+          which allows other sites to link into Pandit Grapher using Pandit ID numbers
+          (<a href="https://pandit-grapher-poc.dharma.cl/?works=89000&hops=2">example</a>) </li>
+        <li>Graphs are visualized using the D3 JavaScript library</li>
+      </ul>
+      </p>
+
+    <div class="footer">
+      <p>Back to <a href="/about">About</a></p>
+      <p>Back to <a href="/">Home</a></p>
+    </div>
+
+  </div>
+</body>
+</html>

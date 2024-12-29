@@ -273,54 +273,80 @@ button:hover { background: #a93226; }
 }
 
 /* =============================
-   About Page Styles
+   Shared Container Styles
 ============================= */
-#about-container {
+.shared-container {
   max-width: 800px;
   margin: 40px auto;
   padding: 20px;
   background-color: #3a1249; /* Slightly lighter purple for contrast */
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  text-align: center;
 }
 
-#about-container h1 {
+.shared-container h1 {
   font-size: 2.5rem;
   margin-bottom: 20px;
   color: #e0afff; /* Highlighted lavender */
 }
 
-#about-container p {
+.shared-container p {
   font-size: 1.2rem;
   line-height: 1.6;
   margin-bottom: 20px;
 }
 
-#about-container ul {
-  list-style-type: none;
+.shared-container ul {
+  list-style-type: disc; /* Bulleted list */
   padding: 0;
+  padding-left: 40px; /* Indent for left alignment */
   margin: 20px 0;
 }
 
-#about-container li {
+.shared-container li {
   margin: 10px 0;
   font-size: 1.1rem;
 }
 
-#about-container a {
+.shared-container a {
   color: #ffcf77; /* Soft yellow for contrast */
   text-decoration: none;
 }
 
-#about-container a:hover {
+.shared-container a:hover {
   text-decoration: underline;
   color: #ffc040;
 }
 
-#about-container .footer {
+.shared-container .footer {
   margin-top: 30px;
   font-size: 1rem;
+}
+
+.shared-container .footer {
+  text-align: center; /* Center-align the footer content */
+}
+
+/* =============================
+   Specific Overrides
+============================= */
+#about-container {
+  text-align: center; /* Center alignment for About page */
+}
+
+.shared-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #e0afff; /* Highlighted lavender */
+  text-align: center; /* Keep h1 always centered */
+}
+
+#about-container ul {
+  list-style-type: none;
+}
+
+#data-notes-container {
+  text-align: left; /* Left alignment for Data Notes page */
 }
 
 #community-table {
@@ -330,6 +356,7 @@ button:hover { background: #a93226; }
   border-collapse: collapse;
   background-color: #3a1249; /* Slightly lighter purple */
   border: 1px solid #5a0b73;
+  font-size: 1.2rem; /* Match font size with the rest of the page */
 }
 
 #community-table th,
@@ -350,11 +377,11 @@ button:hover { background: #a93226; }
   background-color: #4a175c; /* Alternating row color for readability */
 }
 
+#community-table td {
+  text-align: center; /* Center numbers in Count and Total Entities */
+}
+
 #community-table tbody tr:last-child {
   font-weight: bold;
   background-color: #6c2a7b; /* Highlight the total row */
-}
-
-#community-table td:last-child {
-  text-align: right;
 }

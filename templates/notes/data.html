@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Notes - Pandit Grapher</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div id="data-notes-container" class="shared-container">
+    <h1>Data Notes</h1>
+    <p>
+      Pandit Grapher uses a static snapshot of the Pandit database from 2024-12-13.
+      This export had 67,500 rows (= entities) and 163 columns (= fields).
+      Only a subset of this is used:
+      <ul>
+        <li>9 fields (columns): Content type, ID, Title, Author (person IDs), Authors (person), Attributed author (person ID), Attributed author (person), Commentary on (work ID), Commentary on (work)</li>
+        <li>
+          1 out of 9 Content types (= row types): Work
+          <ul>
+            <li>This reduces the number of rows to 12,713</li>
+            <li>Some minor cleaning reduced this number further to 12,701</li>
+            <li>Persons were then derived from Works (i.e., no isolated Authors without Works were used)</li>
+          </ul>
+        </li>
+      </ul>
+    </p>
+    <p>Below are some summary statistics on community sizes for more context:</p>
+    <ul>
+      <li><strong>Total entities:</strong> 16,498 (12,701 works, 3,797 authors)</li>
+      <li><strong>Total relationships:</strong> 13,685 (9,287 author → work, 4,398 work → work)</li>
+    </ul>
+    <table id="community-table">
+      <thead>
+        <tr>
+          <th>Community Type</th>
+          <th>Count</th>
+          <th>Total Entities</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="{{ url_for('data', filepath='analysis_results/component_info/isolated_components.txt') }}">Isolated nodes (no connections)</a></td>
+          <td>3,005</td>
+          <td>3,005</td>
+        </tr>
+        <tr>
+          <td><a href="{{ url_for('data', filepath='analysis_results/component_info/extra_small_components.txt') }}">Small communities (2–4 entities)</a></td>
+          <td>1,608</td>
+          <td>3,605</td>
+        </tr>
+        <tr>
+          <td><a href="{{ url_for('data', filepath='analysis_results/component_info/small_components.txt') }}">Medium-small communities (5–9 entities)</a></td>
+          <td>90</td>
+          <td>565</td>
+        </tr>
+        <tr>
+          <td><a href="{{ url_for('data', filepath='analysis_results/component_info/medium_components.txt') }}">Medium communities (10–25 entities)</a></td>
+          <td>24</td>
+          <td>344</td>
+        </tr>
+        <tr>
+          <td><a href="{{ url_for('data', filepath='analysis_results/component_info/large_components.txt') }}">Second-largest community</a></td>
+          <td>1</td>
+          <td>73</td>
+        </tr>
+        <tr>
+          <td><a href="{{ url_for('data', filepath='analysis_results/component_info/extra_large_components.txt') }}">Central community</a></td>
+          <td>1</td>
+          <td>8,906</td>
+        </tr>
+        <tr>
+          <th>Total</th>
+          <th>4,729</th>
+          <th>16,498</th>
+        </tr>
+      </tbody>
+    </table>
+    <div class="footer">
+      <p>Back to <a href="/">Home</a></p>
+    </div>
+  </div>
+</body>
+</html>
