@@ -6,15 +6,20 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 
-from ETL.load import load_entities
+from scripts.load import load_entities
 from data_models import Entity
 from grapher import construct_subgraph
 from util import time_execution
 
 
-SMALL_UPPER_THRESHOLD = 4
-MEDIUM_SMALL_UPPER_THRESHOLD = 9
-MEDIUM_UPPER_THRESHOLD = 25
+SIZE_CATEGORIES = {
+    "isolated": (1, 1),
+    "extra_small": (2, 4),
+    "small": (5, 9),
+    "medium": (10, 25),
+    "large": (25, 100),
+    "extra_large": (101, 10,000),
+}
 
 DATA_ANALYSIS_RESULTS_DIR = "data/analysis_results"
 COMPONENT_INFO_DIR = "component_info"
@@ -32,63 +37,43 @@ def analyze_components(G: nx.DiGraph) -> Dict:
 
     # Get all connected components
     components = list(nx.connected_components(G_undirected))
-    component_sizes = [len(c) for c in components]
 
-    # Count both nodes and components in different size categories
-    isolated_components = [comp for comp in components if len(comp) == 1]
-    small_components = [comp for comp in components if 2 <= len(comp) <= SMALL_UPPER_THRESHOLD]
-    small_medium_components = [comp for comp in components if
-                               SMALL_UPPER_THRESHOLD + 1 <= len(comp) <= MEDIUM_SMALL_UPPER_THRESHOLD]
-    medium_components = [comp for comp in components if
-                         MEDIUM_SMALL_UPPER_THRESHOLD + 1 <= len(comp) <= MEDIUM_UPPER_THRESHOLD]
+    def classify_components_by_size(components):
+        """
+        Classify components into size categories and calculate histograms.
+        """
+        # Pre-bin components by size
+        size_bins = defaultdict(list)
+        for component in components:
+            size_bins[len(component)].append(component)
 
-    # Count nodes in each category
-    isolated_component_node_count = len(isolated_components)
-    small_component_node_count = sum(len(comp) for comp in small_components)
-    small_medium_component_node_count = sum(len(comp) for comp in small_medium_components)
-    medium_component_node_count = sum(len(comp) for comp in medium_components)
+        # Initialize results
+        results = {
+            name: {
+                "components": [],
+                "node_count": 0,
+                "component_count": 0,
+                "size_histogram": defaultdict(int)
+            }
+            for name in SIZE_CATEGORIES
+        }
 
-    # Get sizes of 5 biggest components
-    largest_components = sorted(component_sizes, reverse=True)[:5]
+        # Distribute pre-binned components into categories
+        for category, (lower_bound, upper_bound) in SIZE_CATEGORIES.items():
+            for size in range(lower_bound, upper_bound + 1):
+                for component in size_bins.get(size, []):
+                    results[category]["components"].append(component)
+                    results[category]["node_count"] += size
+                    results[category]["size_histogram"][size] += 1
+            results[category]["component_count"] = len(results[category]["components"])
 
-    # Calculate histograms for each category
-    small_histogram = defaultdict(int)
-    medium_small_histogram = defaultdict(int)
-    medium_histogram = defaultdict(int)
+        return results
 
-    for comp in small_components:
-        small_histogram[len(comp)] += 1
-    for comp in small_medium_components:
-        medium_small_histogram[len(comp)] += 1
-    for comp in medium_components:
-        medium_histogram[len(comp)] += 1
+    category_stats = classify_components_by_size(components)
 
     return {
         'total_components': len(components),
-        'isolated': {
-            'component_count': len(isolated_components),
-            'node_count': isolated_component_node_count,
-            'components': isolated_components,
-        },
-        'small': {
-            'component_count': len(small_components),
-            'node_count': small_component_node_count,
-            'components': small_components,
-            'size_histogram': dict(small_histogram),
-        },
-        'medium_small': {
-            'component_count': len(small_medium_components),
-            'node_count': small_medium_component_node_count,
-            'components': small_medium_components,
-            'size_histogram': dict(medium_small_histogram),
-        },
-        'medium': {
-            'component_count': len(medium_components),
-            'node_count': medium_component_node_count,
-            'components': medium_components,
-            'size_histogram': dict(medium_histogram),
-        },
-        'largest_component_sizes': largest_components,
+        **category_stats,
     }
 
 
@@ -298,17 +283,15 @@ def write_component_summary(component_info: Dict, total_nodes: int, output_dir: 
     with open(os.path.join(full_output_dir, 'component_summary.txt'), 'w') as f:
         f.write(f"Total nodes: {total_nodes}\n")
         f.write(
-            f"Isolated nodes: {component_info['isolated']['node_count']} in {component_info['isolated']['component_count']} components\n")
-        f.write(
-            f"Small components (2-{SMALL_UPPER_THRESHOLD} nodes): {component_info['small']['node_count']} nodes in {component_info['small']['component_count']} components\n")
-        f.write(
-            f"Medium-small components ({SMALL_UPPER_THRESHOLD + 1}-{MEDIUM_SMALL_UPPER_THRESHOLD} nodes): {component_info['medium_small']['node_count']} nodes in {component_info['medium_small']['component_count']} components\n")
-        f.write(
-            f"Medium components ({MEDIUM_SMALL_UPPER_THRESHOLD + 1}–{MEDIUM_UPPER_THRESHOLD} nodes): {component_info['medium']['node_count']} nodes in {component_info['medium']['component_count']} components\n")
-        f.write(f"5 largest component sizes: {component_info['largest_component_sizes']}\n")
+            f"Isolated nodes: {component_info['isolated']['node_count']} in {component_info['isolated']['component_count']} components\n"
+        )
+        for k,v in list(SIZE_CATEGORIES.items())[1:]:
+            f.write(
+                f"{k.capitalize().replace('_', ' ')} components ({v[0]}-{v[1]} nodes): {component_info[k]['node_count']} nodes in {component_info[k]['component_count']} components\n"
+            )
 
 
-def write_component_names(components: list, entities_by_id: Dict[str, Entity], category_name: str,
+def write_component_names(component_info: Dict, entities_by_id: Dict[str, Entity],
                           output_dir: str = COMPONENT_INFO_DIR):
     """
     Write readable names for each entity in each component of a category to a separate file.
@@ -316,25 +299,30 @@ def write_component_names(components: list, entities_by_id: Dict[str, Entity], c
     Args:
         components: List of sets of entity IDs representing components
         entities_by_id: Dictionary mapping entity IDs to Entity objects
-        category_name: Name of the component category for display
         output_dir: Directory where to save the output files
     """
     # Ensure output directory exists
     full_output_dir = os.path.join(DATA_ANALYSIS_RESULTS_DIR, output_dir)
     os.makedirs(full_output_dir, exist_ok=True)
 
-    # Create filename from category
-    filename = os.path.join(full_output_dir, f"{category_name.lower()}_components.txt")
+    for k in list(SIZE_CATEGORIES.keys()):
 
-    with open(filename, 'w') as f:
-        f.write(f"{category_name} Components:\n")
-        for i, component in enumerate(components, 1):
-            f.write(f"\nComponent {i}:\n")
-            for entity_id in sorted(component):
-                entity = entities_by_id[entity_id]
-                f.write(f"  {entity.name} ({entity.id}) ({entity.type})\n")
-            if i < len(components):  # Add separator between components
-                f.write("  ----\n")
+        # Create filename from category
+        filename = os.path.join(full_output_dir, f"{k}_components.txt")
+
+        components = component_info[k]['components']
+
+        with open(filename, 'w') as f:
+            f.write(f"{k.capitalize()} Components:\n")
+            for i, component in enumerate(components, 1):
+                f.write(f"\nComponent {i}:\n")
+                for entity_id in sorted(component):
+                    if entity_id == '_':
+                        import pdb; pdb.set_trace()
+                    entity = entities_by_id[entity_id]
+                    f.write(f"  {entity.name} ({entity.id}) ({entity.type})\n")
+                if i < len(components):  # Add separator between components
+                    f.write("  ----\n")
 
 @time_execution
 def plot_component_histograms(component_info: Dict, output_path: str = 'component_histograms.png'):
@@ -349,9 +337,8 @@ def plot_component_histograms(component_info: Dict, output_path: str = 'componen
 
     # Plot settings
     categories = [
-        ('small', f"Small Components (2-{SMALL_UPPER_THRESHOLD} nodes)"),
-        ('medium_small', f"Medium-Small Components ({SMALL_UPPER_THRESHOLD + 1}-{MEDIUM_SMALL_UPPER_THRESHOLD} nodes)"),
-        ('medium', f"Medium Components ({MEDIUM_SMALL_UPPER_THRESHOLD + 1}-{MEDIUM_UPPER_THRESHOLD} nodes)")
+        (k, f"{k.capitalize().replace('_', ' ')} components ({v[0]}-{v[1]}) nodes")
+        for k,v in list(SIZE_CATEGORIES.items())[1:-2]
     ]
 
     for idx, (category, title) in enumerate(categories):
@@ -403,7 +390,7 @@ def plot_complete_histogram(
         combined_histogram[1] = component_info['isolated']['component_count']
 
     # Add other categories
-    for category in ['small', 'medium_small', 'medium']:
+    for category in list(SIZE_CATEGORIES.keys())[1:-2]:
         if component_info[category]['size_histogram']:
             for size, count in component_info[category]['size_histogram'].items():
                 if not include_small and size == 2:
@@ -512,10 +499,7 @@ if __name__ == "__main__":
     # Output component analysis results to file
     component_info = metrics['components']
     write_component_summary(component_info, len(entities_by_id))
-    write_component_names(component_info['isolated']['components'], entities_by_id, "Isolated")
-    write_component_names(component_info['small']['components'], entities_by_id, "Small")
-    write_component_names(component_info['medium_small']['components'], entities_by_id, "Medium-Small")
-    write_component_names(component_info['medium']['components'], entities_by_id, "Medium")
+    write_component_names(component_info, entities_by_id)
     plot_component_histograms(component_info)
     plot_complete_histogram(component_info, 'complete_component_distribution_3-23.png', include_small=False)
     plot_complete_histogram(component_info, 'complete_component_distribution.png', include_small=True)
