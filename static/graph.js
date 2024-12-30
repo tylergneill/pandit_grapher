@@ -74,10 +74,8 @@ function renderGraph(graph) {
     .scaleExtent([0.5, 3])
     .on('zoom', (event) => graphGroup.attr('transform', event.transform));
 
-  // Apply zoom behavior to the SVG element
   svg.call(zoom);
 
-  // Simulation for force-directed graph
   const simulation = d3.forceSimulation(graph.nodes)
     .force('link', d3.forceLink(graph.edges).id(d => d.id).distance(100))
     .force('charge', d3.forceManyBody().strength(-100))
@@ -96,7 +94,7 @@ function renderGraph(graph) {
     .selectAll('circle')
     .data(graph.nodes)
     .join('circle')
-    .attr('class', d => `node ${d.type}`) // Apply class based on type
+    .attr('class', d => `node ${d.type}`)
     .attr('r', 10)
     .call(d3.drag()
       .on('start', event => {
@@ -112,7 +110,64 @@ function renderGraph(graph) {
         if (!event.active) simulation.alphaTarget(0);
         event.subject.fx = null;
         event.subject.fy = null;
-      }));
+      }))
+    .on('contextmenu', (event, d) => {
+      // Prevent default browser context menu
+      event.preventDefault();
+
+      // Create or show a custom context menu
+      let menu = d3.select('.custom-context-menu');
+      if (menu.empty()) {
+        menu = d3.select('body').append('div')
+          .attr('class', 'custom-context-menu')
+          .style('position', 'absolute')
+          .style('background', '#fff')
+          .style('padding', '8px')
+          .style('border', '1px solid #ccc')
+          .style('border-radius', '4px')
+          .style('box-shadow', '0 4px 8px rgba(0, 0, 0, 0.1)')
+          .style('display', 'none');
+      }
+
+      // Type-to-path mapping for Open Link
+      const typeMapping = { author: "person", work: "work" };
+      const entityPath = typeMapping[d.type] || d.type;
+
+      // Populate the menu
+      menu.html(`
+        <a href="https://www.panditproject.org/entity/${d.id}/${d.type}" target="_blank" style="display:block; margin-bottom: 5px;">Open Link</a>
+        <label for="hops-input" style="display:block; margin-bottom: 5px;">Hops: <input type="number" id="hops-input" value="2" style="width: 40px;"></label>
+        <button id="recenter-btn" style="display:block;">Recenter Search</button>
+      `);
+
+      // Position and show the menu
+      menu.style('left', `${event.pageX}px`)
+        .style('top', `${event.pageY}px`)
+        .style('display', 'block');
+
+      // Add recenter functionality
+      document.getElementById('recenter-btn').onclick = async () => {
+        const hops = document.getElementById('hops-input').value;
+        const apiUrl = `/api/graph/render?authors=${d.type === 'author' ? d.id : ''}&works=${d.type === 'work' ? d.id : ''}&hops=${hops}`;
+
+        // Fetch and re-render the graph
+        try {
+          const response = await fetch(apiUrl);
+          const newGraph = await response.json();
+          renderGraph(newGraph);
+        } catch (error) {
+          console.error('Error recentering graph:', error);
+        }
+
+        // Hide the menu
+        menu.style('display', 'none');
+      };
+    });
+
+  // Hide menu on outside click
+  d3.select('body').on('click', () => {
+    d3.select('.custom-context-menu').style('display', 'none');
+  });
 
   const labels = graphGroup.append('g')
     .selectAll('text')
