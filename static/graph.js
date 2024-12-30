@@ -133,10 +133,13 @@ function renderGraph(graph) {
 
       // Populate the menu
       menu.html(`
-        <a href="https://www.panditproject.org/entity/${d.id}/${entityPath}" target="_blank" style="display:block; margin-bottom: 5px;">Open Link</a>
-        <label for="hops-input" style="display:block; margin-bottom: 5px;">Hops:</label>
-        <input type="number" id="hops-input" value="2" style="width: 40px;">
-        <button id="recenter-btn" style="display:block;">Recenter Search</button>
+        <a href="https://www.panditproject.org/entity/${d.id}/${entityPath}" target="_blank" style="display:block; margin-bottom: 5px;">View in Pandit</a>
+        <br>
+        <div style="margin-bottom: 10px;">
+            <label for="hops-input" style="display:inline-block; width: 50px; text-align: right; margin-right: 5px; color: black;">Hops:</label>
+            <input type="number" id="hops-input" value="2" style="width: 50px;">
+        </div>
+        <button id="recenter-btn" style="display:block;">Recenter Graph</button>
       `);
 
       // Position and show the menu
