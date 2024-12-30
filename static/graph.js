@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!response.ok) throw new Error('Failed to generate graph');
 
       const data = await response.json();
-      console.log('Graph data:', data);
 
       renderGraph(data.graph); // Render the graph from POST response
     } catch (error) {
@@ -51,7 +50,6 @@ async function fetchGraphData(apiUrl) {
     if (!response.ok) throw new Error('Failed to fetch graph data');
 
     const data = await response.json();
-    console.log('Fetched graph data:', data);
 
     renderGraph(data); // Render the graph from GET response
   } catch (error) {
@@ -135,8 +133,9 @@ function renderGraph(graph) {
 
       // Populate the menu
       menu.html(`
-        <a href="https://www.panditproject.org/entity/${d.id}/${d.type}" target="_blank" style="display:block; margin-bottom: 5px;">Open Link</a>
-        <label for="hops-input" style="display:block; margin-bottom: 5px;">Hops: <input type="number" id="hops-input" value="2" style="width: 40px;"></label>
+        <a href="https://www.panditproject.org/entity/${d.id}/${entityPath}" target="_blank" style="display:block; margin-bottom: 5px;">Open Link</a>
+        <label for="hops-input" style="display:block; margin-bottom: 5px;">Hops:</label>
+        <input type="number" id="hops-input" value="2" style="width: 40px;">
         <button id="recenter-btn" style="display:block;">Recenter Search</button>
       `);
 
@@ -145,16 +144,48 @@ function renderGraph(graph) {
         .style('top', `${event.pageY}px`)
         .style('display', 'block');
 
-      // Add recenter functionality
-      document.getElementById('recenter-btn').onclick = async () => {
+      menu.on('click', (e) => e.stopPropagation()); // Prevent menu clicks from propagating
+
+      // Update the recenter button handler to stop propagation
+      document.getElementById('recenter-btn').onclick = async (e) => {
+        e.stopPropagation(); // Prevent the button click from closing the menu
         const hops = document.getElementById('hops-input').value;
-        const apiUrl = `/api/graph/render?authors=${d.type === 'author' ? d.id : ''}&works=${d.type === 'work' ? d.id : ''}&hops=${hops}`;
+
+        const payload = {
+          authors: d.type === 'author' ? [d.id] : [],
+          works: d.type === 'work' ? [d.id] : [],
+          hops: parseInt(hops, 10),
+          exclude_list: [] // Add exclusions if needed
+        };
 
         // Fetch and re-render the graph
         try {
-          const response = await fetch(apiUrl);
+          const response = await fetch('/api/graph/subgraph', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
           const newGraph = await response.json();
-          renderGraph(newGraph);
+          renderGraph(newGraph.graph);
+
+          // Update dropdowns with the new center only
+          const authorsDropdown = $('#authors-dropdown');
+          const worksDropdown = $('#works-dropdown');
+
+          authorsDropdown.empty(); // Clear authors dropdown
+          worksDropdown.empty(); // Clear works dropdown
+
+         // Redo dropdown for the specific type
+          if (d.type === 'author') {
+            authorsDropdown.append(new Option(d.label, d.id, true, true)); // Add new center
+            authorsDropdown.trigger('change'); // Refresh Select2
+          } else if (d.type === 'work') {
+            worksDropdown.append(new Option(d.label, d.id, true, true)); // Add new center
+            worksDropdown.trigger('change'); // Refresh Select2
+          }
+
+          // Update hops input to match the current value
+          document.getElementById('hops').value = hops;
         } catch (error) {
           console.error('Error recentering graph:', error);
         }
@@ -165,7 +196,7 @@ function renderGraph(graph) {
     });
 
   // Hide menu on outside click
-  d3.select('body').on('click', () => {
+  d3.select('body').on('click', (event) => {
     d3.select('.custom-context-menu').style('display', 'none');
   });
 
@@ -193,6 +224,7 @@ function renderGraph(graph) {
       .attr('x', d => d.x)
       .attr('y', d => d.y);
   });
+}
 
 //  // Add zoom controls
 //  const zoomControls = d3.select('body').append('div')
@@ -207,4 +239,4 @@ function renderGraph(graph) {
 //  // Attach zoom functions to buttons
 //  d3.select('#zoomIn').on('click', () => svg.transition().call(zoom.scaleBy, 1.2));
 //  d3.select('#zoomOut').on('click', () => svg.transition().call(zoom.scaleBy, 0.8));
-}
+//}
