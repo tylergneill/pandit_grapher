@@ -2,12 +2,20 @@ from flask import Flask, render_template, Blueprint, jsonify, request, send_from
 from flask_restx import Api, Resource, fields
 
 from grapher import construct_subgraph
-from scripts.load import load_entities, load_graph
+from scripts.load import load_entities
 
 entities_by_id = load_entities()
 
-works_by_id = {k:v for k,v in entities_by_id.items() if v.type == 'work'}
-authors_by_id = {k:v for k,v in entities_by_id.items() if v.type == 'author'}
+all_entity_dropdown_options = []
+work_dropdown_options = []
+author_dropdown_options = []
+for entity in entities_by_id.values():
+    option = {"id": entity.id, "label": f"{entity.name} ({entity.id})"}
+    all_entity_dropdown_options.append(option)
+    if entity.type == 'work':
+        work_dropdown_options.append(option)
+    elif entity.type == 'author':
+        author_dropdown_options.append(option)
 
 app = Flask(__name__)
 
@@ -29,8 +37,6 @@ subgraph_model = api.model('SubgraphRequest', {
     'exclude_list': fields.List(fields.String, required=False, description='List of node IDs to exclude')
 })
 
-full_graph = load_graph()
-
 @entities_ns.route('/<string:entity_type>')
 class EntityOptions(Resource):
     def get(self, entity_type):
@@ -39,13 +45,12 @@ class EntityOptions(Resource):
             return jsonify({"error": "Invalid entity type. Choose from 'authors', 'works', or 'all'."}), 400
 
         if entity_type == 'authors':
-            filtered_nodes = [node for node in full_graph["nodes"] if node["type"] == "author"]
+            dropdown_options = author_dropdown_options
         elif entity_type == 'works':
-            filtered_nodes = [node for node in full_graph["nodes"] if node["type"] == "work"]
+            dropdown_options = work_dropdown_options
         else:  # entity_type == 'all'
-            filtered_nodes = full_graph["nodes"]
+            dropdown_options = all_entity_dropdown_options
 
-        dropdown_options = [{"id": node["id"], "label": f"{node['label']} ({node['id']})"} for node in filtered_nodes]
         return jsonify(dropdown_options)
 
 @entities_ns.route('/metadata')

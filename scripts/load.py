@@ -16,11 +16,3 @@ def load_entities():
         data = json.load(jsonfile)
     entities_by_id = {eid: Entity.from_dict(edict) for eid, edict in data.items()}
     return entities_by_id
-
-@time_execution
-def load_graph():
-    input_filename = "2024-12-23-graph.json"
-    input_json_path = os.path.join(current_file_dir, relative_data_dir, input_filename)
-    with open(input_json_path, "r") as jsonfile:
-        graph = json.load(jsonfile)
-    return graph
