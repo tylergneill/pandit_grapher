@@ -1,7 +1,7 @@
 from flask import Flask, render_template, Blueprint, jsonify, request, send_from_directory
 from flask_restx import Api, Resource, fields
 
-from grapher import construct_subgraph
+from grapher import construct_subgraph, annotate_graph
 from utils.load import load_entities
 
 ENTITIES_BY_ID = load_entities()
@@ -175,13 +175,19 @@ class Subgraph(Resource):
                 return msg_dict, status_code
 
             # Call the actual construct_subgraph function
-            subgraph = construct_subgraph(list(subgraph_center), hops, list(exclude_list))
             subgraph = construct_subgraph(subgraph_center, hops, exclude_list)
+            annotated_subgraph = annotate_graph(subgraph, subgraph_center, exclude_list)
 
             # Extract nodes and edges
             filtered_nodes = [
-                {"id": node, "label": ENTITIES_BY_ID[node].name, "type": ENTITIES_BY_ID[node].type}
-                for node in subgraph.nodes
+                {
+                    "id": node,
+                    "label": ENTITIES_BY_ID[node].name,
+                    "type": ENTITIES_BY_ID[node].type,
+                    "is_central": annotated_subgraph.nodes[node].get('is_central', False),
+                    "is_excluded": annotated_subgraph.nodes[node].get('is_excluded', False),
+                }
+                for node in annotated_subgraph.nodes
             ]
             filtered_edges = [
                 {"source": edge[0], "target": edge[1], "relationship": "related"}

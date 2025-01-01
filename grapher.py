@@ -113,6 +113,25 @@ def assign_node_labels_and_colors(subgraph):
 
 	return label_map, color_map
 
+
+def annotate_graph(graph, selected_entities, exclude_list):
+	"""
+    Annotate graph nodes with `isCentral` and `isExcluded` flags.
+
+    Args:
+        graph (dict): Graph data containing nodes and edges.
+        selected_entities (list): List of work/author IDs selected as central.
+        exclude_list (list): List of IDs to exclude.
+
+    Returns:
+        dict: Annotated graph data.
+    """
+	for node in graph.nodes:
+		graph.nodes[node]['is_central'] = node in selected_entities
+		graph.nodes[node]['is_excluded'] = node in exclude_list
+	return graph
+
+
 def export_to_gephi(subgraph, label_map, color_map, output_fn="pandit_grapher_output.gexf"):
     """
     Export a NetworkX graph to a GEXF file for Gephi with proper node labels and colors.

@@ -93,7 +93,11 @@ function renderGraph(graph) {
     .data(graph.nodes)
     .join('circle')
     .attr('class', d => `node ${d.type}`)
-    .attr('r', 10)
+    .attr('r', d => {
+      if (d.is_central) return 17;
+      if (d.is_excluded) return 15;
+      return 10;
+    })
     .call(d3.drag()
       .on('start', event => {
         if (!event.active) simulation.alphaTarget(0.3).restart();
