@@ -121,13 +121,25 @@ class RenderGraph(Resource):
         """
         try:
             # Parse parameters
-            authors = set(request.args.getlist('authors'))
-            works = set(request.args.getlist('works'))
-            subgraph_center = list(authors | works)  # union
-            hops = request.args.get('hops', default=2, type=int)
-            exclude_list = list(set(request.args.get('exclude_list')))
+            authors_param = request.args.getlist('authors')
+            if len(authors_param) == 1 and ',' in authors_param[0]:
+                authors_param = authors_param[0].split(',')
+            authors = set(authors_param)
 
-            # validate_inputs
+            works_param = request.args.getlist('works')
+            if len(works_param) == 1 and ',' in works_param[0]:
+                works_param = works_param[0].split(',')
+            works = set(works_param)
+
+            subgraph_center = authors | works
+
+            hops = request.args.get('hops', default=2, type=int)
+            exclude_list_param = request.args.getlist('exclude_list')
+            if len(exclude_list_param) == 1 and ',' in exclude_list_param[0]:
+                exclude_list_param = exclude_list_param[0].split(',')
+            exclude_list = list(set(exclude_list_param))
+
+            # Validate inputs
             msg_dict, status_code = validate_inputs(authors, works, hops, exclude_list)
             if status_code != 200:
                 return msg_dict, status_code
