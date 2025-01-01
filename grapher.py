@@ -1,6 +1,8 @@
-import networkx as nx
-from copy import copy
+from copy import deepcopy
 from typing import Dict
+
+import networkx as nx
+import matplotlib.pyplot as plt
 
 from data_models import Entity
 from config import load_config_dict_from_json_file
@@ -112,50 +114,50 @@ def assign_node_labels_and_colors(subgraph):
 	return label_map, color_map
 
 def export_to_gephi(subgraph, label_map, color_map):
-	"""By default, in networkx gephi export, node labels are the same as
-	the id, and nx.relabel_nodes changes both at the same time, which is
-	not helpful. Therefore, manually intervene for both labels and colors.
-	"""
-	# nope
-	# subgraph_relabled = nx.relabel_nodes(subgraph, label_map)
+    """
+    Export a NetworkX graph to a GEXF file for Gephi with proper node labels and colors.
+    """
+    rgb_map = {
+        "red": {'r': 255, 'g': 0, 'b': 0},
+        "green": {'r': 6, 'g': 200, 'b': 50},
+        "gray": {'r': 128, 'g': 128, 'b': 128},
+    }
 
-	rgb_map = {
-		"red": {'r': 255, 'g': 0, 'b': 0, 'a': 0},
-		"green": {'r': 6, 'g': 200, 'b': 50, 'a': 0},
-		"gray": {'r': 128, 'g': 128, 'b': 128, 'a': 0},
-	}
+    # Create a deep copy of the graph to modify safely
+    gexf_graph = deepcopy(subgraph)
 
-	PG2 = copy(subgraph)
-	for i, node_id in enumerate(PG2.nodes):
-		PG2.nodes[node_id]["label"] = label_map[node_id]
-		PG2.nodes[node_id]['viz'] = {'color': rgb_map[ color_map[i] ]}
+    # Add labels and visualization attributes
+    for i, node_id in enumerate(gexf_graph.nodes):
+        gexf_graph.nodes[node_id]["label"] = label_map.get(node_id, f"Node {node_id}")
+        if color_map[i] in rgb_map:
+            gexf_graph.nodes[node_id]['viz'] = {
+                'color': rgb_map[color_map[i]]
+            }
 
-	subgraph_center = DEFAULT_AUTHORS + DEFAULT_WORKS
+    # Define output filename
+    subgraph_center = DEFAULT_AUTHORS + DEFAULT_WORKS
+    output_fn = f"{label_map[subgraph_center[0]]}_etc_degree_{DEFAULT_HOPS}.gexf"
+    if DEFAULT_EXCLUDE_LIST:
+        output_fn = output_fn.replace(".gexf", "_with_exclude_list.gexf")
 
-	output_fn = "%s" % label_map[subgraph_center[0]]
-	if len(subgraph_center) > 1:
-		output_fn = output_fn + "_etc"
-	output_fn = output_fn + "_degree_%d" % DEFAULT_HOPS
-	if DEFAULT_EXCLUDE_LIST != []:
-		output_fn = output_fn + "_with_exclude_list"
-	output_fn = output_fn + ".gexf"
+    # Write the graph to a GEXF file
+    nx.write_gexf(gexf_graph, output_fn, version="1.2draft")
+    print(f"GEXF file exported to {output_fn}")
 
-	nx.write_gexf(PG2, output_fn)
-
-# def draw_nx_graph(subgraph, label_map, color_map):
-# 	plt.figure(1,figsize=tuple(networkx_figure_size))
-# 	nx.draw_spring(subgraph, labels = label_map, node_color = color_map, node_size = 1000)
-# 	plt.show()
+def draw_nx_graph(subgraph, label_map, color_map):
+	plt.figure(1,figsize=tuple(networkx_figure_size))
+	nx.draw_spring(subgraph, labels = label_map, node_color = color_map, node_size = 1000)
+	plt.show()
 
 
-# if __name__ == "__main__":
-#
-# 	subgraph = construct_subgraph(subgraph_center, hops, exclude_list)
-#
-# 	label_map, color_map = assign_node_labels_and_colors(subgraph)
-#
-# 	if output_gephi_file:
-# 		export_to_gephi(subgraph, label_map, color_map)
-#
-# 	if draw_networkx_graph:
-# 		draw_nx_graph(subgraph, label_map, color_map)
+if __name__ == "__main__":
+
+	subgraph = construct_subgraph(DEFAULT_AUTHORS + DEFAULT_WORKS, DEFAULT_HOPS, DEFAULT_EXCLUDE_LIST)
+
+	label_map, color_map = assign_node_labels_and_colors(subgraph)
+
+	if output_gephi_file:
+		export_to_gephi(subgraph, label_map, color_map)
+
+	if draw_networkx_graph:
+		draw_nx_graph(subgraph, label_map, color_map)
