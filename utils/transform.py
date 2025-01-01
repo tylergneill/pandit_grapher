@@ -3,7 +3,7 @@ import json
 import os
 
 from data_models import Work, Author
-from util import time_execution
+from utils.utils import time_execution
 
 current_file_dir = os.path.dirname(os.path.abspath(__file__))
 relative_data_dir = "../data"

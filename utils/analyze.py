@@ -6,10 +6,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 
-from scripts.load import load_entities
+from utils.load import load_entities
 from data_models import Entity
 from grapher import construct_subgraph
-from util import time_execution
+from utils.utils import time_execution
 
 
 SIZE_CATEGORIES = {

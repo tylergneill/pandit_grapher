@@ -2,7 +2,7 @@ from flask import Flask, render_template, Blueprint, jsonify, request, send_from
 from flask_restx import Api, Resource, fields
 
 from grapher import construct_subgraph
-from scripts.load import load_entities
+from utils.load import load_entities
 
 entities_by_id = load_entities()
 
