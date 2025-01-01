@@ -146,8 +146,10 @@ class RenderGraph(Resource):
 
             return jsonify({"nodes": filtered_nodes, "edges": filtered_edges})
         except KeyError as e:
+            app.logger.error('Error: %s', str(e))
             return {"error": f"Invalid ID: {str(e)}"}, 400
         except Exception as e:
+            app.logger.error('Error: %s', str(e))
             return {"error": str(e)}, 500
 
 
@@ -202,8 +204,10 @@ class Subgraph(Resource):
             return jsonify(response)
 
         except KeyError as e:
+            app.logger.error('Error: %s', str(e))
             return {"error": f"Invalid ID: {str(e)}"}, 400
         except Exception as e:
+            app.logger.error('Error: %s', str(e))
             return {"error": str(e)}, 500
 
 # Add namespace to the API
