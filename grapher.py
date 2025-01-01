@@ -5,7 +5,7 @@ from typing import Dict
 from data_models import Entity
 from config import load_config_dict_from_json_file
 from objects import *
-from util import time_execution
+from utils.load import load_entities
 from utils.utils import time_execution
 
 config_dict = load_config_dict_from_json_file()
