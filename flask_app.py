@@ -109,7 +109,7 @@ def validate_inputs(authors, works, hops, exclude_list):
         return {"error": "require either one or both of authors or works"}, 400
     if not isinstance(hops, int) or hops < 0:
         return {"error": "hops must be a non-negative integer"}, 400
-    if not isinstance(exclude_list, set):
+    if not isinstance(exclude_list, list):
         return {"error": "exclude_list must be a list"}, 400
     return "", 200
 
@@ -123,9 +123,9 @@ class RenderGraph(Resource):
             # Parse parameters
             authors = set(request.args.getlist('authors'))
             works = set(request.args.getlist('works'))
-            subgraph_center = authors | works  # union
+            subgraph_center = list(authors | works)  # union
             hops = request.args.get('hops', default=2, type=int)
-            exclude_list = set(request.args.get('exclude_list'))
+            exclude_list = list(set(request.args.get('exclude_list')))
 
             # validate_inputs
             msg_dict, status_code = validate_inputs(authors, works, hops, exclude_list)
@@ -163,9 +163,9 @@ class Subgraph(Resource):
             data = request.json
             authors = set(data.get('authors', []))
             works = set(data.get('works', []))
-            subgraph_center = authors | works  # union
+            subgraph_center = list(authors | works)  # union
             hops = data.get('hops', 0)
-            exclude_list = set(data.get('exclude_list', []))
+            exclude_list = list(set(data.get('exclude_list', [])))
 
             # validate_inputs
             msg_dict, status_code = validate_inputs(authors, works, hops, exclude_list)
@@ -174,6 +174,7 @@ class Subgraph(Resource):
 
             # Call the actual construct_subgraph function
             subgraph = construct_subgraph(list(subgraph_center), hops, list(exclude_list))
+            subgraph = construct_subgraph(subgraph_center, hops, exclude_list)
 
             # Extract nodes and edges
             filtered_nodes = [
