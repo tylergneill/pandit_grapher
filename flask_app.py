@@ -1,21 +1,12 @@
-from flask import Flask, render_template, Blueprint, jsonify, request, send_from_directory
+from collections import defaultdict
+
+from flask import Flask, render_template, Blueprint, jsonify, request, send_from_directory, Response
 from flask_restx import Api, Resource, fields
 
 from grapher import construct_subgraph, annotate_graph
 from utils.load import load_entities
 
 ENTITIES_BY_ID = load_entities()
-
-all_entity_dropdown_options = []
-work_dropdown_options = []
-author_dropdown_options = []
-for entity in ENTITIES_BY_ID.values():
-    option = {"id": entity.id, "label": f"{entity.name} ({entity.id})"}
-    all_entity_dropdown_options.append(option)
-    if entity.type == 'work':
-        work_dropdown_options.append(option)
-    elif entity.type == 'author':
-        author_dropdown_options.append(option)
 
 app = Flask(__name__)
 
@@ -25,84 +16,75 @@ api = Api(api_bp, version='1.0', title='Pandit Grapher API',
           description='API for exploring Pandit work and author relationships',
           doc='/docs')  # Swagger UI available at /api/docs
 
-# --- Define Namespace ---
-graph_ns = api.namespace('graph', description='Graph operations')
+# --- Define all namespaces ---
 entities_ns = api.namespace('entities', description='Entity operations')
+graph_ns = api.namespace('graph', description='Graph operations')
 
-# --- Request Model ---
-subgraph_model = api.model('SubgraphRequest', {
-    'authors': fields.List(fields.String, required=False, description='List of author node IDs'),
-    'works': fields.List(fields.String, required=False, description='List of work node IDs'),
-    'hops': fields.Integer(required=True, description='Number of hops outward from center'),
-    'exclude_list': fields.List(fields.String, required=False, description='List of node IDs to exclude')
-})
+# --- entities namespace routes ---
+
+# --- Preprocess EntitiesByType data ---
+entity_dropdown_options = defaultdict(list)
+for entity in ENTITIES_BY_ID.values():
+    option = {"id": entity.id, "label": f"{entity.name} ({entity.id})"}
+    entity_dropdown_options['all'].append(option)
+    entity_dropdown_options[entity.type+'s'].append(option)
 
 @entities_ns.route('/<string:entity_type>')
-class EntityOptions(Resource):
+class EntitiesByType(Resource):
     def get(self, entity_type):
-        """Fetch dropdown options for a specific type of node (authors, works, or all)."""
+        """
+        Fetch list of available IDs for a specific type of node (authors, works, or all).
+        Example: /api/entities/works
+        """
         if entity_type not in ['authors', 'works', 'all']:
             return jsonify({"error": "Invalid entity type. Choose from 'authors', 'works', or 'all'."}), 400
 
-        if entity_type == 'authors':
-            dropdown_options = author_dropdown_options
-        elif entity_type == 'works':
-            dropdown_options = work_dropdown_options
-        else:  # entity_type == 'all'
-            dropdown_options = all_entity_dropdown_options
+        return jsonify(entity_dropdown_options[entity_type])
 
-        return jsonify(dropdown_options)
-
-@entities_ns.route('/metadata')
-class Metadata(Resource):
+@entities_ns.route('/labels')
+class Labels(Resource):
+    @api.doc(
+        params={
+            'ids': 'Comma-separated list of entity IDs to fetch labels for (e.g., 89000,12345)'
+        },
+        responses={
+            200: 'Labels returned successfully',
+            400: 'No IDs provided or other error',
+            500: 'Internal server error'
+        },
+    )
     def get(self):
         """
-        Fetch metadata for a list of node IDs.
-        Example: /api/entities/metadata?ids=89000&ids=12345
+        Fetch labels for a list of node IDs.
+        Example: /api/entities/labels?ids=89000,12345
         """
         try:
-            ids = request.args.getlist('ids')  # Get all IDs as a list
+            ids_param = request.args.get('ids')  # Get all IDs as a list
+            ids = [id.strip() for id in ids_param.split(',')] if ids_param else []
             if not ids:
                 return {"error": "No IDs provided"}, 400
 
-            metadata = [
+            label_data = [
                 {"id": node_id, "label": ENTITIES_BY_ID[node_id].name}
                 for node_id in ids if node_id in ENTITIES_BY_ID
             ]
 
-            return jsonify(metadata)
+            return jsonify(label_data)
         except Exception as e:
             return {"error": str(e)}, 500
 
-# --- Frontend Route ---
-@app.route('/')
-def index():
-    return render_template('index.html')
+# register entities namespace
+api.add_namespace(entities_ns)
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
+# --- graph namespace routes ---
 
-@app.route('/notes/author')
-def author_notes():
-    return render_template('notes/author.html')
-
-@app.route('/notes/data')
-def data_notes():
-    return render_template('notes/data.html')
-
-@app.route('/notes/license')
-def license_notes():
-    return render_template('notes/license.html')
-
-@app.route('/notes/technical')
-def tech_notes():
-    return render_template('notes/technical.html')
-
-# Serve files from the "data" folder
-@app.route('/data/<path:filepath>')
-def data(filepath):
-    return send_from_directory('data', filepath)
+# --- Define request model for primary Subgraph endpoint ---
+subgraph_model = api.model('SubgraphRequest', {
+    'authors': fields.List(fields.String, required=False, description='List of author node IDs', example=[]),
+    'works': fields.List(fields.String, required=False, description='List of work node IDs', example=["89000"]),
+    'hops': fields.Integer(required=True, description='Number of hops outward from center', example=2),
+    'exclude_list': fields.List(fields.String, required=False, description='List of node IDs to exclude', example=[])
+})
 
 def validate_inputs(authors, works, hops, exclude_list):
     if not authors and not works:
@@ -112,58 +94,6 @@ def validate_inputs(authors, works, hops, exclude_list):
     if not isinstance(exclude_list, list):
         return {"error": "exclude_list must be a list"}, 400
     return "", 200
-
-@graph_ns.route('/render')
-class RenderGraph(Resource):
-    def get(self):
-        """
-        Return graph data as JSON.
-        """
-        try:
-            # Parse parameters
-            authors_param = request.args.getlist('authors')
-            if len(authors_param) == 1 and ',' in authors_param[0]:
-                authors_param = authors_param[0].split(',')
-            authors = set(authors_param)
-
-            works_param = request.args.getlist('works')
-            if len(works_param) == 1 and ',' in works_param[0]:
-                works_param = works_param[0].split(',')
-            works = set(works_param)
-
-            subgraph_center = authors | works
-
-            hops = request.args.get('hops', default=2, type=int)
-            exclude_list_param = request.args.getlist('exclude_list')
-            if len(exclude_list_param) == 1 and ',' in exclude_list_param[0]:
-                exclude_list_param = exclude_list_param[0].split(',')
-            exclude_list = list(set(exclude_list_param))
-
-            # Validate inputs
-            msg_dict, status_code = validate_inputs(authors, works, hops, exclude_list)
-            if status_code != 200:
-                return msg_dict, status_code
-
-            subgraph = construct_subgraph(subgraph_center, hops, exclude_list)
-
-            # Extract nodes and edges for JSON response
-            filtered_nodes = [
-                {"id": node, "label": ENTITIES_BY_ID[node].name, "type": ENTITIES_BY_ID[node].type}
-                for node in subgraph.nodes
-            ]
-            filtered_edges = [
-                {"source": edge[0], "target": edge[1]}
-                for edge in subgraph.edges
-            ]
-
-            return jsonify({"nodes": filtered_nodes, "edges": filtered_edges})
-        except KeyError as e:
-            app.logger.error('Error: %s', str(e))
-            return {"error": f"Invalid ID: {str(e)}"}, 400
-        except Exception as e:
-            app.logger.error('Error: %s', str(e))
-            return {"error": str(e)}, 500
-
 
 @graph_ns.route('/subgraph')
 class Subgraph(Resource):
@@ -228,9 +158,90 @@ class Subgraph(Resource):
             app.logger.error('Error: %s', str(e))
             return {"error": str(e)}, 500
 
-# Add namespace to the API
+@graph_ns.route('/render')
+class RenderGraph(Resource):
+    def get(self):
+        """
+        Return graph data as JSON.
+        """
+        try:
+            # Parse parameters
+            authors_param = request.args.getlist('authors')
+            if len(authors_param) == 1 and ',' in authors_param[0]:
+                authors_param = authors_param[0].split(',')
+            authors = set(authors_param)
+
+            works_param = request.args.getlist('works')
+            if len(works_param) == 1 and ',' in works_param[0]:
+                works_param = works_param[0].split(',')
+            works = set(works_param)
+
+            subgraph_center = authors | works
+
+            hops = request.args.get('hops', default=2, type=int)
+            exclude_list_param = request.args.getlist('exclude_list')
+            if len(exclude_list_param) == 1 and ',' in exclude_list_param[0]:
+                exclude_list_param = exclude_list_param[0].split(',')
+            exclude_list = list(set(exclude_list_param))
+
+            # Validate inputs
+            msg_dict, status_code = validate_inputs(authors, works, hops, exclude_list)
+            if status_code != 200:
+                return msg_dict, status_code
+
+            subgraph = construct_subgraph(subgraph_center, hops, exclude_list)
+
+            # Extract nodes and edges for JSON response
+            filtered_nodes = [
+                {"id": node, "label": ENTITIES_BY_ID[node].name, "type": ENTITIES_BY_ID[node].type}
+                for node in subgraph.nodes
+            ]
+            filtered_edges = [
+                {"source": edge[0], "target": edge[1]}
+                for edge in subgraph.edges
+            ]
+
+            return jsonify({"nodes": filtered_nodes, "edges": filtered_edges})
+        except KeyError as e:
+            app.logger.error('Error: %s', str(e))
+            return {"error": f"Invalid ID: {str(e)}"}, 400
+        except Exception as e:
+            app.logger.error('Error: %s', str(e))
+            return {"error": str(e)}, 500
+
+# register graph namespace
 api.add_namespace(graph_ns)
-api.add_namespace(entities_ns)
+
+# --- frontend routes ---
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/notes/author')
+def author_notes():
+    return render_template('notes/author.html')
+
+@app.route('/notes/data')
+def data_notes():
+    return render_template('notes/data.html')
+
+@app.route('/notes/license')
+def license_notes():
+    return render_template('notes/license.html')
+
+@app.route('/notes/technical')
+def tech_notes():
+    return render_template('notes/technical.html')
+
+# --- data serving route ---
+@app.route('/data/<path:filepath>')
+def data(filepath):
+    return send_from_directory('data', filepath)
 
 # Register the Blueprint
 app.register_blueprint(api_bp)
