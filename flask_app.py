@@ -4,12 +4,12 @@ from flask_restx import Api, Resource, fields
 from grapher import construct_subgraph
 from utils.load import load_entities
 
-entities_by_id = load_entities()
+ENTITIES_BY_ID = load_entities()
 
 all_entity_dropdown_options = []
 work_dropdown_options = []
 author_dropdown_options = []
-for entity in entities_by_id.values():
+for entity in ENTITIES_BY_ID.values():
     option = {"id": entity.id, "label": f"{entity.name} ({entity.id})"}
     all_entity_dropdown_options.append(option)
     if entity.type == 'work':
@@ -66,8 +66,8 @@ class Metadata(Resource):
                 return {"error": "No IDs provided"}, 400
 
             metadata = [
-                {"id": node_id, "label": entities_by_id[node_id].name}
-                for node_id in ids if node_id in entities_by_id
+                {"id": node_id, "label": ENTITIES_BY_ID[node_id].name}
+                for node_id in ids if node_id in ENTITIES_BY_ID
             ]
 
             return jsonify(metadata)
@@ -132,11 +132,11 @@ class RenderGraph(Resource):
             if status_code != 200:
                 return msg_dict, status_code
 
-            subgraph = construct_subgraph(entities_by_id, subgraph_center, hops, exclude_list)
+            subgraph = construct_subgraph(subgraph_center, hops, exclude_list)
 
             # Extract nodes and edges for JSON response
             filtered_nodes = [
-                {"id": node, "label": entities_by_id[node].name, "type": entities_by_id[node].type}
+                {"id": node, "label": ENTITIES_BY_ID[node].name, "type": ENTITIES_BY_ID[node].type}
                 for node in subgraph.nodes
             ]
             filtered_edges = [
@@ -173,11 +173,11 @@ class Subgraph(Resource):
                 return msg_dict, status_code
 
             # Call the actual construct_subgraph function
-            subgraph = construct_subgraph(entities_by_id, list(subgraph_center), hops, list(exclude_list))
+            subgraph = construct_subgraph(list(subgraph_center), hops, list(exclude_list))
 
             # Extract nodes and edges
             filtered_nodes = [
-                {"id": node, "label": entities_by_id[node].name, "type": entities_by_id[node].type}
+                {"id": node, "label": ENTITIES_BY_ID[node].name, "type": ENTITIES_BY_ID[node].type}
                 for node in subgraph.nodes
             ]
             filtered_edges = [

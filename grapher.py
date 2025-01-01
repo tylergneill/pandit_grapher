@@ -17,14 +17,16 @@ draw_networkx_graph = config_dict["draw_networkx_graph"]
 networkx_figure_size = config_dict["networkx_figure_size"]
 output_gephi_file = config_dict["output_gephi_file"]
 
+ENTITIES_BY_ID = load_entities()
+
 
 @time_execution
 def construct_subgraph(
-		entities_by_id: Dict[str, Entity],
-		subgraph_center: set = DEFAULT_AUTHORS+DEFAULT_WORKS,
-		hops: int = DEFAULT_HOPS,
-		exclude_list: set = DEFAULT_EXCLUDE_LIST,
-	):
+	subgraph_center: set = DEFAULT_AUTHORS+DEFAULT_WORKS,
+	hops: int = DEFAULT_HOPS,
+	exclude_list: set = DEFAULT_EXCLUDE_LIST,
+	entities_by_id: Dict[str, Entity] = ENTITIES_BY_ID,
+):
 
 	subgraph = nx.DiGraph() # nx graph object; used are:
 	# .nodes attribute
@@ -96,15 +98,15 @@ def assign_node_labels_and_colors(subgraph):
 	color_map = [] # list
 	for node_id in node_ids:
 
-		label_map[node_id] = Entities_by_id[node_id].name
+		label_map[node_id] = ENTITIES_BY_ID[node_id].name
 
-		if Entities_by_id[node_id].id in DEFAULT_EXCLUDE_LIST:
+		if ENTITIES_BY_ID[node_id].id in DEFAULT_EXCLUDE_LIST:
 			color_map.append('gray')
 
-		elif Entities_by_id[node_id].type == 'work':
+		elif ENTITIES_BY_ID[node_id].type == 'work':
 			color_map.append('red')
 
-		elif Entities_by_id[node_id].type == 'author':
+		elif ENTITIES_BY_ID[node_id].type == 'author':
 			color_map.append('green')
 
 	return label_map, color_map
