@@ -113,7 +113,7 @@ def assign_node_labels_and_colors(subgraph):
 
 	return label_map, color_map
 
-def export_to_gephi(subgraph, label_map, color_map):
+def export_to_gephi(subgraph, label_map, color_map, output_fn="pandit_grapher_output.gexf"):
     """
     Export a NetworkX graph to a GEXF file for Gephi with proper node labels and colors.
     """
@@ -133,12 +133,6 @@ def export_to_gephi(subgraph, label_map, color_map):
             gexf_graph.nodes[node_id]['viz'] = {
                 'color': rgb_map[color_map[i]]
             }
-
-    # Define output filename
-    subgraph_center = DEFAULT_AUTHORS + DEFAULT_WORKS
-    output_fn = f"{label_map[subgraph_center[0]]}_etc_degree_{DEFAULT_HOPS}.gexf"
-    if DEFAULT_EXCLUDE_LIST:
-        output_fn = output_fn.replace(".gexf", "_with_exclude_list.gexf")
 
     # Write the graph to a GEXF file
     nx.write_gexf(gexf_graph, output_fn, version="1.2draft")
