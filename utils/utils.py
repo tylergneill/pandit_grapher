@@ -1,7 +1,17 @@
-from functools import wraps
 from datetime import datetime
+from functools import wraps
+import json
+import os
 
 SUPPRESS_TIME_DECORATOR = True  # Set this to True to suppress the decorator, False to enable it
+
+
+def load_config_dict_from_json_file():
+    abs_dir = os.path.split(os.path.abspath(__file__))[0]
+    settings_file_path = os.path.join(abs_dir, 'config.json')
+    config_data = open(settings_file_path, 'r').read()
+    config = json.loads(config_data)
+    return config
 
 
 def time_execution(func):
