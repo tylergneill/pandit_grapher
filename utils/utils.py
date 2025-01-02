@@ -3,6 +3,7 @@ from datetime import datetime
 
 SUPPRESS_TIME_DECORATOR = True  # Set this to True to suppress the decorator, False to enable it
 
+
 def time_execution(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -17,3 +18,17 @@ def time_execution(func):
         print(f"executed in {duration_rounded} seconds")
         return result
     return wrapper
+
+
+def find_app_version():
+    app_version_filepath = './VERSION'
+    with open(app_version_filepath, 'r', encoding='utf8') as file:
+        # Assuming the __app_version__ line is the first line
+        return file.readline().strip().split('=')[1].strip().replace("'", "").replace('"', '')
+
+
+def find_data_version():
+    data_version_filepath = './VERSION'
+    with open(data_version_filepath, 'r', encoding='utf8') as file:
+        # Assuming the __data_version__ line is the second line
+        return file.readlines()[1].strip().split('=')[1].strip().replace("'", "").replace('"', '')

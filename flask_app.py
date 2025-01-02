@@ -4,16 +4,19 @@ from flask import Flask, render_template, Blueprint, jsonify, request, send_from
 from flask_restx import Api, Resource, fields
 
 from grapher import construct_subgraph, annotate_graph
+from utils.utils import find_app_version, find_data_version
 from utils.load import load_entities
 
 ENTITIES_BY_ID = load_entities()
+APP_VERSION = find_app_version()
+DATA_VERSION = find_data_version()
 
 app = Flask(__name__)
 
-# --- Blueprint Setup ---
+# --- Blueprint setup ---
 api_bp = Blueprint('api', __name__, url_prefix='/api')  # API Blueprint
-api = Api(api_bp, version='1.0', title='Pandit Grapher API',
-          description='API for exploring Pandit work and author relationships',
+api = Api(api_bp, version=APP_VERSION, title='Pandit Grapher API',
+          description=f'API for exploring work and author relationships in Pandit database ({DATA_VERSION})',
           doc='/docs')  # Swagger UI available at /api/docs
 
 # --- Define all namespaces ---
