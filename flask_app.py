@@ -192,6 +192,20 @@ class Subgraph(Resource):
 
 @graph_ns.route('/render')
 class RenderGraph(Resource):
+    @api.doc(
+        params={
+            'authors': 'Comma-separated list of author node IDs (e.g., 85303,12345)',
+            'works': 'Comma-separated list of work node IDs (e.g., 89000,67890)',
+            'hops': f'Number of hops outward from the center (default: {DEFAULT_HOPS})',
+            'exclude_list': 'Comma-separated list of node IDs to exclude'
+        },
+        responses={
+            200: 'Graph data returned successfully',
+            400: 'Invalid parameters provided',
+            500: 'Internal server error'
+        },
+        description="Render a graph based on query parameters."
+    )
     def get(self):
         try:
             # Parse parameters
