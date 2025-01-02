@@ -4,12 +4,15 @@ from flask import Flask, render_template, Blueprint, jsonify, request, send_from
 from flask_restx import Api, Resource, fields
 
 from grapher import construct_subgraph, annotate_graph
-from utils.utils import find_app_version, find_data_version
+from utils.utils import find_app_version, find_data_version, load_config_dict_from_json_file
 from utils.load import load_entities
 
 ENTITIES_BY_ID = load_entities()
 APP_VERSION = find_app_version()
 DATA_VERSION = find_data_version()
+
+config_dict = load_config_dict_from_json_file()
+DEFAULT_HOPS = config_dict["hops"]
 
 app = Flask(__name__)
 
@@ -104,7 +107,7 @@ api.add_namespace(entities_ns)
 subgraph_model = api.model('SubgraphRequest', {
     'authors': fields.List(fields.String, required=False, description='List of author node IDs', example=[]),
     'works': fields.List(fields.String, required=False, description='List of work node IDs', example=["89000"]),
-    'hops': fields.Integer(required=True, description='Number of hops outward from center', example=2),
+    'hops': fields.Integer(required=True, description='Number of hops outward from center', example=DEFAULT_HOPS),
     'exclude_list': fields.List(fields.String, required=False, description='List of node IDs to exclude', example=[])
 })
 
@@ -130,7 +133,7 @@ class Subgraph(Resource):
             authors = set(data.get('authors', []))
             works = set(data.get('works', []))
             subgraph_center = list(authors | works)  # union
-            hops = data.get('hops', 0)
+            hops = data.get('hops', DEFAULT_HOPS)
             exclude_list = list(set(data.get('exclude_list', [])))
 
             # validate_inputs
@@ -200,7 +203,7 @@ class RenderGraph(Resource):
 
             subgraph_center = authors | works
 
-            hops = request.args.get('hops', default=2, type=int)
+            hops = request.args.get('hops', default=DEFAULT_HOPS, type=int)
             exclude_list_param = request.args.getlist('exclude_list')
             if len(exclude_list_param) == 1 and ',' in exclude_list_param[0]:
                 exclude_list_param = exclude_list_param[0].split(',')
