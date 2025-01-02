@@ -4,11 +4,9 @@ from typing import Dict
 import networkx as nx
 import matplotlib.pyplot as plt
 
-from data_models import Entity
-from config import load_config_dict_from_json_file
-from objects import *
+from data_models import Work, Author
 from utils.load import load_entities
-from utils.utils import time_execution
+from utils.utils import load_config_dict_from_json_file, time_execution
 
 config_dict = load_config_dict_from_json_file()
 DEFAULT_AUTHORS = config_dict["authors"]
