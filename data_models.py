@@ -2,9 +2,11 @@
 
 from typing import List, Dict
 
+
 class Entity:
-    def __init__(self, id: str):
-        self.id: str = id
+    def __init__(self, entity_id: str):
+        self.id: str = entity_id
+        self.type: str = ''  # "work" or "author"
         self.name: str = ''  # work title or author name
 
     def __str__(self) -> str:
@@ -13,7 +15,7 @@ class Entity:
         return "\n".join(f"{key}: {value}" for key, value in fields.items())
 
     @staticmethod
-    def from_dict(data: Dict) -> "Entity":
+    def from_dict(data: Dict):
         """Create an Entity instance (or subclass) from a dictionary."""
         entity_type = data.get("type", "entity")
         if entity_type == "work":
@@ -30,9 +32,10 @@ class Entity:
             "name": self.name
         }
 
+
 class Work(Entity):
-    def __init__(self, id: str):
-        super().__init__(id)
+    def __init__(self, entity_id: str):
+        super().__init__(entity_id)
         self.type: str = "work"
         self.author_ids: List[str] = []
         self.base_text_ids: List[str] = []
@@ -57,9 +60,10 @@ class Work(Entity):
             "commentary_ids": self.commentary_ids,
         }
 
+
 class Author(Entity):
-    def __init__(self, id: str):
-        super().__init__(id)
+    def __init__(self, entity_id: str):
+        super().__init__(entity_id)
         self.type: str = "author"
         self.work_ids: List[str] = []
 

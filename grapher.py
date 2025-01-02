@@ -22,98 +22,100 @@ ENTITIES_BY_ID = load_entities()
 
 @time_execution
 def construct_subgraph(
-	subgraph_center: set = DEFAULT_AUTHORS+DEFAULT_WORKS,
-	hops: int = DEFAULT_HOPS,
-	exclude_list: set = DEFAULT_EXCLUDE_LIST,
-	entities_by_id: Dict[str, Entity] = ENTITIES_BY_ID,
+    subgraph_center: list = DEFAULT_AUTHORS+DEFAULT_WORKS,
+    hops: int = DEFAULT_HOPS,
+    exclude_list: list = DEFAULT_EXCLUDE_LIST,
+    entities_by_id: Dict[str, Author | Work] = ENTITIES_BY_ID,
 ):
 
-	subgraph = nx.DiGraph() # nx graph object; used are:
-	# .nodes attribute
-	# .add_edge and .remove_node methods (not .add_node)
+    subgraph = nx.DiGraph()  # nx graph object; used are:
+    # .nodes attribute
+    # .add_edge and .remove_node methods (not .add_node)
 
-	subgraph_node_ids = [ ] # Entity objects
-	node_ids_to_append_this_time = subgraph_center # list of 5-digit strings
+    subgraph_node_ids = []  # Entity objects
+    node_ids_to_append_this_time = subgraph_center  # list of 5-digit strings
 
-	for i in range( hops + 1 ):
+    for i in range(hops + 1):
 
-		node_ids_to_append_next_time = []
+        node_ids_to_append_next_time = []
 
-		for id in node_ids_to_append_this_time:
+        for node_id in node_ids_to_append_this_time:
 
-			# append
-			subgraph_node_ids.append(id)
+            # append
+            subgraph_node_ids.append(node_id)
 
-			# don't do anything else for things on exclude_list
-			if id in exclude_list: continue
+            # don't do anything else for things on exclude_list
+            if node_id in exclude_list:
+                continue
 
-			# create edges and queue up connected nodes for next time
-			E = entities_by_id[id]
-			if E.type == 'work':
+            # create edges and queue up connected nodes for next time
+            entity: Work | Author = entities_by_id[node_id]
+            if entity.type == 'work':
 
-				for author_id in E.author_ids:
-					node_ids_to_append_next_time.append( author_id )
-					subgraph.add_edge(author_id, E.id, arrowstyle = '-[')
+                for author_id in entity.author_ids:
+                    node_ids_to_append_next_time.append(author_id)
+                    subgraph.add_edge(author_id, entity.id, arrowstyle='-[')
 
-				for base_text_id in E.base_text_ids:
-					node_ids_to_append_next_time.append( base_text_id )
-					subgraph.add_edge(base_text_id, E.id, arrowstyle = '->')
+                for base_text_id in entity.base_text_ids:
+                    node_ids_to_append_next_time.append(base_text_id)
+                    subgraph.add_edge(base_text_id, entity.id, arrowstyle='->')
 
-				for commentary_id in E.commentary_ids:
-					node_ids_to_append_next_time.append( commentary_id )
-					subgraph.add_edge(E.id, commentary_id, arrowstyle = '->')
+                for commentary_id in entity.commentary_ids:
+                    node_ids_to_append_next_time.append(commentary_id)
+                    subgraph.add_edge(entity.id, commentary_id, arrowstyle='->')
 
-				if E.author_ids == E.base_text_ids == E.commentary_ids == []:
-					subgraph.add_node(E.id)
+                if entity.author_ids == entity.base_text_ids == entity.commentary_ids == []:
+                    subgraph.add_node(entity.id)
 
-			elif E.type == 'author':
+            elif entity.type == 'author':
 
-				for work_id in E.work_ids:
-					node_ids_to_append_next_time.append( work_id )
-					subgraph.add_edge(E.id, work_id, arrowstyle = '-[')
+                for work_id in entity.work_ids:
+                    node_ids_to_append_next_time.append(work_id)
+                    subgraph.add_edge(entity.id, work_id, arrowstyle='-[')
 
-				if E.work_ids == []:
-					subgraph.add_node(E.id)
+                if not entity.work_ids:
+                    subgraph.add_node(entity.id)
 
-		# de-dupe, first list-internally, then against previous
-		node_ids_to_append_next_time = list(set(node_ids_to_append_next_time))
-		for id in node_ids_to_append_next_time:
-			if id in subgraph_node_ids:
-				node_ids_to_append_next_time.remove(id)
+        # de-dupe, first list-internally, then against previous
+        node_ids_to_append_next_time = list(set(node_ids_to_append_next_time))
+        for node_id in node_ids_to_append_next_time:
+            if node_id in subgraph_node_ids:
+                node_ids_to_append_next_time.remove(node_id)
 
-		node_ids_to_append_this_time = node_ids_to_append_next_time
+        node_ids_to_append_this_time = node_ids_to_append_next_time
 
-	# trim queued-up but unestablished periphery nodes
+    # trim queued-up but unestablished periphery nodes
 
-	for n in list(subgraph.nodes):
-		if n not in subgraph_node_ids:
-			subgraph.remove_node(n)
+    for n in list(subgraph.nodes):
+        if n not in subgraph_node_ids:
+            subgraph.remove_node(n)
 
-	return subgraph
+    return subgraph
+
 
 def assign_node_labels_and_colors(subgraph):
 
-	node_ids = list(subgraph.nodes)
-	label_map = {} # dict
-	color_map = [] # list
-	for node_id in node_ids:
+    node_ids = list(subgraph.nodes)
+    label_map = {}  # dict
+    color_map = []  # list
+    for node_id in node_ids:
 
-		label_map[node_id] = ENTITIES_BY_ID[node_id].name
+        label_map[node_id] = ENTITIES_BY_ID[node_id].name
 
-		if ENTITIES_BY_ID[node_id].id in DEFAULT_EXCLUDE_LIST:
-			color_map.append('gray')
+        if ENTITIES_BY_ID[node_id].id in DEFAULT_EXCLUDE_LIST:
+            color_map.append('gray')
 
-		elif ENTITIES_BY_ID[node_id].type == 'work':
-			color_map.append('red')
+        elif ENTITIES_BY_ID[node_id].type == 'work':
+            color_map.append('red')
 
-		elif ENTITIES_BY_ID[node_id].type == 'author':
-			color_map.append('green')
+        elif ENTITIES_BY_ID[node_id].type == 'author':
+            color_map.append('green')
 
-	return label_map, color_map
+    return label_map, color_map
 
 
-def annotate_graph(graph, selected_entities, exclude_list):
-	"""
+def annotate_graph(graph: nx.DiGraph, selected_entities, exclude_list) -> nx.DiGraph:
+    """
     Annotate graph nodes with `isCentral` and `isExcluded` flags.
 
     Args:
@@ -124,10 +126,10 @@ def annotate_graph(graph, selected_entities, exclude_list):
     Returns:
         dict: Annotated graph data.
     """
-	for node in graph.nodes:
-		graph.nodes[node]['is_central'] = node in selected_entities
-		graph.nodes[node]['is_excluded'] = node in exclude_list
-	return graph
+    for node in graph.nodes:
+        graph.nodes[node]['is_central'] = node in selected_entities
+        graph.nodes[node]['is_excluded'] = node in exclude_list
+    return graph
 
 
 def export_to_gephi(subgraph, label_map, color_map, output_fn="pandit_grapher_output.gexf"):
@@ -155,20 +157,21 @@ def export_to_gephi(subgraph, label_map, color_map, output_fn="pandit_grapher_ou
     nx.write_gexf(gexf_graph, output_fn, version="1.2draft")
     print(f"GEXF file exported to {output_fn}")
 
+
 def draw_nx_graph(subgraph, label_map, color_map):
-	plt.figure(1,figsize=tuple(networkx_figure_size))
-	nx.draw_spring(subgraph, labels = label_map, node_color = color_map, node_size = 1000)
-	plt.show()
+    plt.figure(1, figsize=tuple(networkx_figure_size))
+    nx.draw_spring(subgraph, labels=label_map, node_color=color_map, node_size=1000)
+    plt.show()
 
 
 if __name__ == "__main__":
 
-	subgraph = construct_subgraph(DEFAULT_AUTHORS + DEFAULT_WORKS, DEFAULT_HOPS, DEFAULT_EXCLUDE_LIST)
+    subgraph = construct_subgraph(DEFAULT_AUTHORS + DEFAULT_WORKS, DEFAULT_HOPS, DEFAULT_EXCLUDE_LIST)
 
-	label_map, color_map = assign_node_labels_and_colors(subgraph)
+    label_map, color_map = assign_node_labels_and_colors(subgraph)
 
-	if output_gephi_file:
-		export_to_gephi(subgraph, label_map, color_map)
+    if output_gephi_file:
+        export_to_gephi(subgraph, label_map, color_map)
 
-	if draw_networkx_graph:
-		draw_nx_graph(subgraph, label_map, color_map)
+    if draw_networkx_graph:
+        draw_nx_graph(subgraph, label_map, color_map)

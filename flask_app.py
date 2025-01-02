@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-from flask import Flask, render_template, Blueprint, jsonify, request, send_from_directory, Response
+from flask import Flask, render_template, Blueprint, jsonify, request, send_from_directory
 from flask_restx import Api, Resource, fields
 
 from grapher import construct_subgraph, annotate_graph
@@ -35,6 +35,7 @@ for entity in ENTITIES_BY_ID.values():
     entity_dropdown_options['all'].append(option)
     entity_dropdown_options[entity.type+'s'].append(option)
 
+
 def validate_comma_separated_list_input(string_input):
     if string_input[0] == '[':
         return {
@@ -46,6 +47,7 @@ def validate_comma_separated_list_input(string_input):
         }
     else:
         return None
+
 
 @entities_ns.route('/<string:entity_type>')
 class EntitiesByType(Resource):
@@ -59,6 +61,7 @@ class EntitiesByType(Resource):
             return {"error": "Invalid entity type. Choose from 'authors', 'works', or 'all'."}, 400
 
         return jsonify(entity_dropdown_options[entity_type])
+
 
 @entities_ns.route('/labels')
 class Labels(Resource):
@@ -98,6 +101,7 @@ class Labels(Resource):
             app.logger.error('Error: %s', str(e))
             return {"error": str(e)}, 500
 
+
 # register entities namespace
 api.add_namespace(entities_ns)
 
@@ -111,6 +115,7 @@ subgraph_model = api.model('SubgraphRequest', {
     'exclude_list': fields.List(fields.String, required=False, description='List of node IDs to exclude', example=[])
 })
 
+
 def validate_subgraph_inputs(authors, works, hops, exclude_list):
     if not authors and not works:
         return {"error": "require either one or both of authors or works"}
@@ -119,6 +124,7 @@ def validate_subgraph_inputs(authors, works, hops, exclude_list):
     if not isinstance(exclude_list, list):
         return {"error": "exclude_list must be a list"}
     return None
+
 
 @graph_ns.route('/subgraph')
 class Subgraph(Resource):
@@ -183,12 +189,10 @@ class Subgraph(Resource):
             app.logger.error('Error: %s', str(e))
             return {"error": str(e)}, 500
 
+
 @graph_ns.route('/render')
 class RenderGraph(Resource):
     def get(self):
-        """
-        Return graph data as JSON.
-        """
         try:
             # Parse parameters
             authors_param = request.args.getlist('authors')
@@ -201,7 +205,7 @@ class RenderGraph(Resource):
                 works_param = works_param[0].split(',')
             works = set(works_param)
 
-            subgraph_center = authors | works
+            subgraph_center = list(authors | works)
 
             hops = request.args.get('hops', default=DEFAULT_HOPS, type=int)
             exclude_list_param = request.args.getlist('exclude_list')
@@ -234,42 +238,54 @@ class RenderGraph(Resource):
             app.logger.error('Error: %s', str(e))
             return {"error": str(e)}, 500
 
+
 # register graph namespace
 api.add_namespace(graph_ns)
 
+
 # --- frontend routes ---
+
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
+
 @app.route('/about')
 def about():
     return render_template('about.html')
+
 
 @app.route('/notes/author')
 def author_notes():
     return render_template('notes/author.html')
 
+
 @app.route('/notes/data')
 def data_notes():
     return render_template('notes/data.html')
+
 
 @app.route('/notes/license')
 def license_notes():
     return render_template('notes/license.html')
 
+
 @app.route('/notes/technical')
 def tech_notes():
     return render_template('notes/technical.html')
 
+
 # --- data serving route ---
+
 @app.route('/data/<path:filepath>')
 def data(filepath):
     return send_from_directory('data', filepath)
 
+
 # Register the Blueprint
 app.register_blueprint(api_bp)
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5090)

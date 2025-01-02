@@ -7,6 +7,7 @@ from utils.utils import time_execution
 current_file_dir = os.path.dirname(os.path.abspath(__file__))
 relative_data_dir = "../data"
 
+
 @time_execution
 def load_entities():
     input_filename = "2024-12-23-entities.json"
