@@ -32,15 +32,28 @@ for entity in ENTITIES_BY_ID.values():
     entity_dropdown_options['all'].append(option)
     entity_dropdown_options[entity.type+'s'].append(option)
 
+def validate_comma_separated_list_input(string_input):
+    if string_input[0] == '[':
+        return {
+            "error": "List input should be comma-separated string. Do not use square brackets."
+        }
+    elif ' ' in string_input:
+        return {
+            "error": "Input should not contain whitespace."
+        }
+    else:
+        return None
+
 @entities_ns.route('/<string:entity_type>')
 class EntitiesByType(Resource):
     def get(self, entity_type):
         """
         Fetch list of available IDs for a specific type of node (authors, works, or all).
         Example: /api/entities/works
+        Note: Response time in Swagger is much higher than endpoint by itself.
         """
         if entity_type not in ['authors', 'works', 'all']:
-            return jsonify({"error": "Invalid entity type. Choose from 'authors', 'works', or 'all'."}), 400
+            return {"error": "Invalid entity type. Choose from 'authors', 'works', or 'all'."}, 400
 
         return jsonify(entity_dropdown_options[entity_type])
 
@@ -63,6 +76,11 @@ class Labels(Resource):
         """
         try:
             ids_param = request.args.get('ids')  # Get all IDs as a list
+
+            err = validate_comma_separated_list_input(ids_param)
+            if err is not None:
+                return err, 400
+
             ids = [id.strip() for id in ids_param.split(',')] if ids_param else []
             if not ids:
                 return {"error": "No IDs provided"}, 400
@@ -74,6 +92,7 @@ class Labels(Resource):
 
             return jsonify(label_data)
         except Exception as e:
+            app.logger.error('Error: %s', str(e))
             return {"error": str(e)}, 500
 
 # register entities namespace
@@ -89,14 +108,14 @@ subgraph_model = api.model('SubgraphRequest', {
     'exclude_list': fields.List(fields.String, required=False, description='List of node IDs to exclude', example=[])
 })
 
-def validate_inputs(authors, works, hops, exclude_list):
+def validate_subgraph_inputs(authors, works, hops, exclude_list):
     if not authors and not works:
-        return {"error": "require either one or both of authors or works"}, 400
+        return {"error": "require either one or both of authors or works"}
     if not isinstance(hops, int) or hops < 0:
-        return {"error": "hops must be a non-negative integer"}, 400
+        return {"error": "hops must be a non-negative integer"}
     if not isinstance(exclude_list, list):
-        return {"error": "exclude_list must be a list"}, 400
-    return "", 200
+        return {"error": "exclude_list must be a list"}
+    return None
 
 @graph_ns.route('/subgraph')
 class Subgraph(Resource):
@@ -115,9 +134,9 @@ class Subgraph(Resource):
             exclude_list = list(set(data.get('exclude_list', [])))
 
             # validate_inputs
-            msg_dict, status_code = validate_inputs(authors, works, hops, exclude_list)
-            if status_code != 200:
-                return msg_dict, status_code
+            err = validate_subgraph_inputs(authors, works, hops, exclude_list)
+            if err is not None:
+                return err, 400
 
             # Call the actual construct_subgraph function
             subgraph = construct_subgraph(subgraph_center, hops, exclude_list)
@@ -188,9 +207,9 @@ class RenderGraph(Resource):
             exclude_list = list(set(exclude_list_param))
 
             # Validate inputs
-            msg_dict, status_code = validate_inputs(authors, works, hops, exclude_list)
-            if status_code != 200:
-                return msg_dict, status_code
+            err = validate_subgraph_inputs(authors, works, hops, exclude_list)
+            if err is not None:
+                return err, 400
 
             subgraph = construct_subgraph(subgraph_center, hops, exclude_list)
 
