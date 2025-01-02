@@ -9,5 +9,8 @@ transform:
 analyze:
 	python -m utils.analyze
 
+construct_full_graph:
+	python -m utils.construct_full_graph
+
 run:
 	python flask_app.py
