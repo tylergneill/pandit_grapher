@@ -1,6 +1,4 @@
 {
-"work_CSV_fn" : "work_search-2020-09-12-11-42-panditproject.org.csv",
-"pickle_jar_fn" : "work_author_relations.p",
 "authors": ["85303", "85201"],
 "works": ["89000", "88590"],
 "hops" : 1,
