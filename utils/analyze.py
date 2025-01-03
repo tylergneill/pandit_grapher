@@ -317,8 +317,6 @@ def write_component_names(component_info: Dict, entities_by_id: Dict[str, Entity
             for i, component in enumerate(components, 1):
                 f.write(f"\nComponent {i}:\n")
                 for entity_id in sorted(component):
-                    if entity_id == '_':
-                        import pdb; pdb.set_trace()
                     entity = entities_by_id[entity_id]
                     f.write(f"  {entity.name} ({entity.id}) ({entity.type})\n")
                 if i < len(components):  # Add separator between components
