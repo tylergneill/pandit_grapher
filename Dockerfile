@@ -8,9 +8,9 @@ RUN groupadd appgroup && \
     chown -R sanskrit:appgroup /app
 COPY --chown=sanskrit:appgroup templates /app/templates
 COPY --chown=sanskrit:appgroup static /app/static
+COPY --chown=sanskrit:appgroup utils /app/utils
 COPY --chown=sanskrit:appgroup ./*.py /app/
 COPY --chown=sanskrit:appgroup ./*.json /app/
-COPY --chown=sanskrit:appgroup ./*.p /app/
 COPY --chown=sanskrit:appgroup ./VERSION /app/
 USER sanskrit
 ENV PORT=5090
