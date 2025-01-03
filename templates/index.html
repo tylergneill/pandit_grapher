@@ -71,7 +71,7 @@
 
       try {
           const query = ids.map(id => `ids=${id}`).join("&");
-          const response = await fetch(`/api/entities/metadata?${query}`); // Adjusted endpoint
+          const response = await fetch(`/api/entities/labels?${query}`); // Adjusted endpoint
           const data = await response.json();
 
           data.forEach(item => {
@@ -112,7 +112,7 @@
       $('.select2-initial').select2();
 
       // Fetch and render the graph
-      if (works.length > 0 && hops) {
+      if (works.length > 0 || authors.length && hops) {
         const apiUrl = `/api/graph/render?${urlParams.toString()}`;
         console.log("Fetching graph data from:", apiUrl);
 
