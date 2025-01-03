@@ -1,4 +1,53 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    // Check if initialization parameters are provided by the backend
+    const initialParams = window.initialParams || null;
+
+    if (initialParams) {
+        // Populate dropdowns and inputs
+        const authorsDropdown = $('#authors-dropdown');
+        const worksDropdown = $('#works-dropdown');
+        const excludeDropdown = $('#exclude-list-dropdown');
+
+        if (initialParams.authors.length > 0) {
+          await fetchLabelsAndPopulateDropdown(initialParams.authors, authorsDropdown);
+        }
+        if (initialParams.works.length > 0) {
+          await fetchLabelsAndPopulateDropdown(initialParams.works, worksDropdown);
+        }
+        if (initialParams.exclude_list.length > 0) {
+          await fetchLabelsAndPopulateDropdown(initialParams.exclude_list, excludeDropdown);
+        }
+
+        // Set hops value
+        document.getElementById('hops').value = initialParams.hops;
+
+        // Fetch and render the graph immediately
+        const payload = {
+          authors: initialParams.authors,
+          works: initialParams.works,
+          hops: parseInt(initialParams.hops, 10),
+          exclude_list: initialParams.exclude_list
+        };
+
+        try {
+          const response = await fetch('/api/graph/subgraph', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          });
+
+          if (!response.ok) throw new Error('Failed to generate graph');
+
+          const data = await response.json();
+          renderGraph(data.graph); // Render the graph from POST response
+        } catch (error) {
+          console.error('Error generating graph:', error);
+        }
+    }
+
+
   // Handle form submission for generating graphs
   document.getElementById('fetch-button').addEventListener('click', async () => {
     const authors = $('#authors-dropdown').val(); // Get selected authors
@@ -32,30 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Handle direct rendering via GET parameters
-  const urlParams = new URLSearchParams(window.location.search);
-  const works = urlParams.getAll('works'); // Fetch works list from URL
-  const hops = urlParams.get('hops');
-
-  if (works.length > 0 && hops) {
-    const apiUrl = `/api/graph/render?${urlParams.toString()}`;
-    fetchGraphData(apiUrl); // Fetch and render graph directly
-  }
 });
-
-// Utility to fetch graph data from API for GET requests
-async function fetchGraphData(apiUrl) {
-  try {
-    const response = await fetch(apiUrl);
-    if (!response.ok) throw new Error('Failed to fetch graph data');
-
-    const data = await response.json();
-
-    renderGraph(data); // Render the graph from GET response
-  } catch (error) {
-    console.error('Error fetching graph:', error);
-  }
-}
 
 // Core function to render a graph using D3.js
 function renderGraph(graph) {

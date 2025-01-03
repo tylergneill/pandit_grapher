@@ -256,13 +256,35 @@ class RenderGraph(Resource):
 # register graph namespace
 api.add_namespace(graph_ns)
 
-
 # --- frontend routes ---
-
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    """
+    Serve the main graph interface without initialization variables.
+    """
+    return render_template('index.html', initial_params=None)
+
+
+@app.route('/view')
+def render_graph_from_URL_params():
+    """
+    Serve the main graph interface, initializing inputs based on URL parameters.
+    """
+    try:
+        # Parse URL parameters
+        initial_params = {
+            "authors": request.args.getlist('authors'),
+            "works": request.args.getlist('works'),
+            "hops": request.args.get('hops', default=DEFAULT_HOPS),
+            "exclude_list": request.args.getlist('exclude_list')
+        }
+
+        # Serve the template with initialization variables
+        return render_template('index.html', initial_params=initial_params)
+    except Exception as e:
+        app.logger.error('Error: %s', str(e))
+        return render_template('index.html', initial_params=None, error={"error": str(e)})
 
 
 @app.route('/about')
