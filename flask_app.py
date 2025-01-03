@@ -190,69 +190,6 @@ class Subgraph(Resource):
             return {"error": str(e)}, 500
 
 
-@graph_ns.route('/render')
-class RenderGraph(Resource):
-    @api.doc(
-        params={
-            'authors': 'Comma-separated list of author node IDs (e.g., 85303,12345)',
-            'works': 'Comma-separated list of work node IDs (e.g., 89000,67890)',
-            'hops': f'Number of hops outward from the center (default: {DEFAULT_HOPS})',
-            'exclude_list': 'Comma-separated list of node IDs to exclude'
-        },
-        responses={
-            200: 'Graph data returned successfully',
-            400: 'Invalid parameters provided',
-            500: 'Internal server error'
-        },
-        description="Render a graph based on query parameters."
-    )
-    def get(self):
-        try:
-            # Parse parameters
-            authors_param = request.args.getlist('authors')
-            if len(authors_param) == 1 and ',' in authors_param[0]:
-                authors_param = authors_param[0].split(',')
-            authors = set(authors_param)
-
-            works_param = request.args.getlist('works')
-            if len(works_param) == 1 and ',' in works_param[0]:
-                works_param = works_param[0].split(',')
-            works = set(works_param)
-
-            subgraph_center = list(authors | works)
-
-            hops = request.args.get('hops', default=DEFAULT_HOPS, type=int)
-            exclude_list_param = request.args.getlist('exclude_list')
-            if len(exclude_list_param) == 1 and ',' in exclude_list_param[0]:
-                exclude_list_param = exclude_list_param[0].split(',')
-            exclude_list = list(set(exclude_list_param))
-
-            # Validate inputs
-            err = validate_subgraph_inputs(authors, works, hops, exclude_list)
-            if err is not None:
-                return err, 400
-
-            subgraph = construct_subgraph(subgraph_center, hops, exclude_list)
-
-            # Extract nodes and edges for JSON response
-            filtered_nodes = [
-                {"id": node, "label": ENTITIES_BY_ID[node].name, "type": ENTITIES_BY_ID[node].type}
-                for node in subgraph.nodes
-            ]
-            filtered_edges = [
-                {"source": edge[0], "target": edge[1]}
-                for edge in subgraph.edges
-            ]
-
-            return jsonify({"nodes": filtered_nodes, "edges": filtered_edges})
-        except KeyError as e:
-            app.logger.error('Error: %s', str(e))
-            return {"error": f"Invalid ID: {str(e)}"}, 400
-        except Exception as e:
-            app.logger.error('Error: %s', str(e))
-            return {"error": str(e)}, 500
-
-
 # register graph namespace
 api.add_namespace(graph_ns)
 
