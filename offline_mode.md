@@ -44,7 +44,7 @@ and fiddling with the node, edge, and label appearances can quickly exceed what 
 The parts of the graph can also be moved around manually as needed, 
 like in the below graph centering on Bhāsarvajña's Nyāyabhūṣaṇa and illustrating his intertextual influences.
 
-![screenshot](static/NBhu_presentation/3_NBhu_etc.png)
+![screenshot](static/imgs/NBhu_presentation/3_NBhu_etc.png)
 
 Gephi is a bit old and can be buggy in my experience, 
 but the software has an active user community, making it relatively easy to find answers to questions online.
@@ -117,6 +117,6 @@ The output (2024 data) is also committed to the repo as `complete_graph.gexf`.
 I recommended visualizing this graph in Gephi with the Yifan Hu and/or Force Atlas 2 layout algorithms.
 (Screenshots below are with 2020 data.)
 
-![screenshot](static/full_graph_yifan_hu.png)
+![screenshot](static/imgs/full_graph_yifan_hu.png)
 
-![screenshot](static/full_graph_force_atlas_2.png)
+![screenshot](static/imgs/full_graph_force_atlas_2.png)
