@@ -6,8 +6,9 @@ RUN groupadd appgroup && \
     useradd -r -M -G appgroup sanskrit && \
     mkdir -p /app && \
     chown -R sanskrit:appgroup /app
-COPY --chown=sanskrit:appgroup templates /app/templates
+COPY --chown=sanskrit:appgroup static /app/data
 COPY --chown=sanskrit:appgroup static /app/static
+COPY --chown=sanskrit:appgroup templates /app/templates
 COPY --chown=sanskrit:appgroup utils /app/utils
 COPY --chown=sanskrit:appgroup ./*.py /app/
 COPY --chown=sanskrit:appgroup ./*.json /app/
