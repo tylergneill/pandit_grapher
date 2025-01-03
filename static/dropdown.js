@@ -73,7 +73,6 @@ function adjustWidths() {
     if (worksContainer) {
       const worksWidth = worksContainer.offsetWidth;
       hopsInput.style.width = `${worksWidth}px`;
-      console.log(`Hops width set to: ${worksWidth}px`);
     } else {
       console.warn('Works container not found.');
     }
