@@ -13,7 +13,7 @@ Currently deployed at https://pandit-grapher-poc.dharma.cl/
 It's also possible to use the backend code locally to produce graph data for use with e.g. [Gephi](https://gephi.org/).
 Resulting graphs are created in memory, (optionally) drawn to the screen with `networkx`, and also (optionally) output for Gephi.
 This makes it feasible to visualize the entire graph at once, among other things.
-More details, see <a href="https://github.com/tylergneill/pandit_grapher/tree/v2/offline_mode.md">offline_mode.md</a>.
+More details, see <a href="https://github.com/tylergneill/pandit_grapher/tree/main/offline_mode.md">offline_mode.md</a>.
 
 # Feedback, License
 
