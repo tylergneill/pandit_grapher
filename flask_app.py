@@ -246,7 +246,7 @@ def license_notes():
 
 @app.route('/notes/technical')
 def tech_notes():
-    return render_template('notes/technical.html')
+    return render_template('notes/technical.html', app_version=APP_VERSION)
 
 
 # --- data serving route ---
