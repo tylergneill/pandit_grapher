@@ -1,0 +1,41 @@
+85097	Nāgārjuna
+85127	Vasubandhu
+85154	Dignāga
+85198	Dharmakīrti
+85247	Jinendrabuddhi
+85248	Dharmottara
+85251	Prajñākaragupta
+85355	Durveka Miśra
+85342	Aśoka
+85379	Yamāri
+85305	Manorathanandin
+85403	Mokṣākaragupta
+
+85092	Kaṇāda
+85164	Praśastapāda
+85272	Candrānanda
+85311	Vyomaśiva
+85336	Śrīdhara
+
+85098	Gautama
+85140	Vātsyāyana
+85196	Uddyotakara
+85277	Jayanta Bhatṭa
+85303	Bhāsarvajña
+85319	Vācaspati Miśra
+85333	Udayana
+
+85087	Jaimini
+85131	Śabara
+85206	Kumārila
+85213	Prabhākara
+85261	Śālikanātha Miśra
+85423	Sucarita Miśra
+85389	Pārthasārathi Miśra
+
+85210	Maṇḍana Miśra
+
+85201	Jayarāśi
+
+85108	Patañjali
+85147	Vyāsa

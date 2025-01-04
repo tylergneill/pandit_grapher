@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pandit Grapher</title>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+  <script>
+    window.initialParams = {{ initial_params|tojson }};
+  </script>
+</head>
+<body>
+  <h1>Pandit Grapher</h1>
+  <a href="/about" id="top-right-link">About</a>
+  <div id="form-container">
+    <form id="parameter-form">
+      <div class="form-row">
+        <label for="authors-dropdown">Authors:</label>
+        <div class="dropdown-wrapper">
+          <select id="authors-dropdown" class="select2-initial" multiple></select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="works-dropdown">Works:</label>
+        <div class="dropdown-wrapper">
+          <select id="works-dropdown" class="select2-initial" multiple></select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="hops">Hops:</label>
+        <input type="number" id="hops" name="hops" value="1" min="0" />
+      </div>
+
+      <div class="form-row">
+        <label for="exclude-list-dropdown">Exclude:</label>
+        <div class="dropdown-wrapper">
+          <select id="exclude-list-dropdown" class="select2-initial" multiple></select>
+        </div>
+      </div>
+
+      <button type="button" id="fetch-button">Generate Graph</button>
+
+    </form>
+  </div>
+  <div id="graph-container">
+    <svg width="800" height="600"></svg>
+  </div>
+
+  <!-- Dropdown Logic -->
+  <script src="{{ url_for('static', filename='js/dropdown.js') }}"></script>
+
+  <!-- D3 Library -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <!-- Graph Logic -->
+  <script src="{{ url_for('static', filename='js/graph.js') }}"></script>
+
+  <script>
+  // Utility function to fetch labels and populate dropdowns
+  async function fetchLabelsAndPopulateDropdown(ids, dropdown) {
+      if (ids.length === 0) return;
+
+      try {
+          const query = ids.map(id => `ids=${id}`).join("&");
+          const response = await fetch(`/api/entities/labels?${query}`); // Adjusted endpoint
+          const data = await response.json();
+
+          data.forEach(item => {
+              const displayText = `${item.label} (${item.id})`; // Include ID in parentheses
+              dropdown.append(new Option(displayText, item.id, true, true));
+          });
+
+          dropdown.trigger('change'); // Refresh Select2
+      } catch (error) {
+          console.error("Error fetching labels:", error);
+      }
+  }
+  </script>
+
+</body>
+</html>
