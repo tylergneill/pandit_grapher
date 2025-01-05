@@ -172,7 +172,7 @@ function renderGraph(graph) {
         <button id="recenter-btn" style="display:block;">Recenter Graph</button>
         <br>
         <!-- New material: Exclude Node option -->
-        <button id="exclude-node-btn" style="display:block; margin-top: 5px;">Exclude Node</button>
+        <button id="exclude-node-btn" style="display:block; margin-top: 5px;">Collapse Node</button>
     `);
 
     // Position and show the menu
