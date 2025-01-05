@@ -140,29 +140,29 @@ function renderGraph(graph) {
         event.subject.fy = null;
       }))
     .on('contextmenu', (event, d) => {
-      // Prevent default browser context menu
-      event.preventDefault();
+    // Prevent default browser context menu
+    event.preventDefault();
 
-      // Create or show a custom context menu
-      let menu = d3.select('.custom-context-menu');
-      if (menu.empty()) {
+    // Create or show a custom context menu
+    let menu = d3.select('.custom-context-menu');
+    if (menu.empty()) {
         menu = d3.select('body').append('div')
-          .attr('class', 'custom-context-menu')
-          .style('position', 'absolute')
-          .style('background', '#fff')
-          .style('padding', '8px')
-          .style('border', '1px solid #ccc')
-          .style('border-radius', '4px')
-          .style('box-shadow', '0 4px 8px rgba(0, 0, 0, 0.1)')
-          .style('display', 'none');
-      }
+            .attr('class', 'custom-context-menu')
+            .style('position', 'absolute')
+            .style('background', '#fff')
+            .style('padding', '8px')
+            .style('border', '1px solid #ccc')
+            .style('border-radius', '4px')
+            .style('box-shadow', '0 4px 8px rgba(0, 0, 0, 0.1)')
+            .style('display', 'none');
+    }
 
-      // Type-to-path mapping for Open Link
-      const typeMapping = { author: "person", work: "work" };
-      const entityPath = typeMapping[d.type] || d.type;
+    // Type-to-path mapping for Open Link
+    const typeMapping = { author: "person", work: "work" };
+    const entityPath = typeMapping[d.type] || d.type;
 
-      // Populate the menu
-      menu.html(`
+    // Populate the menu
+    menu.html(`
         <a href="https://www.panditproject.org/entity/${d.id}/${entityPath}" target="_blank" style="display:block; margin-bottom: 5px;">View in Pandit</a>
         <br>
         <div style="margin-bottom: 10px;">
@@ -170,63 +170,107 @@ function renderGraph(graph) {
             <input type="number" id="hops-input" value="2" style="width: 50px;">
         </div>
         <button id="recenter-btn" style="display:block;">Recenter Graph</button>
-      `);
+        <br>
+        <!-- New material: Exclude Node option -->
+        <button id="exclude-node-btn" style="display:block; margin-top: 5px;">Exclude Node</button>
+    `);
 
-      // Position and show the menu
-      menu.style('left', `${event.pageX}px`)
+    // Position and show the menu
+    menu.style('left', `${event.pageX}px`)
         .style('top', `${event.pageY}px`)
         .style('display', 'block');
 
-      menu.on('click', (e) => e.stopPropagation()); // Prevent menu clicks from propagating
+    menu.on('click', (e) => e.stopPropagation()); // Prevent menu clicks from propagating
 
-      // Update the recenter button handler to stop propagation
-      document.getElementById('recenter-btn').onclick = async (e) => {
+    // Update the recenter button handler to stop propagation
+    document.getElementById('recenter-btn').onclick = async (e) => {
         e.stopPropagation(); // Prevent the button click from closing the menu
         const hops = document.getElementById('hops-input').value;
 
         const payload = {
-          authors: d.type === 'author' ? [d.id] : [],
-          works: d.type === 'work' ? [d.id] : [],
-          hops: parseInt(hops, 10),
-          exclude_list: [] // Add exclusions if needed
+            authors: d.type === 'author' ? [d.id] : [],
+            works: d.type === 'work' ? [d.id] : [],
+            hops: parseInt(hops, 10),
+            exclude_list: [] // Add exclusions if needed
         };
 
         // Fetch and re-render the graph
         try {
-          const response = await fetch('/api/graph/subgraph', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-          const newGraph = await response.json();
-          renderGraph(newGraph.graph);
+            const response = await fetch('/api/graph/subgraph', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const newGraph = await response.json();
+            renderGraph(newGraph.graph);
 
-          // Update dropdowns with the new center only
-          const authorsDropdown = $('#authors-dropdown');
-          const worksDropdown = $('#works-dropdown');
+            // Update dropdowns with the new center only
+            const authorsDropdown = $('#authors-dropdown');
+            const worksDropdown = $('#works-dropdown');
 
-          authorsDropdown.empty(); // Clear authors dropdown
-          worksDropdown.empty(); // Clear works dropdown
+            authorsDropdown.empty(); // Clear authors dropdown
+            worksDropdown.empty(); // Clear works dropdown
 
-         // Redo dropdown for the specific type
-          if (d.type === 'author') {
-            authorsDropdown.append(new Option(d.label, d.id, true, true)); // Add new center
-            authorsDropdown.trigger('change'); // Refresh Select2
-          } else if (d.type === 'work') {
-            worksDropdown.append(new Option(d.label, d.id, true, true)); // Add new center
-            worksDropdown.trigger('change'); // Refresh Select2
-          }
+            // Redo dropdown for the specific type
+            if (d.type === 'author') {
+                authorsDropdown.append(new Option(d.label, d.id, true, true)); // Add new center
+                authorsDropdown.trigger('change'); // Refresh Select2
+            } else if (d.type === 'work') {
+                worksDropdown.append(new Option(d.label, d.id, true, true)); // Add new center
+                worksDropdown.trigger('change'); // Refresh Select2
+            }
 
-          // Update hops input to match the current value
-          document.getElementById('hops').value = hops;
+            // Update hops input to match the current value
+            document.getElementById('hops').value = hops;
         } catch (error) {
-          console.error('Error recentering graph:', error);
+            console.error('Error recentering graph:', error);
         }
 
         // Hide the menu
         menu.style('display', 'none');
-      };
-    });
+    };
+
+    // Exclude Node button handler
+    document.getElementById('exclude-node-btn').onclick = async (e) => {
+        e.stopPropagation(); // Prevent the button click from closing the menu
+
+        // Add the selected node to the exclude list
+        const exclude_list = $('#exclude-list-dropdown').val();
+        if (!exclude_list.includes(d.id)) {
+            exclude_list.push(d.id);
+        }
+
+        // Update the dropdown and trigger Select2 change event
+        $('#exclude-list-dropdown').val(exclude_list).trigger('change');
+
+        const authors = $('#authors-dropdown').val();
+        const works = $('#works-dropdown').val();
+        const hops = parseInt(document.getElementById('hops').value, 10);
+
+        const payload = {
+            authors: authors,
+            works: works,
+            hops: hops,
+            exclude_list: exclude_list
+        };
+
+        // Fetch and re-render the graph
+        try {
+            const response = await fetch('/api/graph/subgraph', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const updatedGraph = await response.json();
+            renderGraph(updatedGraph.graph);
+        } catch (error) {
+            console.error('Error excluding node:', error);
+        }
+
+        // Hide the menu
+        menu.style('display', 'none');
+    };
+  });
 
   // Hide menu on outside click
   d3.select('body').on('click', (event) => {
