@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Technical Notes - Pandit Grapher</title>
+  <title>Technical Notes - Pāṇḍitya</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
@@ -15,10 +15,10 @@
     <p><a href="https://github.com/tylergneill/pandit_grapher" target="_blank">Code on GitHub</a></p>
     <p>Key Aspects:
       <ul>
-        <li>Pandit Grapher is coded in Python using the libraries NetworkX and Flask</li>
+        <li>Pāṇḍitya is coded in Python using the libraries NetworkX and Flask</li>
         <li>The backend is structured as an ETL pipeline (see <a href="https://github.com/tylergneill/pandit_grapher/tree/main/utils" target="_blank">utils</a>) and a REST API (<a href="/api/docs" target="_blank">Swagger doc</a>)</li>
         <li>GET requests to the `view` route are also supported,
-          which allows other sites to link into Pandit Grapher using Pandit ID numbers
+          which allows other sites to link into Pāṇḍitya using Pandit ID numbers
           (<a href="/view?works=89000&hops=2" target="_blank">example</a>) </li>
         <li>Graph visuals are created using the D3 JavaScript library</li>
       </ul>
