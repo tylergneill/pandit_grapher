@@ -1,6 +1,6 @@
 # Offline mode
 
-These instructions for "offline mode" preserve Pandit Grapher v1 behavior.
+These instructions for "offline mode" preserve Pāṇḍitya v1 ("Pandit Grapher") behavior.
 
 By cloning and importing the code, you can use it locally to produce graph data for use with e.g. [Gephi](https://gephi.org/).
 Resulting graphs are created in memory, (optionally) drawn to the screen with `networkx`, and also (optionally) output for Gephi.

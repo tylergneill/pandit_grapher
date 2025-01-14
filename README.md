@@ -1,4 +1,4 @@
-# Pandit Grapher
+# Pāṇḍitya
 
 Graphs person-work and work-work relationships in the [Pandit Prosophographical Database of Indic Texts](https://www.panditproject.org/).
 

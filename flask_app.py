@@ -18,7 +18,7 @@ app = Flask(__name__)
 
 # --- Blueprint setup ---
 api_bp = Blueprint('api', __name__, url_prefix='/api')  # API Blueprint
-api = Api(api_bp, version=APP_VERSION, title='Pandit Grapher API',
+api = Api(api_bp, version=APP_VERSION, title='Pāṇḍitya API',
           description=f'API for exploring work and author relationships in Pandit database ({DATA_VERSION})',
           doc='/docs')  # Swagger UI available at /api/docs
 
