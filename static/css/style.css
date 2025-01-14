@@ -272,23 +272,6 @@ button:hover { background: #a93226; }
   background-color: darkgray;
 }
 
-#top-left-logo {
-  position: absolute; /* Absolute positioning relative to the nearest positioned ancestor */
-  top: 10px; /* Distance from the top */
-  left: 10px; /* Distance from the left */
-  max-width: 20%; /* Scale the logo to a small size */
-  height: auto; /* Maintain aspect ratio */
-  padding: 5px; /* Optional padding */
-}
-
-#centered-logo {
-  display: block; /* Ensure it's treated as a block element */
-  margin: 0 auto; /* Center horizontally */
-  max-width: 80%; /* Scale the logo to a large size */
-  height: auto; /* Maintain aspect ratio */
-  padding: 10px; /* Optional padding for spacing */
-}
-
 /* =============================
    Shared Container Styles
 ============================= */
