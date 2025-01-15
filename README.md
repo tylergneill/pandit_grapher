@@ -6,7 +6,7 @@ This can be useful both for exploring certain persons or works of interest and f
 
 # Web app
 
-Currently deployed at https://pandit-grapher-poc.dharma.cl/
+Currently deployed at https://panditya.dharma.cl/
 
 # Offline mode
 
