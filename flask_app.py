@@ -250,7 +250,7 @@ def tech_notes():
 
 
 @app.route('/notes/updates')
-def updates_notes():
+def update_notes():
     return render_template('notes/updates.html')
 
 
