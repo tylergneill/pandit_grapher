@@ -249,6 +249,11 @@ def tech_notes():
     return render_template('notes/technical.html', app_version=APP_VERSION)
 
 
+@app.route('/notes/updates')
+def update_notes():
+    return render_template('notes/updates.html')
+
+
 # --- data serving route ---
 
 @app.route('/data/<path:filepath>')
