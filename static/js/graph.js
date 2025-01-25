@@ -1,3 +1,5 @@
+import { refreshDropdowns } from './dropdown.js';
+
 document.addEventListener('DOMContentLoaded', async () => {
     // Check if initialization parameters are provided by the backend
     const initialParams = window.initialParams || null;
@@ -208,8 +210,7 @@ function renderGraph(graph) {
             const authorsDropdown = $('#authors-dropdown');
             const worksDropdown = $('#works-dropdown');
 
-            authorsDropdown.empty(); // Clear authors dropdown
-            worksDropdown.empty(); // Clear works dropdown
+            await refreshDropdowns(authorsDropdown, worksDropdown);
 
             // Redo dropdown for the specific type
             if (d.type === 'author') {
