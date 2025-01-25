@@ -1,3 +1,33 @@
+export async function refreshDropdowns(authorsDropdown, worksDropdown) {
+    try {
+        const [authorsRes, worksRes] = await Promise.all([
+            fetch('/api/entities/authors'),
+            fetch('/api/entities/works')
+        ]);
+
+        const [optionsAuthors, optionsWorks] = await Promise.all([
+            authorsRes.json(),
+            worksRes.json()
+        ]);
+
+        authorsDropdown.empty();
+        worksDropdown.empty();
+
+        optionsAuthors.forEach(({ id, label }) => {
+            authorsDropdown.append(new Option(label, id));
+        });
+
+        optionsWorks.forEach(({ id, label }) => {
+            worksDropdown.append(new Option(label, id));
+        });
+
+        authorsDropdown.trigger('change');
+        worksDropdown.trigger('change');
+    } catch (error) {
+        console.error('Error refreshing dropdowns:', error);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   try {
     // Fetch data for dropdowns
