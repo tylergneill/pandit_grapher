@@ -54,6 +54,21 @@
     <svg width="800" height="600"></svg>
   </div>
 
+  <div id="controls">
+    <label>
+      Repulsion Strength:
+      <input type="range" id="chargeStrength" min="0" max="2000" step="50" value="200">
+    </label>
+    <label>
+      Link Distance:
+      <input type="range" id="linkDistance" min="10" max="600" step="20" value="100">
+    </label>
+    <label>
+      Collision Radius:
+      <input type="range" id="collisionRadius" min="6" max="30" step="2" value="12">
+    </label>
+  </div>
+
   <!-- Dropdown Logic -->
   <script type="module" src="{{ url_for('static', filename='js/dropdown.js') }}"></script>
 

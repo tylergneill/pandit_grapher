@@ -287,6 +287,25 @@ function renderGraph(graph) {
     .attr('text-anchor', 'middle')
     .text(d => d.label);
 
+  // Add event listeners to update forces dynamically
+  document.getElementById('chargeStrength').addEventListener('input', function () {
+      const repulsionStrength = -this.value;
+      simulation.force('charge').strength(repulsionStrength);
+      simulation.alpha(0.3).restart();
+  });
+
+  document.getElementById('linkDistance').addEventListener('input', function () {
+      const linkDistance = +this.value;
+      simulation.force('link').distance(linkDistance);
+      simulation.alpha(0.3).restart();
+  });
+
+  document.getElementById('collisionRadius').addEventListener('input', function () {
+      const collisionRadius = +this.value;
+      simulation.force('collide').radius(collisionRadius);
+      simulation.alpha(0.3).restart();
+  });
+
   simulation.on('tick', () => {
     link
       .attr('x1', d => d.source.x)
