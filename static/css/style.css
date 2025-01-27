@@ -160,6 +160,75 @@ svg {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* General menu styles */
+.nested-menu {
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+  background: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
+  font-size: 14px;
+  color: #333;
+  width: 140px;
+  position: relative;
+}
+
+/* Top-level items */
+.nested-menu > li {
+  position: relative; /* Required for submenu positioning */
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* Submenu styles */
+.submenu {
+  list-style: none;
+  padding: 5px 10px; /* Adjust padding */
+  margin: 0;
+  background: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  position: absolute;
+  left: 100%; /* Pops out to the right */
+  top: 0;
+  display: none; /* Hidden by default */
+  width: 100px;
+  z-index: 1000; /* Ensure it appears on top */
+  box-sizing: border-box; /* Include padding in width */
+}
+
+/* Show submenu on hover */
+.has-submenu:hover > .submenu {
+  display: block; /* Show submenu */
+}
+
+/* Menu items */
+.nested-menu a, .nested-menu button, .nested-menu span {
+  text-decoration: none;
+  color: #007aff;
+  background: none;
+  border: none;
+  padding: 5px 0;
+  display: block;
+  cursor: pointer;
+}
+
+/* Add consistent simple underline on hover */
+.nested-menu a:hover, .nested-menu button:hover {
+  text-decoration: underline; /* Simple underline */
+  background: none; /* Ensure no background color */
+}
+
+/* Disabled buttons */
+.nested-menu button:disabled {
+  color: #999;
+  cursor: not-allowed;
+  text-decoration: none; /* Ensure no underline for disabled buttons */
+}
+
 /* =============================
    Buttons
 ============================= */
