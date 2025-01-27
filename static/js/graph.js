@@ -219,12 +219,13 @@ function renderGraph(graph) {
 
             await refreshDropdowns(authorsDropdown, worksDropdown);
 
+            const displayText = `${d.label} (${d.id})`; // Include ID in parentheses
             // Redo dropdown for the specific type
             if (d.type === 'author') {
-                authorsDropdown.append(new Option(d.label, d.id, true, true)); // Add new center
+                authorsDropdown.append(new Option(displayText, d.id, true, true)); // Add new center
                 authorsDropdown.trigger('change'); // Refresh Select2
             } else if (d.type === 'work') {
-                worksDropdown.append(new Option(d.label, d.id, true, true)); // Add new center
+                worksDropdown.append(new Option(displayText, d.id, true, true)); // Add new center
                 worksDropdown.trigger('change'); // Refresh Select2
             }
 
