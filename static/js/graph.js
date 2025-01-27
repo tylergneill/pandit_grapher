@@ -102,11 +102,18 @@ function renderGraph(graph) {
 
   svg.call(zoom);
 
+  // Fetch initial slider values dynamically
+  const initialLinkDistance = +document.getElementById('linkDistance').value;
+  const initialChargeStrength = -document.getElementById('chargeStrength').value; // Negative for repulsion
+  const initialCollisionRadius = +document.getElementById('collisionRadius').value;
+  const initialCenterStrength = 1;
+
+  // Initialize the simulation based on slider values
   const simulation = d3.forceSimulation(graph.nodes)
-    .force('link', d3.forceLink(graph.edges).id(d => d.id).distance(100))
-    .force('charge', d3.forceManyBody().strength(-100))
-    .force('center', d3.forceCenter(width / 2, height / 2))
-    .force('collide', d3.forceCollide(20));
+    .force('link', d3.forceLink(graph.edges).id(d => d.id).distance(initialLinkDistance))
+    .force('charge', d3.forceManyBody().strength(initialChargeStrength))
+    .force('center', d3.forceCenter(width / 2, height / 2).strength(initialCenterStrength))
+    .force('collide', d3.forceCollide(initialCollisionRadius));
 
   const link = graphGroup.append('g')
     .selectAll('line')
