@@ -164,46 +164,46 @@ function renderGraph(graph) {
     const entityPath = typeMapping[d.type] || d.type;
 
     // Populate the menu
-menu.html(`
-  <ul class="nested-menu">
-    <li><strong>${d.type.charAt(0).toUpperCase() + d.type.slice(1)} ID:</strong> ${d.id}</li>
-    <li class="has-submenu">
-      <span>View in</span>
-      <ul class="submenu">
-        <li><a href="https://www.panditproject.org/entity/${d.id}/${entityPath}" target="_blank">Pandit</a></li>
-        <!-- Add more items here later -->
+    menu.html(`
+      <ul class="nested-menu">
+        <li><strong>${d.type.charAt(0).toUpperCase() + d.type.slice(1)} ID:</strong> ${d.id}</li>
+        <li class="has-submenu">
+          <span>View in</span>
+          <ul class="submenu">
+            <li><a href="https://www.panditproject.org/entity/${d.id}/${entityPath}" target="_blank">Pandit</a></li>
+            <!-- Add more items here later -->
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <span>Recenter</span>
+          <ul class="submenu">
+            <li><button class="recenter-btn" data-hops="1">1 hop</button></li>
+            <li><button class="recenter-btn" data-hops="2">2 hops</button></li>
+            <li><button class="recenter-btn" data-hops="3">3 hops</button></li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <span>Emphasis</span>
+          <ul class="submenu">
+            <li><button id="collapse-btn">Collapse</button></li>
+            <!-- <li><button id="remove-btn" disabled>Remove (Not Implemented)</button></li> -->
+            <!-- <li><button id="reexpand-btn" disabled>Re-Expand (Not Implemented)</button></li> -->
+          </ul>
+        </li>
       </ul>
-    </li>
-    <li class="has-submenu">
-      <span>Recenter</span>
-      <ul class="submenu">
-        <li><button class="recenter-btn" data-hops="1">1 hop</button></li>
-        <li><button class="recenter-btn" data-hops="2">2 hops</button></li>
-        <li><button class="recenter-btn" data-hops="3">3 hops</button></li>
-      </ul>
-    </li>
-    <li class="has-submenu">
-      <span>Emphasis</span>
-      <ul class="submenu">
-        <li><button id="collapse-btn">Collapse</button></li>
-        <!-- <li><button id="remove-btn" disabled>Remove (Not Implemented)</button></li> -->
-        <!-- <li><button id="reexpand-btn" disabled>Re-Expand (Not Implemented)</button></li> -->
-      </ul>
-    </li>
-  </ul>
-`);
+    `);
 
     // Position and show the menu
     menu.style('left', `${event.pageX}px`)
         .style('top', `${event.pageY}px`)
         .style('display', 'block');
 
-    menu.on('click', (e) => e.stopPropagation()); // Prevent menu clicks from propagating
+    menu.on('click', async (e) => {
+      const target = e.target;
 
-    // Update the recenter button handler to stop propagation
-    document.getElementById('recenter-btn').onclick = async (e) => {
+      if (target.classList.contains('recenter-btn')) {
         e.stopPropagation(); // Prevent the button click from closing the menu
-        const hops = document.getElementById('hops-input').value;
+        const hops = target.getAttribute('data-hops');
 
         const payload = {
             authors: d.type === 'author' ? [d.id] : [],
@@ -246,10 +246,8 @@ menu.html(`
 
         // Hide the menu
         menu.style('display', 'none');
-    };
-
-    // Exclude Node button handler
-    document.getElementById('collapse-btn').onclick = async (e) => {
+      }
+      if (target.id === 'collapse-btn') {
         e.stopPropagation(); // Prevent the button click from closing the menu
 
         // Add the selected node to the exclude list
@@ -287,7 +285,8 @@ menu.html(`
 
         // Hide the menu
         menu.style('display', 'none');
-    };
+      }
+    });
   });
 
   // Hide menu on outside click
