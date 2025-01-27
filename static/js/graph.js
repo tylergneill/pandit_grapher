@@ -164,18 +164,34 @@ function renderGraph(graph) {
     const entityPath = typeMapping[d.type] || d.type;
 
     // Populate the menu
-    menu.html(`
-        <a href="https://www.panditproject.org/entity/${d.id}/${entityPath}" target="_blank" style="display:block; margin-bottom: 5px;">View in Pandit</a>
-        <br>
-        <div style="margin-bottom: 10px;">
-            <label for="hops-input" style="display:inline-block; width: 50px; text-align: right; margin-right: 5px; color: black;">Hops:</label>
-            <input type="number" id="hops-input" value="2" style="width: 50px;">
-        </div>
-        <button id="recenter-btn" style="display:block;">Recenter Graph</button>
-        <br>
-        <!-- New material: Exclude Node option -->
-        <button id="exclude-node-btn" style="display:block; margin-top: 5px;">Collapse Node</button>
-    `);
+menu.html(`
+  <ul class="nested-menu">
+    <li><strong>${d.type.charAt(0).toUpperCase() + d.type.slice(1)} ID:</strong> ${d.id}</li>
+    <li class="has-submenu">
+      <span>View in</span>
+      <ul class="submenu">
+        <li><a href="https://www.panditproject.org/entity/${d.id}/${entityPath}" target="_blank">Pandit</a></li>
+        <!-- Add more items here later -->
+      </ul>
+    </li>
+    <li class="has-submenu">
+      <span>Recenter</span>
+      <ul class="submenu">
+        <li><button class="recenter-btn" data-hops="1">1 hop</button></li>
+        <li><button class="recenter-btn" data-hops="2">2 hops</button></li>
+        <li><button class="recenter-btn" data-hops="3">3 hops</button></li>
+      </ul>
+    </li>
+    <li class="has-submenu">
+      <span>Emphasis</span>
+      <ul class="submenu">
+        <li><button id="collapse-btn">Collapse</button></li>
+        <!-- <li><button id="remove-btn" disabled>Remove (Not Implemented)</button></li> -->
+        <!-- <li><button id="reexpand-btn" disabled>Re-Expand (Not Implemented)</button></li> -->
+      </ul>
+    </li>
+  </ul>
+`);
 
     // Position and show the menu
     menu.style('left', `${event.pageX}px`)
@@ -233,7 +249,7 @@ function renderGraph(graph) {
     };
 
     // Exclude Node button handler
-    document.getElementById('exclude-node-btn').onclick = async (e) => {
+    document.getElementById('collapse-btn').onclick = async (e) => {
         e.stopPropagation(); // Prevent the button click from closing the menu
 
         // Add the selected node to the exclude list
