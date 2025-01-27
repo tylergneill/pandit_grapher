@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Initialize Select2
     initializeSelect2('#authors-dropdown', 'Authors to include');
     initializeSelect2('#works-dropdown', 'Works to include');
-    initializeSelect2('#exclude-list-dropdown', 'Entities to exclude');
+    initializeSelect2('#exclude-list-dropdown', 'Entities to not expand');
 
     // Remove pre-initialization class
     document.querySelectorAll('.select2-initial').forEach(el => el.classList.remove('select2-initial'));
@@ -94,7 +94,7 @@ function adjustWidths() {
     // Update Select2 widths
     $('#authors-dropdown').select2('destroy').select2({ placeholder: 'Authors to include', allowClear: true, width: 'resolve' });
     $('#works-dropdown').select2('destroy').select2({ placeholder: 'Works to include', allowClear: true, width: 'resolve' });
-    $('#exclude-list-dropdown').select2('destroy').select2({ placeholder: 'Entities to exclude', allowClear: true, width: 'resolve' });
+    $('#exclude-list-dropdown').select2('destroy').select2({ placeholder: 'Entities to not expand', allowClear: true, width: 'resolve' });
 
     // Match Hops width to Works dropdown
     const worksContainer = document.querySelector('#works-dropdown + .select2-container');
