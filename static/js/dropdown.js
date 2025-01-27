@@ -84,6 +84,7 @@ function initializeSelect2(selector, placeholder) {
   $(selector).select2({
     placeholder: placeholder,
     allowClear: true,
+    tags: false,
     width: 'resolve' // Ensure the dropdown width is dynamic
   });
 }
