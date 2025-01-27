@@ -255,8 +255,8 @@ button:hover { background: #a93226; }
 ============================= */
 .dropdown-wrapper {
   width: 100%; /* Ensures the wrapper is full-width */
-  height: 40px; /* Matches Select2's height */
-  position: relative; /* Allows for clean alignment */
+  height: 40px; /* Matches Select2's selection box height */
+  position: relative; /* Allows for proper alignment */
 }
 
 /* Pre-initialization styling */
@@ -273,10 +273,12 @@ button:hover { background: #a93226; }
   color: #333333;
 }
 
-/* Post-initialization styling */
+/* =============================
+   Select2 Selection Styles (Post-initialization)
+============================= */
 .select2-container .select2-selection--multiple {
   box-sizing: border-box;
-  height: 40px; /* Fixed height */
+  height: 40px; /* Allow dynamic height if needed */
   padding: 5px 12px; /* Consistent padding */
   font-size: 14px;
   line-height: 1.2; /* Ensures text alignment matches */
@@ -284,6 +286,8 @@ button:hover { background: #a93226; }
   border-radius: 5px;
   background-color: #ffffff;
   color: #333333;
+  overflow-y: auto; /* Add scrolling for many selected items */
+  scrollbar-width: thin; /* Thin scrollbar for modern browsers */
 }
 
 /* Selected Items (Chips) in Dropdown Input */
@@ -296,6 +300,10 @@ button:hover { background: #a93226; }
   font-size: 14px;
   margin: 2px 3px 0 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  max-width: calc(100% - 20px); /* Prevent chips from overflowing */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Add ellipsis for long text */
+  white-space: nowrap;
 }
 
 /* Remove 'X' Icon Styling */
@@ -306,10 +314,26 @@ button:hover { background: #a93226; }
   cursor: pointer;
 }
 
+/* =============================
+   Select2 Results List (Dropdown Menu)
+============================= */
+.select2-container .select2-dropdown {
+  max-height: 200px; /* Limit dropdown height */
+  overflow-y: auto; /* Enable scrolling */
+  background-color: #ffffff;
+  border: 1px solid #5a0b73;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Dropdown Options */
 .select2-results__option {
   background-color: #ffffff;
   color: #333333;
   padding: 8px 12px;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Prevent long text from overflowing */
+  white-space: nowrap;
 }
 
 .select2-results__option--highlighted {
@@ -317,13 +341,26 @@ button:hover { background: #a93226; }
   color: #ffffff !important;
 }
 
+/* Search Input in Dropdown */
 .select2-search--dropdown .select2-search__field {
   background-color: #ffffff;
   color: #333333;
   border: 1px solid #5a0b73;
   border-radius: 5px;
   padding: 5px;
+  margin: 5px; /* Add spacing around the search bar */
 }
+
+/* =============================
+   Clear-all button suppression
+============================= */
+.select2-container .select2-selection__clear {
+  display: none !important; /* Completely hides the clear-all button */
+}
+
+/* =============================
+   Special Link Styles
+============================= */
 
 #controls {
   top: 10px;
