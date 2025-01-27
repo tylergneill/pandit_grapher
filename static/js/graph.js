@@ -306,6 +306,13 @@ function renderGraph(graph) {
       simulation.alpha(0.3).restart();
   });
 
+  document.getElementById('centerStrength').addEventListener('input', function () {
+      const centerStrength = +this.value;
+      simulation.force('center', d3.forceCenter(width / 2, height / 2).strength(centerStrength));
+      simulation.alpha(0.3).restart(); // Restart with some energy
+  });
+
+
   simulation.on('tick', () => {
     link
       .attr('x1', d => d.source.x)
