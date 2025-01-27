@@ -319,6 +319,35 @@ function renderGraph(graph) {
       simulation.alpha(0.3).restart(); // Restart with some energy
   });
 
+  document.getElementById('freezeSwitch').addEventListener('change', function () {
+  if (this.checked) {
+    // Freeze: Disable all forces
+    simulation
+      .force('link', d3.forceLink().strength(0))
+      .force('charge', d3.forceManyBody().strength(0))
+      .force('center', d3.forceCenter(width / 2, height / 2).strength(0))
+        .force('collide', d3.forceCollide().strength(0))
+        .alpha(0)
+        .stop();
+    } else {
+      // Unfreeze: Reapply forces with current slider values
+      const linkDistance = +document.getElementById('linkDistance').value;
+      const chargeStrength = -document.getElementById('chargeStrength').value; // Negative for repulsion
+      const centerStrength = +document.getElementById('centerStrength').value;
+      const collisionRadius = +document.getElementById('collisionRadius').value;
+
+      simulation
+        .force('link', d3.forceLink(graph.edges).id(d => d.id).distance(linkDistance))
+        .force('charge', d3.forceManyBody().strength(chargeStrength))
+        .force('center', d3.forceCenter(width / 2, height / 2).strength(centerStrength))
+        .force('collide', d3.forceCollide(collisionRadius))
+        .alpha(1) // Reset the simulation's energy
+        .alphaDecay(0.0228) // Restore default decay
+        .restart(); // Restart the simulation
+    }
+  });
+
+
 
   simulation.on('tick', () => {
     link
