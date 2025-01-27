@@ -251,6 +251,13 @@ button:hover { background: #a93226; }
 }
 
 /* =============================
+   Clear-all button suppression
+============================= */
+.select2-container .select2-selection__clear {
+  display: none !important; /* Completely hides the clear-all button */
+}
+
+/* =============================
    Select2 Dropdown Styles
 ============================= */
 .dropdown-wrapper {
