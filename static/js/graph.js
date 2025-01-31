@@ -102,11 +102,18 @@ function renderGraph(graph) {
 
   svg.call(zoom);
 
+  // Fetch initial slider values dynamically
+  const initialLinkDistance = +document.getElementById('linkDistance').value;
+  const initialChargeStrength = -document.getElementById('chargeStrength').value; // Negative for repulsion
+  const initialCollisionRadius = +document.getElementById('collisionRadius').value;
+  const initialCenterStrength = 1;
+
+  // Initialize the simulation based on slider values
   const simulation = d3.forceSimulation(graph.nodes)
-    .force('link', d3.forceLink(graph.edges).id(d => d.id).distance(100))
-    .force('charge', d3.forceManyBody().strength(-100))
-    .force('center', d3.forceCenter(width / 2, height / 2))
-    .force('collide', d3.forceCollide(20));
+    .force('link', d3.forceLink(graph.edges).id(d => d.id).distance(initialLinkDistance))
+    .force('charge', d3.forceManyBody().strength(initialChargeStrength))
+    .force('center', d3.forceCenter(width / 2, height / 2).strength(initialCenterStrength))
+    .force('collide', d3.forceCollide(initialCollisionRadius));
 
   const link = graphGroup.append('g')
     .selectAll('line')
@@ -168,7 +175,7 @@ function renderGraph(graph) {
       <ul class="nested-menu">
         <li><strong>${d.type.charAt(0).toUpperCase() + d.type.slice(1)} ID:</strong> ${d.id}</li>
         <li class="has-submenu">
-          <span>View in</span>
+          <span>View on</span>
           <ul class="submenu">
             <li><a href="https://www.panditproject.org/entity/${d.id}/${entityPath}" target="_blank">Pandit</a></li>
             <!-- Add more items here later -->
@@ -183,7 +190,7 @@ function renderGraph(graph) {
           </ul>
         </li>
         <li class="has-submenu">
-          <span>Emphasis</span>
+          <span>Exclusions</span>
           <ul class="submenu">
             <li><button id="collapse-btn">Collapse</button></li>
             <!-- <li><button id="remove-btn" disabled>Remove (Not Implemented)</button></li> -->
@@ -302,6 +309,61 @@ function renderGraph(graph) {
     .attr('dy', -15)
     .attr('text-anchor', 'middle')
     .text(d => d.label);
+
+  // Add event listeners to update forces dynamically
+  document.getElementById('chargeStrength').addEventListener('input', function () {
+      const repulsionStrength = -this.value;
+      simulation.force('charge').strength(repulsionStrength);
+      simulation.alpha(0.3).restart();
+  });
+
+  document.getElementById('linkDistance').addEventListener('input', function () {
+      const linkDistance = +this.value;
+      simulation.force('link').distance(linkDistance);
+      simulation.alpha(0.3).restart();
+  });
+
+  document.getElementById('collisionRadius').addEventListener('input', function () {
+      const collisionRadius = +this.value;
+      simulation.force('collide').radius(collisionRadius);
+      simulation.alpha(0.3).restart();
+  });
+
+  document.getElementById('centerStrength').addEventListener('input', function () {
+      const centerStrength = +this.value;
+      simulation.force('center', d3.forceCenter(width / 2, height / 2).strength(centerStrength));
+      simulation.alpha(0.3).restart(); // Restart with some energy
+  });
+
+  document.getElementById('freezeSwitch').addEventListener('change', function () {
+  if (this.checked) {
+    // Freeze: Disable all forces
+    simulation
+      .force('link', d3.forceLink().strength(0))
+      .force('charge', d3.forceManyBody().strength(0))
+      .force('center', d3.forceCenter(width / 2, height / 2).strength(0))
+        .force('collide', d3.forceCollide().strength(0))
+        .alpha(0)
+        .stop();
+    } else {
+      // Unfreeze: Reapply forces with current slider values
+      const linkDistance = +document.getElementById('linkDistance').value;
+      const chargeStrength = -document.getElementById('chargeStrength').value; // Negative for repulsion
+      const centerStrength = +document.getElementById('centerStrength').value;
+      const collisionRadius = +document.getElementById('collisionRadius').value;
+
+      simulation
+        .force('link', d3.forceLink(graph.edges).id(d => d.id).distance(linkDistance))
+        .force('charge', d3.forceManyBody().strength(chargeStrength))
+        .force('center', d3.forceCenter(width / 2, height / 2).strength(centerStrength))
+        .force('collide', d3.forceCollide(collisionRadius))
+        .alpha(1) // Reset the simulation's energy
+        .alphaDecay(0.0228) // Restore default decay
+        .restart(); // Restart the simulation
+    }
+  });
+
+
 
   simulation.on('tick', () => {
     link

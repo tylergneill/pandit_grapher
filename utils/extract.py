@@ -40,11 +40,8 @@ df_filtered["Authors (person)"] = df_filtered["Authors (person)"].fillna("").ast
 df_filtered["Author (person IDs)"] = df_filtered["Author (person IDs)"].str.replace(r";\s*;", ";", regex=True).str.strip("; ")
 df_filtered["Authors (person)"] = df_filtered["Authors (person)"].str.replace(r";\s*;", ";", regex=True).str.strip("; ")
 
-# Drop the "Content type" and "Attributed author" columns
+# Drop the "Content type" and two "Attributed author" columns
 df_filtered = df_filtered.drop(columns=["Content type", "Attributed author (person ID)", "Attributed author (person)"], errors="ignore")
-
-# Drop the "Content type" column
-df_filtered = df_filtered.drop(columns=["Content type"], errors="ignore")
 
 # Rename columns
 df_filtered.rename(columns={
