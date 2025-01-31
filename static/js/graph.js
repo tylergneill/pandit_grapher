@@ -175,7 +175,7 @@ function renderGraph(graph) {
       <ul class="nested-menu">
         <li><strong>${d.type.charAt(0).toUpperCase() + d.type.slice(1)} ID:</strong> ${d.id}</li>
         <li class="has-submenu">
-          <span>View in</span>
+          <span>View on</span>
           <ul class="submenu">
             <li><a href="https://www.panditproject.org/entity/${d.id}/${entityPath}" target="_blank">Pandit</a></li>
             <!-- Add more items here later -->
@@ -190,7 +190,7 @@ function renderGraph(graph) {
           </ul>
         </li>
         <li class="has-submenu">
-          <span>Emphasis</span>
+          <span>Exclusions</span>
           <ul class="submenu">
             <li><button id="collapse-btn">Collapse</button></li>
             <!-- <li><button id="remove-btn" disabled>Remove (Not Implemented)</button></li> -->
