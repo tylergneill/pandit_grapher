@@ -16,3 +16,11 @@ def load_entities():
         data = json.load(jsonfile)
     entities_by_id = {eid: Entity.from_dict(edict) for eid, edict in data.items()}
     return entities_by_id
+
+@time_execution
+def load_link_data():
+    input_filename = "gretil_link_data.json"
+    input_json_path = os.path.join(current_file_dir, relative_data_dir, input_filename)
+    with open(input_json_path, "r") as jsonfile:
+        data = json.load(jsonfile)
+    return data
