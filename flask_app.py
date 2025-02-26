@@ -306,6 +306,11 @@ def update_notes():
     return render_template('notes/updates.html')
 
 
+@app.route('/seti')
+def seti():
+    return render_template('seti.html')
+
+
 # --- data serving route ---
 
 @app.route('/data/<path:filepath>')
