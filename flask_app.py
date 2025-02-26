@@ -5,11 +5,13 @@ from flask_restx import Api, Resource, fields
 
 from grapher import construct_subgraph, annotate_graph
 from utils.utils import find_app_version, find_data_version, load_config_dict_from_json_file
-from utils.load import load_entities
+from utils.load import load_entities, load_link_data
 
 ENTITIES_BY_ID = load_entities()
 APP_VERSION = find_app_version()
 DATA_VERSION = find_data_version()
+
+etext_link_data = load_link_data()
 
 config_dict = load_config_dict_from_json_file()
 DEFAULT_HOPS = config_dict["hops"]
@@ -102,6 +104,48 @@ class Labels(Resource):
             return {"error": str(e)}, 500
 
 
+@entities_ns.route("/etexts/by_collection/<string:collection>")
+class EtextsByCollection(Resource):
+    def get(self, collection):
+        """
+        Fetch etext data for all works associated with a given collection.
+        Example: /api/entities/etexts_by_collection/GRETIL
+        Example: /api/entities/etexts_by_collection/all
+        """
+        if collection.lower() == "all":
+            return jsonify(etext_link_data)
+        results = {work_id: data for work_id, data in etext_link_data.items() if collection in data}
+        return jsonify(results)
+
+
+@entities_ns.route("/etexts/by_work")
+class EtextsByWork(Resource):
+    @api.doc(
+        params={
+            'ids': 'Comma-separated list of entity IDs to fetch labels for (e.g., 41541,12345)'
+        },
+        responses={
+            200: 'E-Text link data returned successfully',
+            400: 'No IDs provided or other error',
+            500: 'Internal server error'
+        },
+    )
+    def get(self):
+        """
+        Fetch etext data for a list of work IDs.
+        Example: /api/entities/etexts/by_work?ids=111493,42078
+        """
+        ids_param = request.args.get('ids')  # Get all IDs as a list
+
+        err = validate_comma_separated_list_input(ids_param)
+        if err is not None:
+            return err, 400
+
+        work_ids = [wid.strip() for wid in ids_param.split(",")]
+        results = {wid: etext_link_data[wid] for wid in work_ids if wid in etext_link_data}
+        return jsonify(results)
+
+
 # register entities namespace
 api.add_namespace(entities_ns)
 
@@ -149,7 +193,12 @@ class Subgraph(Resource):
 
             # Call the actual construct_subgraph function
             subgraph = construct_subgraph(subgraph_center, hops, exclude_list)
-            annotated_subgraph = annotate_graph(subgraph, subgraph_center, exclude_list)
+
+            # For Works in subgraph, get e-text link data
+            # etext_link_data = something
+
+
+            annotated_subgraph = annotate_graph(subgraph, subgraph_center, exclude_list, etext_link_data)
 
             # Extract nodes and edges
             filtered_nodes = [
