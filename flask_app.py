@@ -288,7 +288,7 @@ def author_notes():
 
 @app.route('/notes/data')
 def data_notes():
-    return render_template('notes/data.html')
+    return render_template('notes/data.html', pandit_data_version=PANDIT_DATA_VERSION, etext_data_version=ETEXT_DATA_VERSION)
 
 
 @app.route('/notes/license')
@@ -298,7 +298,7 @@ def license_notes():
 
 @app.route('/notes/technical')
 def tech_notes():
-    return render_template('notes/technical.html', app_version=APP_VERSION)
+    return render_template('notes/technical.html', app_version=APP_VERSION, pandit_data_version=PANDIT_DATA_VERSION, etext_data_version=ETEXT_DATA_VERSION)
 
 
 @app.route('/notes/updates')
