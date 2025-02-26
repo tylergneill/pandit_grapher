@@ -13,6 +13,10 @@ body {
   align-items: center;
 }
 
+body, html {
+  overflow: visible;
+}
+
 /* =============================
    Top Panel Styles
 ============================= */
@@ -186,7 +190,7 @@ svg {
 /* Submenu styles */
 .submenu {
   list-style: none;
-  padding: 5px 10px; /* Adjust padding */
+  padding: 5px 10px;
   margin: 0;
   background: #f8f8f8;
   border: 1px solid #ccc;
@@ -195,14 +199,33 @@ svg {
   left: 100%; /* Pops out to the right */
   top: 0;
   display: none; /* Hidden by default */
-  width: 100px;
+  min-width: 160px; /* Ensure links don't get cut off */
+  max-width: 300px; /* Limit width to prevent excessive stretching */
+  overflow: visible; /* <-- Let child submenus extend beyond the parent box */
+  white-space: nowrap;
   z-index: 1000; /* Ensure it appears on top */
   box-sizing: border-box; /* Include padding in width */
 }
 
-/* Show submenu on hover */
-.has-submenu:hover > .submenu {
-  display: block; /* Show submenu */
+/* Show submenu when hovering over parent item */
+.has-submenu:hover > .submenu,
+.has-submenu:focus-within > .submenu {
+  display: block;
+}
+
+/* Ensure submenu stays open when hovering */
+.has-submenu > .submenu:hover {
+  display: block;
+}
+
+/* Sub-submenu styles (to prevent accidental closing) */
+.has-submenu {
+  position: relative;
+}
+
+.has-submenu .submenu {
+  top: 0;
+  left: 100%; /* Ensures submenu expands to the right */
 }
 
 /* Menu items */
@@ -218,15 +241,15 @@ svg {
 
 /* Add consistent simple underline on hover */
 .nested-menu a:hover, .nested-menu button:hover {
-  text-decoration: underline; /* Simple underline */
-  background: none; /* Ensure no background color */
+  text-decoration: underline;
+  background: none;
 }
 
 /* Disabled buttons */
 .nested-menu button:disabled {
   color: #999;
   cursor: not-allowed;
-  text-decoration: none; /* Ensure no underline for disabled buttons */
+  text-decoration: none;
 }
 
 /* =============================

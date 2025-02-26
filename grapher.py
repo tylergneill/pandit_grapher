@@ -5,7 +5,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 
 from data_models import Work, Author
-from utils.load import load_entities
+from utils.load import load_entities, load_link_data
 from utils.utils import load_config_dict_from_json_file, time_execution
 
 config_dict = load_config_dict_from_json_file()
@@ -18,6 +18,7 @@ networkx_figure_size = config_dict["networkx_figure_size"]
 output_gephi_file = config_dict["output_gephi_file"]
 
 ENTITIES_BY_ID = load_entities()
+ETEXT_LINKS = load_link_data()
 
 
 @time_execution
@@ -126,9 +127,13 @@ def annotate_graph(graph: nx.DiGraph, selected_entities, exclude_list) -> nx.DiG
     Returns:
         dict: Annotated graph data.
     """
+    etext_link_data = {wid: ETEXT_LINKS[wid] for wid in graph.nodes if wid in ETEXT_LINKS}
+
     for node in graph.nodes:
         graph.nodes[node]['is_central'] = node in selected_entities
         graph.nodes[node]['is_excluded'] = node in exclude_list
+        if node in etext_link_data:
+            graph.nodes[node]['etext_links'] = etext_link_data[node]
     return graph
 
 

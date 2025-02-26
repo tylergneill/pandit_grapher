@@ -4,14 +4,15 @@ from flask import Flask, render_template, Blueprint, jsonify, request, send_from
 from flask_restx import Api, Resource, fields
 
 from grapher import construct_subgraph, annotate_graph
-from utils.utils import find_app_version, find_data_version, load_config_dict_from_json_file
+from utils.utils import find_app_version, find_pandit_data_version, find_etext_data_version, load_config_dict_from_json_file
 from utils.load import load_entities, load_link_data
 
 ENTITIES_BY_ID = load_entities()
-APP_VERSION = find_app_version()
-DATA_VERSION = find_data_version()
+ETEXT_LINKS = load_link_data()
 
-etext_link_data = load_link_data()
+APP_VERSION = find_app_version()
+PANDIT_DATA_VERSION = find_pandit_data_version()
+ETEXT_DATA_VERSION = find_etext_data_version()
 
 config_dict = load_config_dict_from_json_file()
 DEFAULT_HOPS = config_dict["hops"]
@@ -21,7 +22,8 @@ app = Flask(__name__)
 # --- Blueprint setup ---
 api_bp = Blueprint('api', __name__, url_prefix='/api')  # API Blueprint
 api = Api(api_bp, version=APP_VERSION, title='Pāṇḍitya API',
-          description=f'API for exploring work and author relationships in Pandit database ({DATA_VERSION})',
+          description=  f'API for exploring work and author relationships in Pandit database ({PANDIT_DATA_VERSION}) '
+                        f'and linking to online e-text repositories (last updated {ETEXT_DATA_VERSION})',
           doc='/docs')  # Swagger UI available at /api/docs
 
 # --- Define all namespaces ---
@@ -106,23 +108,26 @@ class Labels(Resource):
 
 @entities_ns.route("/etexts/by_collection/<string:collection>")
 class EtextsByCollection(Resource):
-    def get(self, collection):
+    def get(self, collection: str, exclude_other_collections: bool = False):
         """
         Fetch etext data for all works associated with a given collection.
         Example: /api/entities/etexts_by_collection/GRETIL
         Example: /api/entities/etexts_by_collection/all
         """
         if collection.lower() == "all":
-            return jsonify(etext_link_data)
-        results = {work_id: data for work_id, data in etext_link_data.items() if collection in data}
-        return jsonify(results)
+            return jsonify(ETEXT_LINKS)
+        if exclude_other_collections:
+            etext_link_data = {work_id: data[collection] for work_id, data in ETEXT_LINKS.items() if collection in data}
+        else:
+            etext_link_data = {work_id: data for work_id, data in ETEXT_LINKS.items() if collection in data}
+        return jsonify(etext_link_data)
 
 
 @entities_ns.route("/etexts/by_work")
 class EtextsByWork(Resource):
     @api.doc(
         params={
-            'ids': 'Comma-separated list of entity IDs to fetch labels for (e.g., 41541,12345)'
+            'ids': 'Comma-separated list of work IDs to fetch e-text links for (e.g., 41541,12345)'
         },
         responses={
             200: 'E-Text link data returned successfully',
@@ -142,8 +147,8 @@ class EtextsByWork(Resource):
             return err, 400
 
         work_ids = [wid.strip() for wid in ids_param.split(",")]
-        results = {wid: etext_link_data[wid] for wid in work_ids if wid in etext_link_data}
-        return jsonify(results)
+        etext_link_data = {wid: ETEXT_LINKS[wid] for wid in work_ids if wid in ETEXT_LINKS}
+        return jsonify(etext_link_data)
 
 
 # register entities namespace
@@ -194,11 +199,8 @@ class Subgraph(Resource):
             # Call the actual construct_subgraph function
             subgraph = construct_subgraph(subgraph_center, hops, exclude_list)
 
-            # For Works in subgraph, get e-text link data
-            # etext_link_data = something
-
-
-            annotated_subgraph = annotate_graph(subgraph, subgraph_center, exclude_list, etext_link_data)
+            # Annotate graph data for visual emphasis and e-text links
+            annotated_subgraph = annotate_graph(subgraph, subgraph_center, exclude_list)
 
             # Extract nodes and edges
             filtered_nodes = [
@@ -208,6 +210,7 @@ class Subgraph(Resource):
                     "type": ENTITIES_BY_ID[node].type,
                     "is_central": annotated_subgraph.nodes[node].get('is_central', False),
                     "is_excluded": annotated_subgraph.nodes[node].get('is_excluded', False),
+                    "etext_links": annotated_subgraph.nodes[node].get('etext_links', False),
                 }
                 for node in annotated_subgraph.nodes
             ]

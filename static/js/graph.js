@@ -133,6 +133,18 @@ function renderGraph(graph) {
       if (d.is_excluded) return 15;
       return 10;
     })
+    .style('stroke', d => {
+      if (d.type === 'work' && d.etext_links) {
+        return 'gold';
+      }
+      return null; // or 'none'
+    })
+    .style('stroke-width', d => {
+      if (d.type === 'work' && d.etext_links) {
+        return 4;
+      }
+      return 1; // or default
+    })
     .call(d3.drag()
       .on('start', event => {
         if (!event.active) simulation.alphaTarget(0.3).restart();
@@ -170,6 +182,32 @@ function renderGraph(graph) {
     const typeMapping = { author: "person", work: "work" };
     const entityPath = typeMapping[d.type] || d.type;
 
+    let etextMenuHtml = '';
+
+    if (d.etext_links) {
+        Object.entries(d.etext_links).forEach(([collection, links]) => {
+            // Create individual list items for each link
+            let collectionLinks = links.map(link => {
+              // 1) Get everything after the final slash
+              let shortText = link.substring(link.lastIndexOf('/') + 1);
+
+              // 2) Strip off .htm, .html, etc. if present
+              shortText = shortText.replace(/\.[^.]+$/, '');
+              // ^ This removes the last "dot + extension", e.g. '.htm', '.html', '.php', etc.
+
+              // 3) Return the list item with shortened text
+              return `<li><a href="${link}" target="_blank">${shortText}</a></li>`;
+            }).join('');
+
+            etextMenuHtml += `
+              <li class="has-submenu">
+                <span>${collection}</span>
+                <ul class="submenu">${collectionLinks}</ul>
+              </li>
+            `;
+        });
+    }
+
     // Populate the menu
     menu.html(`
       <ul class="nested-menu">
@@ -178,7 +216,7 @@ function renderGraph(graph) {
           <span>View on</span>
           <ul class="submenu">
             <li><a href="https://www.panditproject.org/entity/${d.id}/${entityPath}" target="_blank">Pandit</a></li>
-            <!-- Add more items here later -->
+            ${etextMenuHtml}
           </ul>
         </li>
         <li class="has-submenu">

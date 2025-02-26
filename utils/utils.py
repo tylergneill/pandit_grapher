@@ -35,8 +35,15 @@ def find_app_version():
         return file.readline().strip().split('=')[1].strip().replace("'", "").replace('"', '')
 
 
-def find_data_version():
+def find_pandit_data_version():
     data_version_filepath = './VERSION'
     with open(data_version_filepath, 'r', encoding='utf8') as file:
-        # Assuming the __data_version__ line is the second line
+        # Assuming the __pandit_data_version__ line is the second line
         return file.readlines()[1].strip().split('=')[1].strip().replace("'", "").replace('"', '')
+
+
+def find_etext_data_version():
+    data_version_filepath = './VERSION'
+    with open(data_version_filepath, 'r', encoding='utf8') as file:
+        # Assuming the __etext_data_version__ line is the third line
+        return file.readlines()[2].strip().split('=')[1].strip().replace("'", "").replace('"', '')
