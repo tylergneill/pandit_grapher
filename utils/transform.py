@@ -71,3 +71,6 @@ def create_entities():
         json.dump({eid: e.to_dict() for eid, e in entities_by_id.items()}, jsonfile, indent=4, ensure_ascii=False)
 
     return entities_by_id
+
+if __name__ == "__main__":
+    create_entities()
