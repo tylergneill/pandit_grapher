@@ -19,8 +19,10 @@ def load_entities():
 
 @time_execution
 def load_link_data():
-    input_filename = "2025-02-26-gretil-link-data.json"
+
+    input_filename = "2025-02-27-etext-link-data.json"
     input_json_path = os.path.join(current_file_dir, relative_data_dir, input_filename)
     with open(input_json_path, "r") as jsonfile:
         data = json.load(jsonfile)
+
     return data

@@ -1,9 +1,9 @@
 {
     "41242": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/mamkavpu.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/mamkprku.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/mamkpb_u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/mamkpb_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/mamkavpu.htm"
         ]
     },
     "41312": {
@@ -34,30 +34,36 @@
     "41458": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/7_ayur/caraka_u.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/carakasamhita.xml"
         ]
     },
     "41478": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/7_ayur/vagaah_u.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/astangahrdayasamhita.xml"
         ]
     },
     "41500": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/kragh_pu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/ragh1-6u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/ragh1-6u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/kragh_pu.htm"
         ]
     },
     "41506": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/2_lex/amark3_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/2_lex/amark2_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/2_lex/amark1pu.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/2_lex/amark1pu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/2_lex/amark2_u.htm"
         ]
     },
     "41541": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/1_gram/panini_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/1_gram/paninipu.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/1_gram/paninipu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/1_gram/panini_u.htm"
         ]
     },
     "41543": {
@@ -82,8 +88,11 @@
     },
     "41893": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/7_ayur/vrasrs_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/7_ayur/vrasrscu.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/7_ayur/vrasrscu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/7_ayur/vrasrs_u.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/vagbhata-rasaratnasamuccaya-comms.xml"
         ]
     },
     "41899": {
@@ -98,31 +107,37 @@
     },
     "41914": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/ksbhm10u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/ksbhm15u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/ksbhm12u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/ksbhm16u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/ksbhm11u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/ksbhm08u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/ksbhm18u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/ksbhm14u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/ksbhm07u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/ksbhm19u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/ksbhm06u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/ksbhm10u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/ksbhm11u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/ksbhm13u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/ksbhm14u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/ksbhm18u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/ksbhm09u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/ksbhm17u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/ksbhm06u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/ksbhm07u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/ksbhm16u.htm"
         ]
     },
     "41990": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/skprevku.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/skp031pu.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/skandapurana.xml"
         ]
     },
     "42030": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/7_ayur/nitrrk_u.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/nityanatha-rasaratnakara-rasayanakhanda.xml"
         ]
     },
     "42036": {
@@ -142,42 +157,42 @@
     },
     "42214": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c16u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c13u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c17u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c09u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c11u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c05u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c06u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhgce__u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c01u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c04u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c03u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c15u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c18u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c07u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c02u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c05u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c08u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c10u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c14u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c13u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c06u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c12u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c03u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c04u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c14u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c11u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhgce__u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c18u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c02u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c09u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c01u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c16u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c10u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c07u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/ext/bhg4c17u.htm"
         ]
     },
     "42357": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/bhagp/bhp_08u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/bhagp/bhp_01u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/bhagp/bhp_11u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/bhagp/bhp_05u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/bhagp/bhp_02u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/bhagp/bhp_03u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/bhagp/bhp_04u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/bhagp/bhp_12u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/bhagp/bhpc101u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/bhagp/bhp_08u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/bhagp/bhp_07u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/bhagp/bhp_06u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/bhagp/bhp_05u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/bhagp/bhp_09u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/bhagp/bhp_10u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/bhagp/bhp_06u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/bhagp/bhp_03u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/bhagp/bhp_04u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/bhagp/bhp_01u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/bhagp/bhp_12u.htm"
         ]
     },
     "42361": {
@@ -187,19 +202,19 @@
     },
     "42380": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_02_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_05_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_10_u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_07_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_08_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_14_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_11_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_05_u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_06_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_03_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_09_u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_01_u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_13_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_11_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_03_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_14_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_10_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_09_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_04_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_08_u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_02_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_04_u.htm"
         ]
     },
     "42401": {
@@ -237,27 +252,27 @@
     },
     "88037": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brsgor1u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brssbh4u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/bbdip12u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/bbdip13u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brsvbh4u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brsvbh2u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brsvbh3u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brsgor4u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brahmsuu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brsgor2u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brsgor3u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brssbh3u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brsvbh1u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/bbdip11u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brssgo2u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brssbh2u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brssbh1u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brssgo3u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brssgo1u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brsvbh2u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brssgo4u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brahms2u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brssbh4u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brssbh2u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brahms2u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brsgor4u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brsvbh1u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/bbdip12u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brssgo1u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brsgor1u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brsgor2u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/bbdip13u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brssbh3u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brssgo2u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brsgor3u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brsvbh3u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brahmsuu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/bbdip11u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brsvbh4u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/brssbh1u.htm"
         ]
     },
     "88042": {
@@ -273,8 +288,8 @@
     },
     "88055": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/bsu020_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/kasyparu.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/kasyparu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/bsu020_u.htm"
         ]
     },
     "88072": {
@@ -289,8 +304,8 @@
     },
     "88078": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa027_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/nagmmk_u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/nagmmk_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa027_u.htm"
         ]
     },
     "88079": {
@@ -307,8 +322,8 @@
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa025_u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/nrat_2_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/nrat_1_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/nrat_4_u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/nrat_4_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/nrat_1_u.htm"
         ]
     },
     "88082": {
@@ -323,23 +338,23 @@
     },
     "88087": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa021_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/nagvigvu.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/nagvvy_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/nagvigvu.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa021_u.htm"
         ]
     },
     "88089": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/nagyuksu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/nagysk_u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/nagysk_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/nagyuksu.htm"
         ]
     },
     "88091": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/nystik_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/gaunys_u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/nysvbh_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/nysu51pu.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/nystik_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/nysu51pu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/gaunys_u.htm"
         ]
     },
     "88092": {
@@ -350,8 +365,8 @@
     },
     "88093": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/vimkn_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/bsu061_u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/bsu061_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/vimkn_u.htm"
         ]
     },
     "88094": {
@@ -366,23 +381,23 @@
     },
     "88100": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/sspp2_2u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/sspp2_3u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/sspp2_1u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/sspp2_4u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/sspp2_1u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/sspp2_3u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/sspp2_2u.htm"
         ]
     },
     "88101": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/pvspl_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/pplg1__u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/psp_2-3u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/psp_6-8u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/pspdut2u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/psp_5u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/psp_1u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/psp_4u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/pplg202u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/psp_6-8u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/psp_1u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/pvspl_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/psp_2-3u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/pplg1__u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/pplg202u.htm"
         ]
     },
     "88102": {
@@ -433,8 +448,8 @@
     },
     "88183": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/yoga/patyog_u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/yoga/yogasutu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/yoga/patyog_u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/yoga/yogsubhu.htm"
         ]
     },
@@ -466,8 +481,8 @@
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/samkhya/iskamatu.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/samkhya/jaymangu.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/samkhya/isvskaru.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/samkhya/iskar_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/samkhya/iskgaudu.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/samkhya/iskgaudu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/samkhya/iskar_u.htm"
         ]
     },
     "88230": {
@@ -489,8 +504,8 @@
     },
     "88240": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/vakobhau.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/vakobhku.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/vakobhku.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/vakobhau.htm"
         ]
     },
     "88243": {
@@ -500,8 +515,8 @@
     },
     "88249": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/asmahsuu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/asmahsbu.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/asmahsbu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/asmahsuu.htm"
         ]
     },
     "88250": {
@@ -522,8 +537,8 @@
     },
     "88262": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa023_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa022_u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa022_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa023_u.htm"
         ]
     },
     "88341": {
@@ -534,12 +549,18 @@
     "88353": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/nysvbh1u.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/vatsyayana-nyayabhasya.xml"
         ]
     },
     "88354": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/1_gram/vakyp1pu.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/1_gram/vakyp_pu.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/bhartrhari-vakyapadiya.xml"
         ]
     },
     "88356": {
@@ -560,6 +581,9 @@
     "88376": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/yoga/patyogbu.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/patanjalayogasastra.xml"
         ]
     },
     "88418": {
@@ -581,6 +605,9 @@
     "88455": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vaisesik/paddhs_u.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/prasastapada-padarthadharmasangraha.xml"
         ]
     },
     "88515": {
@@ -595,8 +622,8 @@
     },
     "88543": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/gaukarpu.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/4_upa/gmandk_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/gaukarpu.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/4_upa/agsas_3u.htm"
         ]
     },
@@ -628,16 +655,16 @@
     },
     "88576": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/dhknyayu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/dhnyabpu.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa057_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/dhnyabpu.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/dhknyayu.htm"
         ]
     },
     "88577": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/dhkpvsvu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/dhkprvku.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/pramanvu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/dhkprvku.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/dhkpvsvu.htm"
         ]
     },
     "88578": {
@@ -647,8 +674,8 @@
     },
     "88579": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/dhksparu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa063_u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa063_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/dhksparu.htm"
         ]
     },
     "88580": {
@@ -658,14 +685,14 @@
     },
     "88581": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa064_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/dhkvadnu.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/dhkvadnu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa064_u.htm"
         ]
     },
     "88583": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/bsu001_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/anitysuu.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/anitysuu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/bsu001_u.htm"
         ]
     },
     "88590": {
@@ -685,33 +712,33 @@
     },
     "88605": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa003_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/santbcpu.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/santbcpu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa003_u.htm"
         ]
     },
     "88609": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss02u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanssr_pu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss11u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss03u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss04u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss09u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss01u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss08u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss05u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss17u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa014_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss18u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss01u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss09u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss12u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss10u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss13u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss15u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss19u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss16u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanssr_pu.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss14u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss06u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss07u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss13u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss11u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss07u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss10u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss04u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss18u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss05u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss02u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss16u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss08u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss03u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/sanss19u.htm"
         ]
     },
     "88611": {
@@ -761,8 +788,8 @@
     },
     "88733": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/arhebt_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/arhebt2u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/arhebt2u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/arhebt_u.htm"
         ]
     },
     "88749": {
@@ -807,20 +834,20 @@
     },
     "88902": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/prakp14u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/prakp08u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/prakp10u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/prakp06u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/prakp05u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/prakp02u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/prakp12u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/prakp03u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/prakp11u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/prakp13u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/prakp08u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/prakp01u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/prakp02u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/prakp03u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/prakp07u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/prakp09u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/prakp04u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/prakp14u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/prakp10u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/prakp04u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/prakp12u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/prakp05u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/prakp13u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/prakp11u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/prakp09u.htm"
         ]
     },
     "88905": {
@@ -865,10 +892,10 @@
     },
     "89093": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/udnyku1u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/udnyku3u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/udnyku5u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/udnyku2u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/udnyku1u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/udnyku5u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/udnyku4u.htm"
         ]
     },
@@ -880,13 +907,16 @@
     },
     "89105": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/jithettu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/jithetuu.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/jithetuu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/jithettu.htm"
         ]
     },
     "89131": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa0554u.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/avayavinirakarana.xml"
         ]
     },
     "89143": {
@@ -926,8 +956,8 @@
     },
     "89168": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/saiva/parmartu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/saiva/aparmyou.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/saiva/aparmyou.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/saiva/parmartu.htm"
         ]
     },
     "89170": {
@@ -958,6 +988,9 @@
     "89186": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/durdhpru.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/dharmottarapradipa.xml"
         ]
     },
     "89211": {
@@ -1044,13 +1077,19 @@
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa0551u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa075_u.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/ratnakirti-nibandhavali.xml"
         ]
     },
     "89346": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/ratksanu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa0552u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa075_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa0552u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/ratksanu.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/ratnakirti-nibandhavali.xml"
         ]
     },
     "89351": {
@@ -1066,6 +1105,9 @@
     "89427": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa072_u.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/tarkabhasa.xml"
         ]
     },
     "89485": {
@@ -1085,17 +1127,17 @@
     },
     "89577": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/saiva/gorst2pu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/saiva/gorst1pu.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/saiva/gorst1pu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/saiva/gorst2pu.htm"
         ]
     },
     "89641": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/kbavk75u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/bsu078_u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/kbavk10u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/kbavk93u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/kbavk64u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/kbavk64u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/kbavk75u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/kbavk93u.htm"
         ]
     },
     "89936": {
@@ -1120,15 +1162,15 @@
     },
     "90184": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/vnyps42u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/vnyps41u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/vnyps32u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/vnyps11u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/vnyps52u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/vnyps00u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/vnyps51u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/vnyps31u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/vnyps12u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/vnyps12u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/vnyps32u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/vnyps41u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/vnyps52u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/vnyps00u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/vnyps42u.htm"
         ]
     },
     "90263": {
@@ -1140,8 +1182,8 @@
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/nysu__4u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/nysu__3u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/nysu__1u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/nysu__2u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/nysu__2u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/nysu__1u.htm"
         ]
     },
     "90384": {
@@ -1186,9 +1228,9 @@
     },
     "90892": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/vytrkt3u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/vytrkt2u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/vytrkt1u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/vytrkt2u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/nyaya/vytrkt3u.htm"
         ]
     },
     "90995": {
@@ -1239,17 +1281,17 @@
     },
     "91795": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/jsbh1-2u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/jsbh1-4u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/jsbh2-1u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/jsbh3-3u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/jsbh2-3u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/jsbh1-3u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/jsbh1-1u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/jsbh2-4u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/jsbh3-1u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/jsbh2-3u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/jsbh3-2u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/jsbh2-2u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/jsbh1-1u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/jsbh1-3u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/jsbh3-1u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/jsbh1-2u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/jsbh1-4u.htm"
         ]
     },
     "92115": {
@@ -1335,19 +1377,22 @@
     },
     "95897": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/tarkrplu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/tarkrsau.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/tarkrsau.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/tarkrplu.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/tarkarahasya.xml"
         ]
     },
     "95965": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/4_upa/brupsb1u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/4_upa/brupsb2u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/4_upa/brupsb5u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/4_upa/brupsb6u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/4_upa/brupsb4u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/4_upa/brup___u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/4_upa/brupsb3u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/4_upa/brupsb4u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/4_upa/brupsb1u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/4_upa/brupsb5u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/4_upa/brupsb3u.htm"
         ]
     },
     "96032": {
@@ -1414,24 +1459,30 @@
     },
     "96406": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/andhvc4u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/andhvc1u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/andhvc3u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/andhvy_u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/andhvc2u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/andhvy_u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/andhvc3u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/andhvc4u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/andhvc1u.htm"
         ]
     },
     "96443": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_natya/dhandasu.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/dasarupaka.xml"
         ]
     },
     "96586": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/dkavy2pu.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/dkavy3_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/dkavy12u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/dkavy1pu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/dkavy12u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/dkavy2pu.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/ratnasritika-dn.xml"
         ]
     },
     "97080": {
@@ -1467,18 +1518,18 @@
     },
     "97296": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/brndp2_u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/brndp1_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/brndp2_u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/brndp3_u.htm"
         ]
     },
     "99171": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr//motik_1u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr//motik_2u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr//motik_3u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/advaita/moksop_u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr//motik_4u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/advaita/moksop_u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr//motik_3u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr//motik_2u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr//motik_1u.htm"
         ]
     },
     "102263": {
@@ -1494,6 +1545,9 @@
     "102278": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/4_dharma/smrti/manu2p_u.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/manusmrti.xml"
         ]
     },
     "105492": {
@@ -1528,8 +1582,8 @@
     },
     "107963": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/8_jyot/yogay2_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/8_jyot/yogay1_u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/8_jyot/yogay1_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/8_jyot/yogay2_u.htm"
         ]
     },
     "108044": {
@@ -1539,14 +1593,14 @@
     },
     "108641": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/8_jyot/aryabh_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/8_jyot/aryabhcu.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/8_jyot/aryabhcu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/8_jyot/aryabh_u.htm"
         ]
     },
     "108721": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/kmeghvpu.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/kmeghdpu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/kmeghvpu.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/meghdk_u.htm"
         ]
     },
@@ -1567,9 +1621,9 @@
     },
     "108906": {
         "GRETIL": [
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/ruyalssu.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/ruyalsvu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/ruyalscu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/ruyalssu.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/ruyalscu.htm"
         ]
     },
     "108908": {
@@ -1584,14 +1638,17 @@
     },
     "108935": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/asvbuc2u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/asvbc_1u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/asvbc_1u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/asvbuc2u.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/asvaghosa-buddhacarita.xml"
         ]
     },
     "108936": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/asvsaunu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/asvsau2u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/asvsau2u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/asvsaunu.htm"
         ]
     },
     "108945": {
@@ -1611,24 +1668,24 @@
     },
     "109009": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/vamkalsu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/vamkalvu.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/vamkalvu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/vamkalsu.htm"
         ]
     },
     "109051": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/visa06cu.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/visa10cu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/visa01cu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/visa08cu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/visa09cu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/visvsdpu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/visah__u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/visa05cu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/visa04cu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/visvsdpu.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/visa02cu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/visa07cu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/visa03cu.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/visa08cu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/visa01cu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/visa04cu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/visa03cu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/visa09cu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/visa06cu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/visah__u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_alam/visa07cu.htm"
         ]
     },
     "109053": {
@@ -1661,54 +1718,57 @@
     "109562": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/bankad1u.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/bana-kadambari.xml"
         ]
     },
     "109565": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/bahcar7u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/bahcar2u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/bahcarpu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/bahcar8u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/bahcar1u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/bahcar5_pu.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/bahcar4u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/bahcar1u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/bahcar8u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/bahcar3u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/bahcar6u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/bahcarpu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/bahcar7u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/bahcar6u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_kavya/bahcar2u.htm"
         ]
     },
     "109614": {
         "GRETIL": [
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_04_u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rvh1-10u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rvpp_04u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_03_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rvpp_08u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_hn05u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rvpp_09u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_hn03u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rvpp_07u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rvpp_06u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_01_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_08_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rvpp_10u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_hn10u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_06_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_02_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rvpp_08u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rvpp_05u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_07_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_hn07u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_09_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_hn06u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_hn09u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_hn04u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_hn01u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rvpp_01u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_hn08u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_05_u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_10_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_hn04u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rvpp_03u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_hn06u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_07_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_hn08u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rvpp_04u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rvpp_05u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_01_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rvpp_09u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rvpp_06u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_09_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_08_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_hn09u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_02_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rvpp_10u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_hn02u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_hn01u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rvpp_02u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_hn07u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_hn10u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_hn05u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_06_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rvpp_07u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_04_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rvpp_01u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/1_rv/rv_hn02u.htm"
         ]
     },
     "109673": {
@@ -1719,6 +1779,9 @@
     "109693": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/5_artha/kautil_u.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/kautalyarthasastra.xml"
         ]
     },
     "109729": {
@@ -1785,8 +1848,8 @@
     },
     "112591": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_chandas/kedvratu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_chandas/kvrtrsuu.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_chandas/kvrtrsuu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/1_chandas/kedvratu.htm"
         ]
     },
     "113082": {
@@ -1857,24 +1920,27 @@
     },
     "42078": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_15_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_05_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_11_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_03_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_16_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_09_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_13_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_08_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_01_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_04_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_18_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_06_u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_10_u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_02_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_06_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_11_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_16_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_08_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_13_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_15_u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_17_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_18_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_09_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_01_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_07_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_04_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_14_u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_12_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_03_u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_05_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_14_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/mbh/mbh_07_u.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/mahabharata-devanagari.xml"
         ]
     },
     "109490": {
@@ -1889,21 +1955,21 @@
     },
     "111271": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/ramayana/ram_02su.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/ramayana/ram_02_u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/ramayana/ram_02_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/ramayana/ram_02su.htm"
         ]
     },
     "96104": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/ramayana/ram_07_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/ramayana/ram_06_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/ramayana/ram_01_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/ramayana/ram_02su.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/ramayana/ram_05_u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/ramayana/ram_03pu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/ramayana/ram_01_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/ramayana/ram_06_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/ramayana/ram_02_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/ramayana/ram_02su.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/ramayana/ram_04_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/ramayana/ram_03_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/ramayana/ram_02_u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/ramayana/ram_07_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/ramayana/ram_05_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/ramayana/ram_03_u.htm"
         ]
     },
     "111272": {
@@ -1933,8 +1999,8 @@
     },
     "111356": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/ramayana/ram_03_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/ramayana/ram_03pu.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/ramayana/ram_03pu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/2_epic/ramayana/ram_03_u.htm"
         ]
     },
     "111493": {
@@ -2113,8 +2179,8 @@
     },
     "96050": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/4_upa/mandup_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/4_upa/mand_upu.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/4_upa/mand_upu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/4_upa/mandup_u.htm"
         ]
     },
     "96057": {
@@ -2125,6 +2191,9 @@
     "89132": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa0555u.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/samanyadusana.xml"
         ]
     },
     "88466": {
@@ -2165,8 +2234,8 @@
     },
     "96094": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/4_upa/prasupbu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/4_upa/prasup_u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/4_upa/prasup_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/4_upa/prasupbu.htm"
         ]
     },
     "88809": {
@@ -2187,6 +2256,9 @@
     "97355": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/vaisn/astavgpu.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/astavakragita.xml"
         ]
     },
     "89065": {
@@ -2212,8 +2284,8 @@
     },
     "113066": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/kurmp1_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/kurmp2_u.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/kurmp2_u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/kurmp1_u.htm"
         ]
     },
     "112836": {
@@ -2224,43 +2296,64 @@
     "89349": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa075_u.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/ratnakirti-nibandhavali.xml"
         ]
     },
     "41629": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa075_u.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/ratnakirti-nibandhavali.xml"
         ]
     },
     "89347": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa075_u.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/ratnakirti-nibandhavali.xml"
         ]
     },
     "41630": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa075_u.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/ratnakirti-nibandhavali.xml"
         ]
     },
     "89350": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa075_u.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/ratnakirti-nibandhavali.xml"
         ]
     },
     "89342": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa075_u.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/ratnakirti-nibandhavali.xml"
         ]
     },
     "89353": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/buddh/bsa075_u.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/ratnakirti-nibandhavali.xml"
         ]
     },
     "88211": {
         "GRETIL": [
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/prajnhsu.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/bsu054_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/bsu053_u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/prajnhsu.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/bsu053_u.htm"
         ]
     },
     "95937": {
@@ -2271,6 +2364,9 @@
     "95962": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/brahmap/brahmppu.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/brahmapurana.xml"
         ]
     },
     "95960": {
@@ -2306,14 +2402,17 @@
     },
     "89146": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/yamsvspu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/yamss_pu.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/yamis_pu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/yamss_pu.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/vedanta/yamsvspu.htm"
         ]
     },
     "88598": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/ktv_2-1u.htm"
+        ],
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/kumarila-tantravarttika.xml"
         ]
     },
     "113607": {
@@ -2329,8 +2428,8 @@
     "90286": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/mjnya01u.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/mjnya04u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/mjnya03u.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/mjnya04u.htm",
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/6_sastra/3_phil/mimamsa/mjnya02u.htm"
         ]
     },
@@ -2371,8 +2470,8 @@
     },
     "89306": {
         "GRETIL": [
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/saiva/cakbhavu.htm",
-            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/saiva/cakbh_pu.htm"
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/saiva/cakbh_pu.htm",
+            "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/saiva/cakbhavu.htm"
         ]
     },
     "95939": {
@@ -2383,6 +2482,257 @@
     "95988": {
         "GRETIL": [
             "http://gretil.sub.uni-goettingen.de/gretil/1_sanskr/3_purana/garup1_u.htm"
+        ]
+    },
+    "41850": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/arunadatta-sarvangasundara.xml"
+        ]
+    },
+    "41945": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/astangasangraha.xml"
+        ]
+    },
+    "42369": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/ayurvedasutram.xml"
+        ]
+    },
+    "42434": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/bhattojidiksita-siddhantakaumudi.xml"
+        ]
+    },
+    "41807": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/bhelasamhita.xml"
+        ]
+    },
+    "42086": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/bhoja-rajamartanda.xml"
+        ]
+    },
+    "99168": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/cakrapanidatta-ayurvedadipika.xml"
+        ]
+    },
+    "88895": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/dharmottaratippanaka.xml"
+        ]
+    },
+    "88546": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/dvadasara_nayacakra.xml"
+        ]
+    },
+    "89116": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/jitari-isvaravadimatapariksa.xml"
+        ]
+    },
+    "89106": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/jitari-jatinirakrti.xml"
+        ]
+    },
+    "89107": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/jitari-nairatmyasiddhi.xml",
+            "https://github.com/sarit/SARIT-corpus/blob/master/jitari-vedapramanyasiddhi.xml"
+        ]
+    },
+    "89114": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/jitari-sarvajnasiddhi.xml"
+        ]
+    },
+    "89200": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/jnanasrimitra-nibandhavali.xml"
+        ]
+    },
+    "89208": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/jnanasrimitra-nibandhavali.xml"
+        ]
+    },
+    "89197": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/jnanasrimitra-nibandhavali.xml"
+        ]
+    },
+    "89195": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/jnanasrimitra-nibandhavali.xml"
+        ]
+    },
+    "89206": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/jnanasrimitra-nibandhavali.xml"
+        ]
+    },
+    "89196": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/jnanasrimitra-nibandhavali.xml"
+        ]
+    },
+    "89198": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/jnanasrimitra-nibandhavali.xml"
+        ]
+    },
+    "89199": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/jnanasrimitra-nibandhavali.xml"
+        ]
+    },
+    "89209": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/jnanasrimitra-nibandhavali.xml"
+        ]
+    },
+    "89193": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/jnanasrimitra-nibandhavali.xml"
+        ]
+    },
+    "89203": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/jnanasrimitra-nibandhavali.xml"
+        ]
+    },
+    "89204": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/jnanasrimitra-nibandhavali.xml"
+        ]
+    },
+    "97710": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/madhusudanasarasvati-atmabodhaprakarana.xml"
+        ]
+    },
+    "89272": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/nyayakumudacandra.xml"
+        ]
+    },
+    "88926": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/nyayamanjari.xml"
+        ]
+    },
+    "89879": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/nyayasudha.xml"
+        ]
+    },
+    "89038": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/nyayavarttikatatparyatika.xml"
+        ]
+    },
+    "89734": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/pramanamimamsa-and-vrtti.xml"
+        ]
+    },
+    "88859": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/pramanavarttikalankarabhasya.xml"
+        ]
+    },
+    "89013": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/pramanavarttikavrtti.xml"
+        ]
+    },
+    "109557": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/pravarasena-setubandha.xml"
+        ]
+    },
+    "88407": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/pujyapada-sarvarthasiddhi.xml"
+        ]
+    },
+    "41946": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/rasarnava.xml"
+        ]
+    },
+    "96506": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/sarasvatikanthabharana-dn.xml"
+        ]
+    },
+    "96500": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/sarasvatikanthabharana-dn.xml"
+        ]
+    },
+    "103579": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/sarvadarsanasangraha.xml"
+        ]
+    },
+    "41786": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/siddhayoga.xml"
+        ]
+    },
+    "88827": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/siddhiviniscayatika.xml"
+        ]
+    },
+    "42004": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/susrutasamhita.xml"
+        ]
+    },
+    "88846": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/tattvasangrahapanjika.xml"
+        ]
+    },
+    "111006": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/trisuli-piyusalahari.xml"
+        ]
+    },
+    "41930": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/ugraditya-kalyanakaraka.xml"
+        ]
+    },
+    "89042": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/vacaspati-tattvavaisaradi.xml"
+        ]
+    },
+    "88739": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/vadanyayatika.xml"
+        ]
+    },
+    "89110": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/vadasthana.xml"
+        ]
+    },
+    "88615": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/vidhiviveka-and-nyayakanika.xml"
+        ]
+    },
+    "95746": {
+        "SARIT (GitHub)": [
+            "https://github.com/sarit/SARIT-corpus/blob/master/vijnanesvara-mitaksara.xml"
         ]
     }
 }
